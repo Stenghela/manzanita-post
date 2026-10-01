@@ -120,6 +120,8 @@
 
   .footer-bar{ position: fixed; bottom: 0; left: 0; right: 0; background: var(--paper); border-top: 3px double var(--rule); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; }
   .footer-inner{ max-width: 1240px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .totals{ display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; justify-content: flex-end; }
+  .summary-total-2{ margin-top: 4px; padding-top: 4px; border-top: none; }
   .grand-total{ display: flex; align-items: baseline; gap: 10px; }
   .grand-total .label{ font-size: 13px; color: var(--ink-soft); }
   .grand-total .amount{ font-family: 'Courier New', monospace; font-weight: bold; font-size: 28px; color: var(--ink); }
@@ -137,7 +139,9 @@
     .row{ grid-template-columns: 1fr 52px 92px 68px; gap: 6px; padding: 6px 10px; }
     .item-name{ font-size: 12px; }
     .header h1{ font-size: 23px; }
-    .grand-total .amount{ font-size: 22px; }
+    .grand-total .amount{ font-size: 18px; }
+    .totals{ gap: 14px; }
+    .grand-total{ gap: 6px; }
   }
 </style>
 </head>
@@ -152,16 +156,23 @@
   <aside class="summary-panel">
     <h2 class="summary-title">Listino</h2>
     <div class="summary-list" id="summaryList"><p class="summary-empty">Nessun articolo inserito.</p></div>
-    <div class="summary-total"><span>Totale</span><span id="summaryTotal">$0.00</span></div>
+    <div class="summary-total"><span>Da dare</span><span id="summaryGive">$0.00</span></div>
+    <div class="summary-total summary-total-2"><span>Fattura</span><span id="summaryInvoice">$0.00</span></div>
   </aside>
 </div>
 
 <div class="footer-bar">
   <div class="footer-inner">
     <button class="reset-btn" onclick="resetAll()">Svuota registro</button>
-    <div class="grand-total">
-      <span class="label">Totale dovuto</span>
-      <span class="amount" id="grandTotal">$0.00</span>
+    <div class="totals">
+      <div class="grand-total">
+        <span class="label">Da dare</span>
+        <span class="amount" id="totalGive">$0.00</span>
+      </div>
+      <div class="grand-total">
+        <span class="label">Fattura</span>
+        <span class="amount" id="totalInvoice">$0.00</span>
+      </div>
     </div>
   </div>
 </div>
@@ -287,7 +298,7 @@ data.forEach((cat, ci) => {
 
   const head = document.createElement("div");
   head.className = "category-head";
-  const negLabel = cat.negative ? ` <span class="neg-label">— vendita, importo negativo</span>` : "";
+  const negLabel = cat.negative ? ` <span class="neg-label">— da fare fattura!</span>` : "";
   head.innerHTML = `<span class="icon">${cat.icon}</span><h2>${cat.name}${negLabel}</h2><span class="arrow">▼</span>`;
   head.onclick = () => catDiv.classList.toggle("collapsed");
   catDiv.appendChild(head);
@@ -370,7 +381,7 @@ function removeCube(ci, ii){
 }
 
 function calculate(){
-  let grand = 0;
+  let give = 0, invoice = 0;
   const active = [];
   data.forEach((cat, ci) => {
     let subtotal = 0;
@@ -393,13 +404,15 @@ function calculate(){
       }
     });
     document.getElementById(`subtotal-${ci}`).textContent = `${subtotal < 0 ? "-" : ""}$${Math.abs(subtotal).toFixed(2)}`;
-    grand += subtotal;
+    if (cat.negative) invoice += Math.abs(subtotal); else give += subtotal;
   });
-  document.getElementById("grandTotal").textContent = `${grand < 0 ? "-" : ""}$${Math.abs(grand).toFixed(2)}`;
-  renderSummary(active, grand);
+  const fmt = v => `$${v.toFixed(2)}`;
+  document.getElementById("totalGive").textContent = fmt(give);
+  document.getElementById("totalInvoice").textContent = fmt(invoice);
+  renderSummary(active, give, invoice);
 }
 
-function renderSummary(active, grand){
+function renderSummary(active, give, invoice){
   const list = document.getElementById("summaryList");
   if (active.length === 0){
     list.innerHTML = `<p class="summary-empty">Nessun articolo inserito.</p>`;
@@ -417,7 +430,8 @@ function renderSummary(active, grand){
       </div>
     `).join("");
   }
-  document.getElementById("summaryTotal").textContent = `${grand < 0 ? "-" : ""}$${Math.abs(grand).toFixed(2)}`;
+  document.getElementById("summaryGive").textContent = `$${give.toFixed(2)}`;
+  document.getElementById("summaryInvoice").textContent = `$${invoice.toFixed(2)}`;
 }
 
 function resetAll(){
