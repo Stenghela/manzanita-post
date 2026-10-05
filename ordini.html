@@ -7,6 +7,7 @@
 <label>Note<input id="note"></label></div><p><button>Aggiungi ordine</button></p></form>
 <div class="box"><h2>Ordini</h2><label>Mostra<select id="filtro"><option value="">Tutti</option><option>Da fare</option><option>Preparato</option><option>Consegnato</option></select></label>
 <div class="tot" id="tot"></div><div id="lista"></div></div></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script><script>
 $('#nav').innerHTML=nav('o');const STATI=['Da fare','Preparato','Consegnato'];let rows=[];
 let busy=0;try{rows=JSON.parse(localStorage.getItem('mp_ordini')||'[]')}catch(e){}
@@ -20,4 +21,4 @@ $('#filtro').onchange=disegna;
 $('#form').onsubmit=async e=>{e.preventDefault();const row={cliente:$('#cliente').value,articolo:$('#articolo').value,qty:+$('#qty').value,importo:$('#importo').value,note:$('#note').value,stato:'Da fare'};
 rows.push({id:'tmp'+Date.now(),data:new Date().toISOString().slice(0,10),...row});disegna();e.target.reset();$('#qty').value=1;busy++;
 try{await api('add','Ordini',{row})}catch(er){$('#err').textContent='Errore: '+er.message}busy--;carica()};
-if(rows.length)disegna();avvia(carica);</script></body></html>
+if(rows.length)disegna();avvia(carica,'Ordini');</script></body></html>

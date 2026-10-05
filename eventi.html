@@ -7,6 +7,7 @@
 <label>Quantità<input id="qty" type="number" min="1" value="1" required></label></div><p><button>Registra consegna</button></p></form>
 <div class="box"><h2>Totali per oggetto</h2><div class="tot" id="tot"></div></div>
 <div class="box"><h2>Consegne registrate</h2><div id="lista"></div></div></main>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script><script>
 $('#nav').innerHTML=nav('e');let rows=[];
 let busy=0;try{rows=JSON.parse(localStorage.getItem('mp_eventi')||'[]')}catch(e){}
@@ -20,4 +21,4 @@ $('#form').onsubmit=async e=>{e.preventDefault();const ev=$('#evento').value.tri
 const row={evento:ev,data:$('#data').value,persona:$('#persona').value,oggetto:$('#oggetto').value,qty:+$('#qty').value};
 rows.push({id:'tmp'+Date.now(),...row});disegna();$('#persona').value='';$('#qty').value=1;$('#persona').focus();busy++;
 try{await api('add','Eventi',{row})}catch(er){$('#err').textContent='Errore: '+er.message}busy--;carica()};
-if(rows.length)disegna();avvia(carica);</script></body></html>
+if(rows.length)disegna();avvia(carica,'Eventi');</script></body></html>
