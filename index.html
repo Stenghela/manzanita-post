@@ -3,449 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Manzanita Post</title>
+<title>Manzanita Post · Registro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper: #e7d8ae;
-    --paper-deep: #dcc98c;
-    --paper-line: #cdb87e;
-    --grey: #302d27;
-    --ink: #2a1d12;
-    --ink-soft: #6b5738;
-    --ink-red: #8a2f22;
-    --gold: #8a6a2c;
-    --rule: rgba(42,29,18,.28);
-    box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --paper: #36291a; --paper-deep: #2b2013; --paper-line: #493a24; --grey: #403d37;
-      --ink: #ecdfc4; --ink-soft: #b9a374; --ink-red: #dd8a72; --gold: #d6b364;
-      --rule: rgba(236,223,196,.22);
-    }
-  }
-  :root[data-theme="dark"]{
-    --paper: #36291a; --paper-deep: #2b2013; --paper-line: #493a24; --grey: #403d37;
-    --ink: #ecdfc4; --ink-soft: #b9a374; --ink-red: #dd8a72; --gold: #d6b364;
-    --rule: rgba(236,223,196,.22);
-  }
-  *,*::before,*::after{ box-sizing: inherit; }
-  html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
+:root{--forest-950:#17211a;--forest-900:#1d2b21;--forest-800:#27382b;--forest-700:#334a38;--forest-600:#44624a;--paper:#e8dcc0;--paper-2:#dfcfaa;--paper-3:#d3bd8d;--paper-soft:#f0e7d1;--ink:#2b2118;--ink-soft:#725f46;--line:rgba(54,42,29,.25);--brass:#aa8444;--brass-light:#d7b975;--rust:#8f3f2f;--rust-dark:#5e271f;--illegal:#431e1b;--illegal-2:#612a22;--shadow:0 12px 28px rgba(22,18,13,.16);--shadow-soft:0 5px 14px rgba(22,18,13,.12);box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--ink);font-family:'Merriweather',Georgia,'Times New Roman',serif;padding:20px 16px 132px;background:linear-gradient(rgba(232,220,192,.93),rgba(232,220,192,.93)),repeating-linear-gradient(90deg,rgba(55,39,23,.03) 0 1px,transparent 1px 7px),radial-gradient(circle at 10% 8%,rgba(255,255,255,.65),transparent 34%),radial-gradient(circle at 90% 88%,rgba(78,48,25,.12),transparent 36%),#d8c59f}body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 900px 460px at -8% -5%,rgba(41,68,45,.13),transparent 62%),radial-gradient(ellipse 800px 520px at 108% 106%,rgba(103,52,36,.10),transparent 64%)}.shell{max-width:1360px;margin:0 auto}
+.hero{position:relative;overflow:hidden;background:linear-gradient(115deg,rgba(23,33,26,.98),rgba(39,56,43,.96)),var(--forest-900);color:#f3ead6;border:1px solid rgba(29,43,33,.8);box-shadow:var(--shadow);margin-bottom:16px}.hero::before,.hero::after{content:"";position:absolute;border:1px solid rgba(215,185,117,.24);pointer-events:none}.hero::before{inset:7px}.hero::after{inset:12px;border-style:dashed;opacity:.55}.hero-inner{position:relative;z-index:1;padding:24px 28px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}.eyebrow{font-family:'Merriweather',Georgia,serif;text-transform:uppercase;letter-spacing:2px;font-size:10px;color:var(--brass-light);margin-bottom:6px}.hero h1{margin:0;font-family:'Rye',Georgia,serif;font-weight:400;font-size:clamp(30px,5vw,52px);line-height:1;letter-spacing:1.5px}.hero-sub{margin:9px 0 0;color:#d9ceb6;font-size:13px;letter-spacing:.3px}.hero-mark{width:92px;height:92px;border:1px solid rgba(215,185,117,.5);outline:1px solid rgba(215,185,117,.18);outline-offset:6px;display:grid;place-items:center;text-align:center;transform:rotate(2deg);color:var(--brass-light)}.hero-mark .big{font-size:34px;line-height:1}.hero-mark .small{margin-top:5px;font-family:'IM Fell English SC',Georgia,serif;font-size:11px;letter-spacing:1px}
+.guide{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 14px;margin-bottom:18px;background:rgba(239,231,210,.82);border:1px solid var(--line);border-left:4px solid var(--brass);box-shadow:var(--shadow-soft)}.guide-icon{font-size:20px}.guide-main{font-size:12px;line-height:1.4}.guide-main strong{color:var(--forest-700)}.guide-hint{font-family:'Merriweather',Georgia,serif;color:var(--ink-soft);font-size:10px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}.sections{min-width:0}.section-block{margin-bottom:18px}.section-heading{display:flex;align-items:center;gap:10px;margin:0 0 8px;color:var(--forest-800)}.section-heading::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(51,74,56,.55),transparent)}.section-kicker{font-family:'IM Fell English SC',Georgia,serif;letter-spacing:.8px;font-size:15px;white-space:nowrap}.section-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-items:start}.span-2{grid-column:1/-1}
+.category{overflow:hidden;background:linear-gradient(rgba(227,211,175,.96),rgba(227,211,175,.96)),repeating-linear-gradient(0deg,rgba(79,60,39,.025) 0 1px,transparent 1px 5px);border:1px solid rgba(65,49,32,.22);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft)}.category.negative{border-top-color:var(--rust)}.category-head{min-height:46px;display:flex;align-items:center;gap:9px;padding:10px 12px;cursor:pointer;user-select:none;background:linear-gradient(90deg,rgba(255,255,255,.18),transparent)}.category-head:hover{background:rgba(255,255,255,.16)}.category-head .icon{font-size:18px}.category-head h2{margin:0;font-family:'IM Fell English SC',Georgia,serif;font-size:16px;font-weight:400;letter-spacing:.4px}.category-head .arrow{margin-left:auto;color:var(--brass);font-size:11px;transition:transform .18s ease}.category.collapsed .arrow{transform:rotate(-90deg)}.category.collapsed .category-body{display:none}.badge{display:inline-flex;align-items:center;padding:2px 6px;margin-left:5px;border:1px solid currentColor;font-family:'Merriweather',Georgia,serif;font-size:8.5px;letter-spacing:.4px;text-transform:uppercase;vertical-align:1px}.badge.invoice{color:var(--rust)}.badge.buy{color:var(--forest-700)}
+.category.bracconaggio{color:#efe1c5;border-color:#2a1714;border-top-color:#b06b45;background:linear-gradient(rgba(67,30,27,.97),rgba(48,23,21,.98)),repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 1px,transparent 1px 6px)}.category.bracconaggio .category-head{background:linear-gradient(90deg,rgba(176,107,69,.14),transparent)}.category.bracconaggio .category-head h2{color:#f0dfbd}.category.bracconaggio .category-head .arrow{color:#d8a16d}.category.bracconaggio .row{border-bottom-color:rgba(255,255,255,.10)}.category.bracconaggio .row:hover{background:rgba(255,255,255,.04)}.category.bracconaggio .item-price,.category.bracconaggio .column-head{color:#c9b693}.category.bracconaggio .qty-cube{color:#f5e6c8;border-color:#9a8061;background:rgba(0,0,0,.12)}.category.bracconaggio .qty-sum{color:#e1c28a}.category.bracconaggio .row-total{color:#e6bd77}.category.bracconaggio .category-subtotal{color:#d1b98c;background:rgba(0,0,0,.18);border-top-color:rgba(255,255,255,.10)}.category.bracconaggio .cube-btn{border-color:#9a8061;color:#e0b777}.category.bracconaggio .cube-btn.remove{color:#e78a79}.illegal-stamp{display:inline-flex;padding:2px 7px;margin-left:5px;border:1px solid #d19572;color:#e2b28e;font-family:'Merriweather',Georgia,serif;font-size:8.5px;transform:rotate(-2deg);letter-spacing:1px}
+.column-heads,.row{display:grid;grid-template-columns:minmax(135px,1.7fr) 72px minmax(148px,1fr) 54px 82px;align-items:center;gap:8px}.column-heads{padding:5px 12px;border-top:1px solid rgba(60,45,30,.10);border-bottom:1px solid rgba(60,45,30,.14);background:rgba(255,255,255,.10)}.column-head{font-family:'Merriweather',Georgia,serif;color:var(--ink-soft);font-size:8.5px;letter-spacing:.35px;text-transform:uppercase}.column-head.right{text-align:right}.column-head.center{text-align:center}.rows{padding:0}.row{padding:7px 12px;border-bottom:1px dashed rgba(75,55,35,.22);min-height:42px}.row:last-child{border-bottom:0}.row:hover{background:rgba(255,255,255,.15)}.item-name{font-size:12px;line-height:1.2}.item-price{font-size:10.5px;color:var(--ink-soft);text-align:right;line-height:1.2}
+.qty-cubes{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:4px}.qty-cube{width:38px;height:27px;padding:2px 3px;text-align:center;font-family:'Courier New',monospace;font-size:11.5px;color:var(--ink);background:rgba(255,255,255,.16);border:1px solid rgba(94,74,52,.65);border-radius:3px}.qty-cube:focus{outline:none;border-color:var(--forest-600);box-shadow:0 0 0 2px rgba(68,98,74,.12)}.qty-cube::-webkit-outer-spin-button,.qty-cube::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.cube-btn{width:24px;height:24px;display:grid;place-items:center;padding:0;border:1px dashed rgba(94,74,52,.68);border-radius:3px;background:transparent;color:var(--forest-700);font-family:Georgia,serif;font-size:14px;cursor:pointer}.cube-btn:hover{background:rgba(51,74,56,.08)}.cube-btn.remove{color:var(--rust)}.qty-sum{text-align:center;font-family:'Courier New',monospace;font-size:12px;font-weight:bold;color:var(--forest-700)}.qty-sum.active::before{content:"×";opacity:.55;margin-right:1px}.row-total{text-align:right;min-width:62px;font-family:'Courier New',monospace;font-size:12px;font-weight:bold;color:var(--brass)}.category-subtotal{display:flex;justify-content:flex-end;gap:8px;padding:7px 12px;background:rgba(58,43,27,.055);border-top:1px solid rgba(60,45,30,.12);color:var(--ink-soft);font-size:11px}
+.rules-card{background:linear-gradient(rgba(235,222,193,.97),rgba(225,207,169,.97));border-top-color:var(--rust)}.rules-list{margin:0;padding:12px 20px 8px 38px;font-size:12.5px;line-height:1.5}.rules-list li{padding:4px 0}.pena{color:var(--rust);font-weight:bold}.rules-note{margin:0;padding:10px 14px 12px;border-top:1px dashed var(--line);color:var(--ink-soft);font-size:12px;font-style:italic}
+.summary-panel{position:sticky;top:16px;overflow:hidden;background:linear-gradient(rgba(31,45,35,.98),rgba(24,35,27,.99));color:#efe6d1;border:1px solid #162019;border-top:4px solid var(--brass);box-shadow:var(--shadow)}.summary-head{padding:14px 14px 10px;border-bottom:1px solid rgba(255,255,255,.10)}.summary-title{margin:0;font-family:'IM Fell English SC',Georgia,serif;font-size:18px;font-weight:400;letter-spacing:.5px}.summary-sub{margin:4px 0 0;color:#b7aa8e;font-size:10px;font-family:'Special Elite','Courier New',monospace}.summary-list{max-height:calc(100vh - 350px);overflow-y:auto;padding:5px 14px}.summary-empty{margin:10px 0;color:#9e927b;font-size:12px}.summary-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.10)}.summary-row:last-child{border-bottom:0}.summary-row-main{min-width:0;display:flex;flex-direction:column;gap:2px}.summary-name{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#eee3ca;font-size:11.5px}.summary-cat{color:#9f947e;font-size:9px}.summary-row-nums{flex-shrink:0;display:flex;align-items:baseline;gap:7px}.summary-qty{color:#aaa087;font-size:10px}.summary-val{font-family:'Courier New',monospace;font-size:11.5px}.summary-val.pos{color:#d7b975}.summary-val.neg{color:#e38b77}.summary-totals{padding:12px 14px 14px;border-top:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.12)}.summary-total{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;font-size:11px;color:#bdb098}.summary-total strong{font-family:'Courier New',monospace;font-size:14px;color:#eee3ca}.summary-total.give strong{color:#d7b975}.summary-total.invoice strong{color:#e38b77}
+.footer-bar{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(232,220,192,.96);backdrop-filter:blur(6px);border-top:1px solid rgba(55,42,28,.28);box-shadow:0 -8px 24px rgba(45,32,20,.10)}.footer-inner{max-width:1360px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px}.reset-btn{border:1px solid var(--rust);background:transparent;color:var(--rust);padding:9px 14px;font-family:'IM Fell English SC',Georgia,serif;font-size:13px;cursor:pointer}.reset-btn:hover{background:var(--rust);color:#f4e9d2}.totals{display:flex;align-items:center;gap:30px}.grand-total{display:flex;flex-direction:column;align-items:flex-end}.grand-total .label{color:var(--ink-soft);font-family:'Merriweather',Georgia,serif;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px}.grand-total .amount{font-family:'Courier New',monospace;font-weight:bold;font-size:23px;line-height:1}.grand-total.give .amount{color:var(--forest-700)}.grand-total.invoice .amount{color:var(--rust)}
+@media(max-width:1060px){.layout{grid-template-columns:1fr}.summary-panel{position:static}.summary-list{max-height:none}}@media(max-width:760px){body{padding:10px 8px 145px}.hero-inner{padding:20px 18px;grid-template-columns:1fr}.hero-mark{display:none}.guide{grid-template-columns:auto 1fr}.guide-hint{display:none}.section-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.column-heads{display:none}.row{grid-template-columns:minmax(0,1fr) 74px;grid-template-areas:"item price" "cubes cubes" "qty total";gap:5px 8px;padding:9px 10px}.item-name{grid-area:item;font-size:12.5px}.item-price{grid-area:price}.qty-cubes{grid-area:cubes;padding-top:2px}.qty-sum{grid-area:qty;text-align:left}.qty-sum::after{content:" q.tà totale";font-family:Georgia,'Times New Roman',serif;font-weight:normal;font-size:10.5px;color:var(--ink-soft)}.row-total{grid-area:total}.category.bracconaggio .qty-sum::after{color:#b9a784}.footer-inner{align-items:stretch;flex-direction:column;gap:8px}.reset-btn{order:2;padding:7px 12px}.totals{justify-content:space-between;width:100%;gap:10px}.grand-total{align-items:flex-start}.grand-total .amount{font-size:19px}}
 
-  body{
-    margin: 0;
-    background: var(--paper);
-    background-image:
-      radial-gradient(ellipse 520px 320px at 6% -4%, rgba(0,0,0,.06), transparent 60%),
-      radial-gradient(ellipse 420px 320px at 98% 104%, rgba(0,0,0,.06), transparent 60%);
-    color: var(--ink);
-    font-family: Georgia, 'Times New Roman', serif;
-    padding: 20px 14px 120px;
-  }
-
-  .header{ max-width: 1240px; margin: 0 auto 16px; border-bottom: 3px double var(--rule); padding-bottom: 12px; }
-  .header h1{ font-family: 'Rye','Impact',serif; font-size: 28px; letter-spacing: 1px; margin: 0; color: var(--ink); font-weight: normal; }
-
-  .layout{ max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; gap: 14px; align-items: start; }
-
-  .categories-grid{ display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; align-items: start; }
-  .cell-caccia{ grid-row: 1; grid-column: 1; }
-  .cell-pesca{ grid-row: 1; grid-column: 2; }
-  .cell-attrezzi{ grid-row: 2; grid-column: 1; }
-  .cell-canne{ grid-row: 2; grid-column: 2; }
-  .cell-esche-caccia{ grid-row: 3; grid-column: 1; }
-  .cell-esche-pesca{ grid-row: 3; grid-column: 2; }
-  .cell-esche-trappole-caccia{ grid-row: 4; grid-column: 1; }
-  .cell-esche-trappole-pesca{ grid-row: 4; grid-column: 2; }
-  .cell-trappole{ grid-row: 5; grid-column: 1 / -1; }
-  .cell-vendite{ grid-row: 6; grid-column: 1 / -1; }
-  .cell-regole{ grid-row: 7; grid-column: 1 / -1; }
-
-  .category{ background: var(--paper-deep); border-top: 3px double var(--rule); border-bottom: 1px solid var(--rule); border-radius: 0; overflow: hidden; }
-  .category-head{ display: flex; align-items: center; gap: 8px; padding: 9px 12px; cursor: pointer; user-select: none; }
-  .category-head .arrow{ margin-left: auto; color: var(--gold); font-size: 11px; transition: transform .2s ease; }
-  .category.collapsed .arrow{ transform: rotate(-90deg); }
-  .category-body{ overflow: hidden; }
-  .category.collapsed .category-body{ display: none; }
-  .category-head .icon{ font-size: 15px; }
-  .category-head h2{ font-family: Georgia, 'Times New Roman', serif; font-variant: small-caps; font-size: 15px; font-weight: normal; letter-spacing: .4px; margin: 0; color: var(--ink); }
-  .neg-label{ text-decoration: underline; text-decoration-color: var(--ink-red); color: var(--ink-red); font-size: 10px; letter-spacing: 0; }
-
-  .rows{ padding: 2px 0; }
-  .row{ display: grid; grid-template-columns: minmax(0,1fr) 60px 108px 76px; align-items: center; gap: 8px; padding: 6px 12px; border-bottom: 1px dashed var(--rule); }
-  .row:last-child{ border-bottom: none; }
-  .item-name{ font-size: 12px; }
-  .row:hover{ background: rgba(0,0,0,.035); }
-  .item-price{ font-size: 10.5px; color: var(--ink-soft); text-align: right; }
-
-  .qty-cubes{ display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; }
-  .qty-cube{ width: 30px; height: 26px; background: transparent; border: 1px solid var(--ink-soft); border-radius: 4px; color: var(--ink); font-family: 'Courier New', monospace; font-size: 12px; text-align: center; padding: 2px; }
-  .qty-cube:focus{ outline: none; border-color: var(--ink-red); }
-  .qty-cube::-webkit-outer-spin-button, .qty-cube::-webkit-inner-spin-button{ -webkit-appearance: none; margin: 0; }
-  .cube-btn{ width: 22px; height: 22px; line-height: 19px; padding: 0; border: 1px dashed var(--ink-soft); border-radius: 4px; background: transparent; color: var(--gold); font-family: Georgia, serif; font-size: 14px; text-align: center; cursor: pointer; }
-  .cube-btn:hover{ background: rgba(0,0,0,.06); }
-  .cube-btn.remove{ color: var(--ink-red); border-color: var(--ink-red); }
-
-  .row-total{ font-family: 'Courier New', monospace; text-align: right; font-size: 12px; color: var(--gold); min-width: 60px; }
-
-  .category-subtotal{ display: flex; justify-content: flex-end; gap: 8px; padding: 6px 12px; background: rgba(0,0,0,.045); font-size: 11px; color: var(--ink-soft); border-top: 1px solid var(--rule); }
-
-  .category.positive{ border-top-color: var(--gold); }
-  .category.negative{ border-top-color: var(--ink-red); }
-  .category.regole{ border-top: 3px double var(--ink-red); }
-  .rules-list{ margin: 0; padding: 8px 14px 6px 34px; font-size: 13px; line-height: 1.5; }
-  .rules-list li{ padding: 4px 0; }
-  .rules-list .pena{ color: var(--ink-red); font-weight: bold; }
-  .rules-note{ margin: 0; padding: 8px 14px 12px; font-size: 12.5px; font-style: italic; color: var(--ink-soft); border-top: 1px dashed var(--rule); }
-
-  .summary-panel{ background: var(--paper-deep); border-top: 3px double var(--gold); border-bottom: 1px solid var(--rule); padding: 12px; position: sticky; top: 14px; max-height: calc(100vh - 160px); overflow-y: auto; }
-  .summary-title{ font-family: Georgia, 'Times New Roman', serif; font-variant: small-caps; font-size: 16px; margin: 0 0 8px; color: var(--ink); font-weight: normal; border-bottom: 1px dashed var(--rule); padding-bottom: 6px; }
-  .summary-empty{ font-size: 12px; color: var(--ink-soft); margin: 0; }
-  .summary-row{ display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 5px 0; border-bottom: 1px dashed var(--rule); }
-  .summary-row:last-child{ border-bottom: none; }
-  .summary-row-main{ display: flex; flex-direction: column; min-width: 0; }
-  .summary-name{ font-size: 12px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px; }
-  .summary-cat{ font-size: 9.5px; color: var(--ink-soft); }
-  .summary-row-nums{ display: flex; align-items: baseline; gap: 6px; flex-shrink: 0; }
-  .summary-qty{ font-size: 11px; color: var(--ink-soft); }
-  .summary-val{ font-size: 12px; font-family: 'Courier New', monospace; }
-  .summary-val.pos{ color: var(--gold); }
-  .summary-val.neg{ color: var(--ink-red); }
-  .summary-total{ display: flex; justify-content: space-between; margin-top: 10px; padding-top: 8px; border-top: 3px double var(--rule); font-family: 'Courier New', monospace; font-weight: bold; font-size: 15px; color: var(--ink); }
-
-  .footer-bar{ position: fixed; bottom: 0; left: 0; right: 0; background: var(--paper); border-top: 3px double var(--rule); padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); display: flex; justify-content: center; }
-  .footer-inner{ max-width: 1240px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .totals{ display: flex; align-items: baseline; gap: 28px; flex-wrap: wrap; justify-content: flex-end; }
-  .summary-total-2{ margin-top: 4px; padding-top: 4px; border-top: none; }
-  .grand-total{ display: flex; align-items: baseline; gap: 10px; }
-  .grand-total .label{ font-size: 13px; color: var(--ink-soft); }
-  .grand-total .amount{ font-family: 'Courier New', monospace; font-weight: bold; font-size: 28px; color: var(--ink); }
-
-  .reset-btn{ background: transparent; border: 1px solid var(--ink-red); color: var(--ink-red); padding: 9px 16px; font-family: Georgia, serif; font-variant: small-caps; font-size: 13.5px; letter-spacing: .5px; border-radius: 0; cursor: pointer; transition: background .15s, color .15s; }
-  .reset-btn:hover{ background: var(--ink-red); color: var(--paper); }
-
-  @media (max-width: 900px){
-    .layout{ grid-template-columns: 1fr; }
-    .summary-panel{ position: static; max-height: none; }
-  }
-  @media (max-width: 640px){
-    .categories-grid{ grid-template-columns: 1fr; }
-    .categories-grid > .category{ grid-column: 1; grid-row: auto; }
-    .row{ grid-template-columns: 1fr 52px 92px 68px; gap: 6px; padding: 6px 10px; }
-    .item-name{ font-size: 12px; }
-    .header h1{ font-size: 23px; }
-    .grand-total .amount{ font-size: 18px; }
-    .totals{ gap: 14px; }
-    .grand-total{ gap: 6px; }
-  }
+/* Leggibilità: font +2px e grassetto nelle liste */
+.column-heads,.row{grid-template-columns:minmax(150px,1.7fr) 82px minmax(160px,1fr) 62px 94px}
+.column-head{font-size:10.5px;font-weight:700}
+.item-name{font-size:14px;font-weight:700;line-height:1.25}
+.item-price{font-size:12.5px;font-weight:700}
+.qty-cube{width:44px;height:31px;font-size:13.5px;font-weight:700}
+.qty-sum{font-size:14px}
+.qty-sum::after{font-size:12.5px;font-weight:700}
+.row-total{font-size:14px;min-width:70px}
+.summary-name{font-size:13.5px;font-weight:700;max-width:165px}
+.summary-cat{font-size:11px;font-weight:700}
+.summary-qty{font-size:12px;font-weight:700}
+.summary-val{font-size:13.5px;font-weight:700}
+.summary-total{font-size:13px;font-weight:700}
+@media(max-width:1060px){.row{grid-template-columns:minmax(0,1fr) 86px}.item-name{font-size:14.5px}}
 </style>
 </head>
 <body>
-
-<div class="header">
-  <h1>Manzanita Post</h1>
+<div class="shell">
+<header class="hero"><div class="hero-inner"><div><div class="eyebrow">Registro di caccia, pesca e forniture</div><h1>Manzanita Post</h1><p class="hero-sub">Acquisti · Vendite · Attrezzatura · Contabilità di frontiera</p></div><div class="hero-mark" aria-hidden="true"><div><div class="big">🌲</div><div class="small">MANZANITA<br>POST</div></div></div></div></header>
+<div class="guide"><div class="guide-icon">📦</div><div class="guide-main"><strong>Più casse dello stesso articolo?</strong> Ogni casella rappresenta una cassa/stack. Premi <strong>+</strong> per aggiungerne un'altra: la colonna <strong>Qtà</strong> somma tutto automaticamente.</div><div class="guide-hint">Esempio: 18 + 23 + 11 → Qtà 52</div></div>
+<div class="layout"><main class="sections" id="sections"></main><aside class="summary-panel"><div class="summary-head"><h2 class="summary-title">Registro corrente</h2><p class="summary-sub">Solo le voci con quantità inserita</p></div><div class="summary-list" id="summaryList"><p class="summary-empty">Nessun articolo inserito.</p></div><div class="summary-totals"><div class="summary-total give"><span>Da dare</span><strong id="summaryGive">$0.00</strong></div><div class="summary-total invoice"><span>Fattura</span><strong id="summaryInvoice">$0.00</strong></div></div></aside></div>
 </div>
-
-<div class="layout">
-  <div class="categories-grid" id="categories"></div>
-  <aside class="summary-panel">
-    <h2 class="summary-title">Listino</h2>
-    <div class="summary-list" id="summaryList"><p class="summary-empty">Nessun articolo inserito.</p></div>
-    <div class="summary-total"><span>Da dare</span><span id="summaryGive">$0.00</span></div>
-    <div class="summary-total summary-total-2"><span>Fattura</span><span id="summaryInvoice">$0.00</span></div>
-  </aside>
-</div>
-
-<div class="footer-bar">
-  <div class="footer-inner">
-    <button class="reset-btn" onclick="resetAll()">Svuota registro</button>
-    <div class="totals">
-      <div class="grand-total">
-        <span class="label">Da dare</span>
-        <span class="amount" id="totalGive">$0.00</span>
-      </div>
-      <div class="grand-total">
-        <span class="label">Fattura</span>
-        <span class="amount" id="totalInvoice">$0.00</span>
-      </div>
-    </div>
-  </div>
-</div>
-
+<div class="footer-bar"><div class="footer-inner"><button class="reset-btn" type="button" onclick="resetAll()">Svuota registro</button><div class="totals"><div class="grand-total give"><span class="label">Da pagare al cliente</span><span class="amount" id="totalGive">$0.00</span></div><div class="grand-total invoice"><span class="label">Fattura cliente</span><span class="amount" id="totalInvoice">$0.00</span></div></div></div></div>
 <script>
-const data = [
-  { name: "Pesca", icon: "🐟", items: [
-    { n: "Granchio", p: 0.10 },
-    { n: "Ostrica", p: 0.10 },
-    { n: "Perca Gialla Piccolo", p: 0.60 },
-    { n: "Perca di Scoglio Piccolo", p: 0.60 },
-    { n: "Pickerel Piccolo", p: 0.70 },
-    { n: "Pickerel Rosso Piccolo", p: 0.70 },
-    { n: "Pesce Gatto Nebuloso Piccolo", p: 0.70 },
-    { n: "Persico Dalle Branchie Blue", p: 0.80 },
-    { n: "Salmone Rosso Piccolo", p: 1.00 },
-    { n: "Pesci Medi", p: 1.00 },
-    { n: "Pesci Grandi", p: 1.50 },
-    { n: "Boccalone Grande", p: 20.00 },
-    { n: "Salmone Rosso Grande", p: 17.50 },
-    { n: "Trota Iridea Grande", p: 28.00 },
-    { n: "Persico Trota Dolomeu Grande", p: 41.00 },
-    { n: "Pesce Gatto Gigante", p: 0.00 },
-  ]},
-
-  { name: "Caccia", icon: "🏹", items: [
-    { n: "Piume Di Uccello", p: 0.50 },
-    { n: "Carne Bianca", p: 0.40 },
-    { n: "Carne Rossa", p: 0.50 },
-    { n: "Fegato Di Uccello", p: 0.60 },
-    { n: "Pelle", p: 0.60 },
-    { n: "Carne Di Cervo", p: 0.60 },
-    { n: "Bistecca", p: 0.80 },
-    { n: "Veleno", p: 0.70 },
-    { n: "Corna", p: 0.75 },
-    { n: "Pelle Di Rettile", p: 0.85 },
-    { n: "Pelliccia", p: 0.85 },
-    { n: "Artiglio", p: 0.90 },
-    { n: "Pezzi Leggendari", p: 4.00, tierQty: 50, tierPrice: 4.50 },
-  ]},
-  { name: "Canne", icon: "🎣", negative: true, items: [
-    { n: "Canna Da Pesca", p: 11.00 },
-    { n: "Canna Migliorata (full kit)", p: 20.00 },
-    { n: "Impugnatura", p: 3.00 },
-    { n: "Fusto", p: 3.00 },
-    { n: "Mulinello", p: 5.00 },
-    { n: "Lenza", p: 3.00 },
-    { n: "Mulinello In Metallo", p: 10.00 },
-  ]},
-
-  { name: "Attrezzi", icon: "🛠️", negative: true, items: [
-    { n: "Fuoco da campo", p: 2.00 },
-    { n: "Lazo", p: 12.00 },
-    { n: "Coltello", p: 14.00 },
-    { n: "Arco", p: 18.00 },
-    { n: "Frecce", p: 0.08 },
-  ]},
-
-  { name: "Esche Pesca", icon: "🪱", negative: true, items: [
-    { n: "Grilli", p: 0.15 },
-    { n: "Esca di Libellula", p: 0.15 },
-    { n: "Esca Di Pesce", p: 12.00 },
-    { n: "Esca Di Pesce Leggendaria", p: 3.00 },
-    { n: "Esca di Libellula Leggendaria", p: 5.00 },
-    { n: "Esca Di Aragosta Leggendaria", p: 5.00 },
-    { n: "Esca Spinner V4 Leggendaria", p: 10.00 },
-    { n: "Esca Spinner V6 Leggendaria", p: 12.00 },
-  ]},
-
-  { name: "Esche Trappole Pesca", icon: "🪤", negative: true, items: [
-    { n: "Esca Per Pesci Piccoli", p: 0.50 },
-    { n: "Esca Per Pesci Medi", p: 0.80 },
-    { n: "Esca Per Pesci Grandi", p: 1.00 },
-    { n: "Esca Granchio", p: 0.30 },
-  ]},
-
-  { name: "Esche Caccia", icon: "🏹", negative: true, items: [
-    { n: "Esca Per Cervi", p: 0.50 },
-    { n: "Esca Per Arieti", p: 1.00 },
-    { n: "Esca Per Serpenti", p: 0.50 },
-    { n: "Esca Per Puma", p: 5.00 },
-    { n: "Esche orso", p: 5.00 },
-    { n: "Esche Grizzly", p: 3.00 },
-  ]},
-
-  { name: "Esche Trappole Caccia", icon: "🪤", negative: true, items: [
-    { n: "Esche Scoiattolo, Topo e Corvo", p: 0.40 },
-    { n: "Esche Puzzola e Opossum", p: 0.50 },
-  ]},
-
-  { name: "Trappole", icon: "🪤", negative: true, items: [
-    { n: "Trappola per Animali Piccoli", p: 4.00 },
-    { n: "Trappola per Pesci", p: 4.00 },
-  ]},
-  { name: "Vendite calmierate - Saloons", icon: "🥩", negative: true, items: [
-    { n: "Carne Bianca", p: 0.50 },
-    { n: "Carne Rossa", p: 0.60 },
-    { n: "Carne Di Cervo", p: 0.70 },
-  ]},
+const data=[
+{group:"raccolta",name:"Pesca",icon:"🐟",items:[{n:"Granchio",p:.10},{n:"Ostrica",p:.10},{n:"Perca Gialla Piccolo",p:.60},{n:"Perca di Scoglio Piccolo",p:.60},{n:"Pickerel Piccolo",p:.70},{n:"Pickerel Rosso Piccolo",p:.70},{n:"Pesce Gatto Nebuloso Piccolo",p:.70},{n:"Persico Dalle Branchie Blue",p:.80},{n:"Salmone Rosso Piccolo",p:1.00},{n:"Pesci Medi",p:1.00},{n:"Pesci Grandi",p:1.50},{n:"Boccalone Grande",p:20.00},{n:"Salmone Rosso Grande",p:17.50},{n:"Trota Iridea Grande",p:28.00},{n:"Persico Trota Dolomeu Grande",p:41.00},{n:"Pesce Gatto Gigante",p:0.00}]},
+{group:"raccolta",name:"Caccia",icon:"🏹",items:[{n:"Piume Di Uccello",p:.50},{n:"Carne Bianca",p:.40},{n:"Carne Rossa",p:.50},{n:"Fegato Di Uccello",p:.60},{n:"Pelle",p:.60},{n:"Carne Di Cervo",p:.60},{n:"Bistecca",p:.80},{n:"Veleno",p:.70},{n:"Corna",p:.75},{n:"Pelle Di Rettile",p:.85},{n:"Pelliccia",p:.85},{n:"Artiglio",p:.90},{n:"Pezzi Leggendari",p:4.00,tierQty:50,tierPrice:4.50}]},
+{group:"raccolta",name:"Bracconaggio",icon:"🦅",illegal:true,full:true,items:[{n:"Artiglio di Aquila",p:1.50},{n:"Piuma di Aquila",p:1.50},{n:"Bistecca di Wapiti",p:1.50},{n:"Pelle di Wapiti",p:1.50}]},
+{group:"attrezzatura",name:"Attrezzi",icon:"🛠️",negative:true,items:[{n:"Fuoco da campo",p:2.00},{n:"Lazo",p:12.00},{n:"Coltello",p:14.00},{n:"Arco",p:18.00},{n:"Frecce",p:.08}]},
+{group:"attrezzatura",name:"Canne",icon:"🎣",negative:true,items:[{n:"Canna Da Pesca",p:11.00},{n:"Canna Migliorata (full kit)",p:20.00},{n:"Impugnatura",p:3.00},{n:"Fusto",p:3.00},{n:"Mulinello",p:5.00},{n:"Lenza",p:3.00},{n:"Mulinello In Metallo",p:10.00}]},
+{group:"attrezzatura",name:"Trappole",icon:"🪤",negative:true,full:true,items:[{n:"Trappola per Animali Piccoli",p:4.00},{n:"Trappola per Pesci",p:4.00}]},
+{group:"esche",name:"Esche Caccia",icon:"🦌",negative:true,items:[{n:"Esca Per Cervi",p:.50},{n:"Esca Per Arieti",p:1.00},{n:"Esca Per Serpenti",p:.50},{n:"Esca Per Puma",p:5.00},{n:"Esche orso",p:5.00},{n:"Esche Grizzly",p:3.00}]},
+{group:"esche",name:"Esche Pesca",icon:"🪱",negative:true,items:[{n:"Grilli",p:.15},{n:"Esca di Libellula",p:.15},{n:"Esca Di Pesce",p:12.00},{n:"Esca Di Pesce Leggendaria",p:3.00},{n:"Esca di Libellula Leggendaria",p:5.00},{n:"Esca Di Aragosta Leggendaria",p:5.00},{n:"Esca Spinner V4 Leggendaria",p:10.00},{n:"Esca Spinner V6 Leggendaria",p:12.00}]},
+{group:"esche",name:"Esche Trappole Caccia",icon:"🪤",negative:true,items:[{n:"Esche Scoiattolo, Topo e Corvo",p:.40},{n:"Esche Puzzola e Opossum",p:.50}]},
+{group:"esche",name:"Esche Trappole Pesca",icon:"🪤",negative:true,items:[{n:"Esca Per Pesci Piccoli",p:.50},{n:"Esca Per Pesci Medi",p:.80},{n:"Esca Per Pesci Grandi",p:1.00},{n:"Esca Granchio",p:.30}]},
+{group:"commercio",name:"Vendite calmierate · Saloons",icon:"🥩",negative:true,full:true,items:[{n:"Carne Bianca",p:.50},{n:"Carne Rossa",p:.60},{n:"Carne Di Cervo",p:.70}]}
 ];
-
-const cellClass = {
-  "Caccia": "cell-caccia",
-  "Pesca": "cell-pesca",
-  "Attrezzi": "cell-attrezzi",
-  "Canne": "cell-canne",
-  "Esche Caccia": "cell-esche-caccia",
-  "Esche Pesca": "cell-esche-pesca",
-  "Esche Trappole Caccia": "cell-esche-trappole-caccia",
-  "Esche Trappole Pesca": "cell-esche-trappole-pesca",
-  "Trappole": "cell-trappole",
-  "Vendite calmierate - Saloons": "cell-vendite",
-};
-
-const container = document.getElementById("categories");
-
-data.forEach((cat, ci) => {
-  const catDiv = document.createElement("div");
-  catDiv.className = `category collapsed ${cat.negative ? "negative" : "positive"}`;
-  if (cellClass[cat.name]) catDiv.classList.add(cellClass[cat.name]);
-
-  if (["Pesca", "Caccia"].includes(cat.name)) catDiv.classList.remove("collapsed");
-
-  const head = document.createElement("div");
-  head.className = "category-head";
-  const negLabel = cat.negative ? ` <span class="neg-label">— da fare fattura!</span>` : "";
-  head.innerHTML = `<span class="icon">${cat.icon}</span><h2>${cat.name}${negLabel}</h2><span class="arrow">▼</span>`;
-  head.onclick = () => catDiv.classList.toggle("collapsed");
-  catDiv.appendChild(head);
-
-  const body = document.createElement("div");
-  body.className = "category-body";
-
-  const rows = document.createElement("div");
-  rows.className = "rows";
-
-  cat.items.forEach((item, ii) => {
-    const row = document.createElement("div");
-    row.className = "row";
-    row.innerHTML = `
-      <span class="item-name">${item.n}</span>
-      <span class="item-price">${item.tierQty ? `$${item.p.toFixed(2)}/$${item.tierPrice.toFixed(2)}<br>-${item.tierQty}+` : `$${item.p.toFixed(2)}`}</span>
-      <span class="qty-cubes" id="cubes-${ci}-${ii}">
-        <input type="number" min="0" step="1" value="" placeholder="0" class="qty-cube" data-ci="${ci}" data-ii="${ii}" oninput="calculate()">
-        <button type="button" class="cube-btn add" onclick="addCube(${ci},${ii})" title="Aggiungi un altro numero">+</button>
-        <button type="button" class="cube-btn remove" onclick="removeCube(${ci},${ii})" title="Rimuovi ultimo numero">−</button>
-      </span>
-      <span class="row-total" id="total-${ci}-${ii}">$0.00</span>
-    `;
-    rows.appendChild(row);
-  });
-
-  body.appendChild(rows);
-
-  const subtotal = document.createElement("div");
-  subtotal.className = "category-subtotal";
-  subtotal.innerHTML = `Subtotale: <span id="subtotal-${ci}">$0.00</span>`;
-  body.appendChild(subtotal);
-
-  catDiv.appendChild(body);
-
-  container.appendChild(catDiv);
-});
-
-// Sezione Regole Manzanita
-(function(){
-  const div = document.createElement("div");
-  div.className = "category positive cell-regole regole";
-  div.innerHTML = `
-    <div class="category-head"><span class="icon">📜</span><h2>Regole Manzanita</h2><span class="arrow">▼</span></div>
-    <div class="category-body">
-      <ol class="rules-list">
-        <li>Chiunque si lamenta dei prezzi è bandito per <span class="pena">3 giorni</span>.</li>
-        <li>Chiunque raggira o tratta male i dipendenti è bandito <span class="pena">a vita</span>.</li>
-        <li>Chiunque lascia incustoditi i cavalli all'interno del recinto è bandito per <span class="pena">3 giorni</span>.</li>
-        <li>Chiunque salta la fila, o tenta di farlo, è bandito per <span class="pena">1 giorno</span>.</li>
-      </ol>
-      <p class="rules-note">Ricordiamo inoltre che non siamo tenuti a comprare né a servire nessuno. Tutto ciò che serve si può comprare e vendere all'Emporio e dal Macellaio.</p>
-    </div>`;
-  div.querySelector(".category-head").onclick = () => div.classList.toggle("collapsed");
-  container.appendChild(div);
-})();
-
-function addCube(ci, ii){
-  const container = document.getElementById(`cubes-${ci}-${ii}`);
-  const input = document.createElement("input");
-  input.type = "number";
-  input.min = "0";
-  input.step = "1";
-  input.placeholder = "0";
-  input.className = "qty-cube";
-  input.dataset.ci = ci;
-  input.dataset.ii = ii;
-  input.oninput = calculate;
-  const addBtn = container.querySelector(".cube-btn.add");
-  container.insertBefore(input, addBtn);
-}
-
-function removeCube(ci, ii){
-  const container = document.getElementById(`cubes-${ci}-${ii}`);
-  const cubes = container.querySelectorAll(".qty-cube");
-  if (cubes.length > 1){
-    container.removeChild(cubes[cubes.length - 1]);
-    calculate();
-  }
-}
-
-function calculate(){
-  let give = 0, invoice = 0;
-  const active = [];
-  data.forEach((cat, ci) => {
-    let subtotal = 0;
-    const sign = cat.negative ? -1 : 1;
-    cat.items.forEach((item, ii) => {
-      const cubes = document.querySelectorAll(`.qty-cube[data-ci="${ci}"][data-ii="${ii}"]`);
-      let qty = 0;
-      cubes.forEach(c => { qty += parseFloat(c.value) || 0; });
-      let rowValue;
-      if (item.tierQty && qty >= item.tierQty){
-        rowValue = qty * item.tierPrice;
-      } else {
-        rowValue = qty * item.p;
-      }
-      const rowTotal = sign * rowValue;
-      document.getElementById(`total-${ci}-${ii}`).textContent = `${rowTotal < 0 ? "-" : ""}$${Math.abs(rowTotal).toFixed(2)}`;
-      subtotal += rowTotal;
-      if (qty > 0){
-        active.push({ name: item.n, cat: cat.name, qty, value: rowTotal });
-      }
-    });
-    document.getElementById(`subtotal-${ci}`).textContent = `${subtotal < 0 ? "-" : ""}$${Math.abs(subtotal).toFixed(2)}`;
-    if (cat.negative) invoice += Math.abs(subtotal); else give += subtotal;
-  });
-  const fmt = v => `$${v.toFixed(2)}`;
-  document.getElementById("totalGive").textContent = fmt(give);
-  document.getElementById("totalInvoice").textContent = fmt(invoice);
-  renderSummary(active, give, invoice);
-}
-
-function renderSummary(active, give, invoice){
-  const list = document.getElementById("summaryList");
-  if (active.length === 0){
-    list.innerHTML = `<p class="summary-empty">Nessun articolo inserito.</p>`;
-  } else {
-    list.innerHTML = active.map(a => `
-      <div class="summary-row">
-        <div class="summary-row-main">
-          <span class="summary-name">${a.name}</span>
-          <span class="summary-cat">${a.cat}</span>
-        </div>
-        <div class="summary-row-nums">
-          <span class="summary-qty">×${a.qty}</span>
-          <span class="summary-val ${a.value < 0 ? "neg" : "pos"}">${a.value < 0 ? "-" : ""}$${Math.abs(a.value).toFixed(2)}</span>
-        </div>
-      </div>
-    `).join("");
-  }
-  document.getElementById("summaryGive").textContent = `$${give.toFixed(2)}`;
-  document.getElementById("summaryInvoice").textContent = `$${invoice.toFixed(2)}`;
-}
-
-function resetAll(){
-  document.querySelectorAll(".qty-cubes").forEach(container => {
-    const cubes = container.querySelectorAll(".qty-cube");
-    cubes.forEach((c, idx) => {
-      if (idx < 1){ c.value = ""; } else { container.removeChild(c); }
-    });
-  });
-  calculate();
-}
-
+const groups=[{id:"raccolta",title:"Acquisti · Caccia e Pesca"},{id:"attrezzatura",title:"Forniture · Attrezzatura"},{id:"esche",title:"Forniture · Esche e Trappole"},{id:"commercio",title:"Commercio · Vendite calmierate"}];
+const sections=document.getElementById("sections");
+function makeColumns(cat){const illegal=cat.illegal?" bracconaggio":"";const full=cat.full?" span-2":"";const typeClass=cat.negative?" negative":" positive";const catDiv=document.createElement("article");catDiv.className=`category${typeClass}${illegal}${full}`;if(!["Pesca","Caccia"].includes(cat.name))catDiv.classList.add("collapsed");const ci=data.indexOf(cat);const statusBadge=cat.negative?`<span class="badge invoice">fattura</span>`:`<span class="badge buy">acquisto</span>`;const illegalStamp=cat.illegal?`<span class="illegal-stamp">RISERVATO</span>`:"";catDiv.innerHTML=`<div class="category-head"><span class="icon">${cat.icon}</span><h2>${cat.name} ${statusBadge} ${illegalStamp}</h2><span class="arrow">▼</span></div><div class="category-body"><div class="column-heads"><span class="column-head">Articolo</span><span class="column-head right">Prezzo</span><span class="column-head center">Casse / Stack</span><span class="column-head center">Qtà</span><span class="column-head right">Importo</span></div><div class="rows"></div><div class="category-subtotal"><span>Subtotale</span><strong id="subtotal-${ci}">$0.00</strong></div></div>`;catDiv.querySelector(".category-head").onclick=()=>catDiv.classList.toggle("collapsed");const rows=catDiv.querySelector(".rows");cat.items.forEach((item,ii)=>{const row=document.createElement("div");row.className="row";const price=item.tierQty?`$${item.p.toFixed(2)}<br><small>$${item.tierPrice.toFixed(2)} da ${item.tierQty}+</small>`:`$${item.p.toFixed(2)}`;row.innerHTML=`<span class="item-name">${item.n}</span><span class="item-price">${price}</span><span class="qty-cubes" id="cubes-${ci}-${ii}"><input type="number" min="0" step="1" value="" placeholder="0" class="qty-cube" data-ci="${ci}" data-ii="${ii}" aria-label="${item.n} · Cassa 1" title="Cassa 1" oninput="calculate()"><button type="button" class="cube-btn add" onclick="addCube(${ci},${ii})" title="Aggiungi un'altra cassa/stack" aria-label="Aggiungi un'altra cassa">+</button><button type="button" class="cube-btn remove" onclick="removeCube(${ci},${ii})" title="Rimuovi l'ultima cassa/stack" aria-label="Rimuovi l'ultima cassa">−</button></span><span class="qty-sum" id="qty-${ci}-${ii}">0</span><span class="row-total" id="total-${ci}-${ii}">$0.00</span>`;rows.appendChild(row)});return catDiv}
+groups.forEach(group=>{const wrap=document.createElement("section");wrap.className="section-block";const heading=document.createElement("div");heading.className="section-heading";heading.innerHTML=`<span class="section-kicker">${group.title}</span>`;wrap.appendChild(heading);const grid=document.createElement("div");grid.className="section-grid";data.filter(cat=>cat.group===group.id).forEach(cat=>grid.appendChild(makeColumns(cat)));wrap.appendChild(grid);sections.appendChild(wrap)});
+const rulesWrap=document.createElement("section");rulesWrap.className="section-block";rulesWrap.innerHTML=`<div class="section-heading"><span class="section-kicker">Regolamento · Manzanita Post</span></div><div class="category rules-card"><div class="category-head"><span class="icon">📜</span><h2>Regole Manzanita</h2><span class="arrow">▼</span></div><div class="category-body"><ol class="rules-list"><li>Chiunque si lamenta dei prezzi è bandito per <span class="pena">3 giorni</span>.</li><li>Chiunque raggira o tratta male i dipendenti è bandito <span class="pena">a vita</span>.</li><li>Chiunque lascia incustoditi i cavalli all'interno del recinto è bandito per <span class="pena">3 giorni</span>.</li><li>Chiunque salta la fila, o tenta di farlo, è bandito per <span class="pena">1 giorno</span>.</li></ol><p class="rules-note">Ricordiamo inoltre che non siamo tenuti a comprare né a servire nessuno. Tutto ciò che serve si può comprare e vendere all'Emporio e dal Macellaio.</p></div></div>`;rulesWrap.querySelector(".category-head").onclick=()=>rulesWrap.querySelector(".category").classList.toggle("collapsed");sections.appendChild(rulesWrap);
+function updateCubeLabels(ci,ii){const container=document.getElementById(`cubes-${ci}-${ii}`);if(!container)return;const cubes=container.querySelectorAll(".qty-cube");const item=data[ci].items[ii];cubes.forEach((cube,idx)=>{cube.title=`Cassa ${idx+1}`;cube.setAttribute("aria-label",`${item.n} · Cassa ${idx+1}`)})}
+function addCube(ci,ii){const container=document.getElementById(`cubes-${ci}-${ii}`);const input=document.createElement("input");input.type="number";input.min="0";input.step="1";input.placeholder="0";input.className="qty-cube";input.dataset.ci=ci;input.dataset.ii=ii;input.oninput=calculate;const addBtn=container.querySelector(".cube-btn.add");container.insertBefore(input,addBtn);updateCubeLabels(ci,ii);input.focus();calculate()}
+function removeCube(ci,ii){const container=document.getElementById(`cubes-${ci}-${ii}`);const cubes=container.querySelectorAll(".qty-cube");if(cubes.length>1){container.removeChild(cubes[cubes.length-1]);updateCubeLabels(ci,ii);calculate()}else{cubes[0].value="";calculate()}}
+function calculate(){let give=0,invoice=0;const active=[];data.forEach((cat,ci)=>{let subtotal=0;const sign=cat.negative?-1:1;cat.items.forEach((item,ii)=>{const cubes=document.querySelectorAll(`.qty-cube[data-ci="${ci}"][data-ii="${ii}"]`);let qty=0,filledBoxes=0;cubes.forEach(cube=>{const value=parseFloat(cube.value)||0;qty+=value;if(value>0)filledBoxes++});const qtyEl=document.getElementById(`qty-${ci}-${ii}`);qtyEl.textContent=qty;qtyEl.classList.toggle("active",qty>0);let rowValue=item.tierQty&&qty>=item.tierQty?qty*item.tierPrice:qty*item.p;const rowTotal=sign*rowValue;document.getElementById(`total-${ci}-${ii}`).textContent=`${rowTotal<0?"-":""}$${Math.abs(rowTotal).toFixed(2)}`;subtotal+=rowTotal;if(qty>0)active.push({name:item.n,cat:cat.name,qty,boxes:filledBoxes,value:rowTotal})});document.getElementById(`subtotal-${ci}`).textContent=`${subtotal<0?"-":""}$${Math.abs(subtotal).toFixed(2)}`;if(cat.negative)invoice+=Math.abs(subtotal);else give+=subtotal});const fmt=v=>`$${v.toFixed(2)}`;document.getElementById("totalGive").textContent=fmt(give);document.getElementById("totalInvoice").textContent=fmt(invoice);renderSummary(active,give,invoice)}
+function renderSummary(active,give,invoice){const list=document.getElementById("summaryList");if(active.length===0){list.innerHTML=`<p class="summary-empty">Nessun articolo inserito.</p>`}else{list.innerHTML=active.map(a=>`<div class="summary-row"><div class="summary-row-main"><span class="summary-name">${a.name}</span><span class="summary-cat">${a.cat}${a.boxes>1?` · ${a.boxes} casse/stack`:""}</span></div><div class="summary-row-nums"><span class="summary-qty">×${a.qty}</span><span class="summary-val ${a.value<0?"neg":"pos"}">${a.value<0?"-":""}$${Math.abs(a.value).toFixed(2)}</span></div></div>`).join("")}document.getElementById("summaryGive").textContent=`$${give.toFixed(2)}`;document.getElementById("summaryInvoice").textContent=`$${invoice.toFixed(2)}`}
+function resetAll(){document.querySelectorAll(".qty-cubes").forEach(container=>{const cubes=container.querySelectorAll(".qty-cube");cubes.forEach((cube,idx)=>{if(idx===0)cube.value="";else cube.remove()});const first=container.querySelector(".qty-cube");if(first){const ci=Number(first.dataset.ci),ii=Number(first.dataset.ii);updateCubeLabels(ci,ii)}});calculate()}
 calculate();
 </script>
-
 </body>
 </html>
