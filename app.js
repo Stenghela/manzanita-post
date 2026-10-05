@@ -1,4 +1,4 @@
-const API_URL = 'INCOLLA_QUI_URL_APPS_SCRIPT';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyijCFAIQXVqgTXhXGLpLCqGg_nzfWsQnRz3s5YpKr0wC87QTg7Di77rUty4VWIMfOLQA/exec';
 async function api(action, sheet, extra = {}) {
   const r = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action, sheet, ...extra }) });
   const j = await r.json();
