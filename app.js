@@ -10,5 +10,5 @@ async function api(action, sheet, extra = {}) {
 }
 const $ = s => document.querySelector(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const nav = p => `<nav><a href="index.html">Registro</a><a href="ordini.html"${p==='o'?' class="on"':''}>Ordini fattura</a><a href="eventi.html"${p==='e'?' class="on"':''}>Eventi gara</a></nav>`;
+const nav = p => `<nav><a href="index.html">Registro</a><a href="ordini.html"${p==='o'?' class="on"':''}>Ordini fattura</a><a href="eventi.html"${p==='e'?' class="on"':''}>Eventi gara</a><a href="regole.html"${p==='r'?' class="on"':''}>Regole</a></nav>`;
 function avvia(carica) { carica(); setInterval(carica, 15000); }

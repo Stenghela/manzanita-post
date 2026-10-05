@@ -38,17 +38,17 @@
 .summary-total{font-size:13px;font-weight:700}
 @media(max-width:1060px){.row{grid-template-columns:minmax(0,1fr) 86px}.item-name{font-size:14.5px}}
 
-.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
 .quick a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 10px;text-decoration:none;text-align:center;font-family:'Rye',Georgia,serif;font-size:clamp(18px,3vw,26px);letter-spacing:1.5px;color:#f3ead6;background:linear-gradient(115deg,var(--forest-950),var(--forest-700));border:1px solid var(--forest-950);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft)}
 .quick a:hover{background:var(--forest-600)}.quick a:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
 .quick a span{font-size:24px}.quick a small{font-family:'Merriweather',Georgia,serif;font-size:11px;font-weight:700;letter-spacing:.3px;color:var(--brass-light)}
+@media(max-width:600px){.quick{grid-template-columns:1fr 1fr}.quick a:last-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
 <div class="shell">
 <header class="hero"><div class="hero-inner"><div><div class="eyebrow">Registro di caccia, pesca e forniture</div><h1>Manzanita Post</h1><p class="hero-sub">Acquisti · Vendite · Attrezzatura · Contabilità di frontiera</p></div><div class="hero-mark" aria-hidden="true"><div><div class="big">🌲</div><div class="small">MANZANITA<br>POST</div></div></div></div></header>
-<nav class="quick"><a href="ordini.html"><span>🧾</span>ORDINI<small>Ordini con fattura</small></a><a href="eventi.html"><span>🏆</span>EVENTI<small>Gare e consegne</small></a></nav>
-<div class="guide"><div class="guide-icon">📦</div><div class="guide-main"><strong>Più casse dello stesso articolo?</strong> Ogni casella rappresenta una cassa/stack. Premi <strong>+</strong> per aggiungerne un'altra: la colonna <strong>Qtà</strong> somma tutto automaticamente.</div><div class="guide-hint">Esempio: 18 + 23 + 11 → Qtà 52</div></div>
+<nav class="quick"><a href="ordini.html"><span>🧾</span>ORDINI<small>Ordini con fattura</small></a><a href="eventi.html"><span>🏆</span>EVENTI<small>Gare e consegne</small></a><a href="regole.html"><span>📜</span>REGOLE<small>Come si usa il registro</small></a></nav>
 <div class="layout"><main class="sections" id="sections"></main><aside class="summary-panel"><div class="summary-head"><h2 class="summary-title">Registro corrente</h2><p class="summary-sub">Solo le voci con quantità inserita</p></div><div class="summary-list" id="summaryList"><p class="summary-empty">Nessun articolo inserito.</p></div><div class="summary-totals"><div class="summary-total give"><span>Da dare</span><strong id="summaryGive">$0.00</strong></div><div class="summary-total invoice"><span>Fattura</span><strong id="summaryInvoice">$0.00</strong></div></div></aside></div>
 </div>
 <div class="footer-bar"><div class="footer-inner"><button class="reset-btn" type="button" onclick="resetAll()">Svuota registro</button><div class="totals"><div class="grand-total give"><span class="label">Da pagare al cliente</span><span class="amount" id="totalGive">$0.00</span></div><div class="grand-total invoice"><span class="label">Fattura cliente</span><span class="amount" id="totalInvoice">$0.00</span></div></div></div></div>

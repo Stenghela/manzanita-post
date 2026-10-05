@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><style>main p,main li{max-width:70ch}li{margin-bottom:8px}.b{font-size:11px;font-weight:700;border:1px solid currentColor;padding:1px 6px;text-transform:uppercase}.f1{color:var(--ruggine)}.f2{color:var(--bosco2)}</style><title>Manzanita Post · Regole</title></head><body><header><h1>Manzanita Post</h1><div id="nav"></div></header>
+<main>
+<div class="box"><h2>Più casse dello stesso articolo</h2>
+<p>Ogni casella di un articolo è una cassa o uno stack. Premi <b>+</b> per aggiungerne un'altra: la colonna <b>Qtà</b> somma tutto da sola.</p>
+<p>Esempio: 18 + 23 + 11 danno Qtà 52.</p></div>
+<div class="box"><h2>Acquisti e forniture</h2><ul>
+<li><span class="b f2">acquisto</span> Articoli che compriamo dal cliente. Il totale va in <b>Da dare</b>, cioè quanto paghiamo.</li>
+<li><span class="b f1">fattura</span> Articoli che vendiamo al cliente. Il totale va in <b>Fattura</b>, cioè quanto gli addebitiamo.</li>
+<li>Le categorie si aprono e si chiudono con un tocco sul titolo.</li></ul></div>
+<div class="box"><h2>Prezzi particolari</h2><ul>
+<li><b>Pezzi Leggendari:</b> $4,00 al pezzo. Da 50 pezzi in su, tutti i pezzi passano a $4,50.</li>
+<li><b>Bracconaggio:</b> categoria riservata, con prezzi propri.</li>
+<li><b>Vendite calmierate · Saloons:</b> prezzi fissi per la vendita ai saloon.</li></ul></div>
+<div class="box"><h2>Registro corrente</h2><ul>
+<li>Il pannello a lato mostra solo gli articoli con una quantità inserita.</li>
+<li><b>Svuota registro</b> cancella tutte le quantità: usalo quando inizi con un nuovo cliente.</li></ul></div>
+<p><a href="index.html">Torna al registro</a></p>
+</main><script src="app.js"></script><script>$('#nav').innerHTML=nav('r')</script></body></html>
