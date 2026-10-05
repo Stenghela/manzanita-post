@@ -9,13 +9,15 @@
 <div class="box"><h2>Consegne registrate</h2><div id="lista"></div></div></main>
 <script src="app.js"></script><script>
 $('#nav').innerHTML=nav('e');let rows=[];
-async function carica(){try{rows=(await api('list','Eventi')).rows;$('#evs').innerHTML=[...new Set(rows.map(r=>r.evento))].map(v=>'<option value="'+esc(v)+'">').join('');disegna();$('#err').textContent=''}catch(e){$('#err').textContent='Errore: '+e.message}}
-function disegna(){const ev=$('#evento').value.trim(),l=rows.filter(r=>r.evento===ev);const t={};l.forEach(r=>t[r.oggetto]=(t[r.oggetto]||0)+(+r.qty||0));
+let busy=0;try{rows=JSON.parse(localStorage.getItem('mp_eventi')||'[]')}catch(e){}
+async function carica(){if(busy)return;try{const r=(await api('list','Eventi')).rows;if(busy)return;rows=r;disegna();try{localStorage.setItem('mp_eventi',JSON.stringify(rows))}catch(e){}$('#err').textContent=''}catch(e){$('#err').textContent='Errore: '+e.message}}
+function disegna(){$('#evs').innerHTML=[...new Set(rows.map(r=>r.evento))].map(v=>'<option value="'+esc(v)+'">').join('');const ev=$('#evento').value.trim(),l=rows.filter(r=>r.evento===ev);const t={};l.forEach(r=>t[r.oggetto]=(t[r.oggetto]||0)+(+r.qty||0));
 $('#tot').innerHTML=Object.entries(t).map(([k,v])=>'<span>'+esc(k)+': '+v+'</span>').join('')||'Nessun dato per questo evento.';
 $('#lista').innerHTML=l.length?'<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà</th><th></th></tr>'+l.map(r=>'<tr><td><b>'+esc(r.persona)+'</b></td><td>'+esc(r.oggetto)+'</td><td class="n"><b>'+esc(r.qty)+'</b></td><td class="n"><button class="x" title="Elimina" onclick="elimina(\''+esc(r.id)+'\')">✕</button></td></tr>').join('')+'</table>':'<p>Scrivi il nome dell\'evento e registra la prima consegna.</p>'}
-async function elimina(id){if(!confirm('Eliminare questa consegna?'))return;try{await api('delete','Eventi',{id});carica()}catch(e){$('#err').textContent='Errore: '+e.message}}
+async function elimina(id){if(id.startsWith('tmp')||!confirm('Eliminare questa consegna?'))return;rows=rows.filter(x=>x.id!==id);disegna();busy++;try{await api('delete','Eventi',{id})}catch(e){$('#err').textContent='Errore: '+e.message}busy--;carica()}
 $('#evento').oninput=()=>{const r=rows.find(x=>x.evento===$('#evento').value.trim());if(r)$('#data').value=r.data;disegna()};
 $('#form').onsubmit=async e=>{e.preventDefault();const ev=$('#evento').value.trim();if(!ev){$('#err').textContent='Scrivi prima il nome dell\'evento.';return}
 const row={evento:ev,data:$('#data').value,persona:$('#persona').value,oggetto:$('#oggetto').value,qty:+$('#qty').value};
-try{await api('add','Eventi',{row});$('#persona').value='';$('#qty').value=1;$('#persona').focus();carica()}catch(er){$('#err').textContent='Errore: '+er.message}};
-avvia(carica);</script></body></html>
+rows.push({id:'tmp'+Date.now(),...row});disegna();$('#persona').value='';$('#qty').value=1;$('#persona').focus();busy++;
+try{await api('add','Eventi',{row})}catch(er){$('#err').textContent='Errore: '+er.message}busy--;carica()};
+if(rows.length)disegna();avvia(carica);</script></body></html>
