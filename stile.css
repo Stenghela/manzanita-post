@@ -1,0 +1,18 @@
+:root{--bosco:#1d2b21;--bosco2:#334a38;--carta:#e8dcc0;--carta2:#dfcfaa;--inchiostro:#2b2118;--soft:#725f46;--ottone:#aa8444;--ruggine:#8f3f2f;box-sizing:border-box}
+*{box-sizing:inherit}body{margin:0;background:var(--carta);color:var(--inchiostro);font:14px/1.4 'Merriweather',Georgia,serif;padding:0 0 40px}
+header{background:var(--bosco);color:#f3ead6;padding:18px 16px 0;border-bottom:3px solid var(--ottone)}
+h1{margin:0 0 12px;font:400 clamp(26px,5vw,38px) 'Rye',Georgia,serif;letter-spacing:1px}
+nav{display:flex;gap:4px;flex-wrap:wrap}nav a{color:#d7b975;text-decoration:none;padding:8px 14px;font-weight:700;border:1px solid transparent;border-bottom:0}nav a.on{background:var(--carta);color:var(--bosco);border-color:var(--ottone)}
+main{max-width:900px;margin:0 auto;padding:16px}
+.box{background:var(--carta2);border:1px solid rgba(65,49,32,.25);border-top:4px solid var(--ottone);padding:14px;margin-bottom:16px}
+h2{margin:0 0 10px;font:400 18px 'IM Fell English SC',Georgia,serif}
+.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+label{display:grid;gap:3px;font-size:12px;font-weight:700;color:var(--soft)}
+input,select{font:inherit;font-weight:700;padding:8px;border:1px solid rgba(94,74,52,.65);background:rgba(255,255,255,.35);color:var(--inchiostro);border-radius:3px;min-width:0}
+button{font:inherit;font-weight:700;cursor:pointer;border:1px solid var(--bosco);background:var(--bosco2);color:#f3ead6;padding:9px 14px;border-radius:3px}
+button:hover{background:var(--bosco)}.x{background:none;color:var(--ruggine);border-color:var(--ruggine);padding:5px 9px}
+.card{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(75,55,35,.3)}.card>div{flex:1;min-width:0}.card small{color:var(--soft)}
+.st{background:none;color:var(--bosco2);border-color:var(--bosco2);min-width:104px}.s0{color:var(--ruggine);border-color:var(--ruggine)}.s1{color:var(--ottone);border-color:var(--ottone)}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:12px;color:var(--soft)}td,th{padding:8px 6px;border-bottom:1px dashed rgba(75,55,35,.3)}.n{text-align:right}
+.tot{display:flex;flex-wrap:wrap;gap:8px}.tot span{background:var(--bosco);color:#f3ead6;padding:6px 10px;border-radius:3px}
+#err{color:var(--ruggine);font-weight:700;margin:0 0 10px}:focus-visible{outline:2px solid var(--bosco2);outline-offset:2px}
