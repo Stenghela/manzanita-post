@@ -1,24 +1,208 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><title>Manzanita Post · Eventi gara</title></head><body>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stile.css">
+  <title>Manzanita Post · Eventi gara</title>
+  <style>
+    .aggiungi-qty{display:flex;gap:.45rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .aggiungi-qty input{width:78px;min-width:78px}
+    .aggiungi-qty button{white-space:nowrap}
+    .nota-aggiunta{margin:.35rem 0 0;font-size:.9em;opacity:.8}
+  </style>
+</head>
+<body>
 <header><h1>Manzanita Post</h1><div id="nav"></div></header>
-<main><p id="err"></p>
-<div class="box"><h2>Evento</h2><div class="f"><label>Nome evento<input id="evento" list="evs" placeholder="Es. Gara di pesca" autocomplete="off"></label><label>Data<input id="data" type="date"></label></div><datalist id="evs"></datalist></div>
-<form class="box" id="form"><h2>Consegna di un partecipante</h2><div class="f">
-<label>Persona<input id="persona" required></label><label>Oggetto<input id="oggetto" required></label>
-<label>Quantità<input id="qty" type="number" min="1" value="1" required></label></div><p><button>Registra consegna</button></p></form>
-<div class="box"><h2>Totali per oggetto</h2><div class="tot" id="tot"></div></div>
-<div class="box"><h2>Consegne registrate</h2><div id="lista"></div></div></main>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="app.js"></script><script>
-$('#nav').innerHTML=nav('e');let rows=[];
-let busy=0;try{rows=JSON.parse(localStorage.getItem('mp_eventi')||'[]')}catch(e){}
-async function carica(){if(busy)return;try{const r=(await api('list','Eventi')).rows;if(busy)return;rows=r;disegna();try{localStorage.setItem('mp_eventi',JSON.stringify(rows))}catch(e){}$('#err').textContent=''}catch(e){$('#err').textContent='Errore: '+e.message}}
-function disegna(){$('#evs').innerHTML=[...new Set(rows.map(r=>r.evento))].map(v=>'<option value="'+esc(v)+'">').join('');const ev=$('#evento').value.trim(),l=rows.filter(r=>r.evento===ev);const t={};l.forEach(r=>t[r.oggetto]=(t[r.oggetto]||0)+(+r.qty||0));
-$('#tot').innerHTML=Object.entries(t).map(([k,v])=>'<span>'+esc(k)+': '+v+'</span>').join('')||'Nessun dato per questo evento.';
-$('#lista').innerHTML=l.length?'<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà</th><th></th></tr>'+l.map(r=>'<tr><td><b>'+esc(r.persona)+'</b></td><td>'+esc(r.oggetto)+'</td><td class="n"><b>'+esc(r.qty)+'</b></td><td class="n"><button class="x" title="Elimina" onclick="elimina(\''+esc(r.id)+'\')">✕</button></td></tr>').join('')+'</table>':'<p>Scrivi il nome dell\'evento e registra la prima consegna.</p>'}
-async function elimina(id){if(id.startsWith('tmp')||!confirm('Eliminare questa consegna?'))return;rows=rows.filter(x=>x.id!==id);disegna();busy++;try{await api('delete','Eventi',{id})}catch(e){$('#err').textContent='Errore: '+e.message}busy--;carica()}
-$('#evento').oninput=()=>{const r=rows.find(x=>x.evento===$('#evento').value.trim());if(r)$('#data').value=r.data;disegna()};
-$('#form').onsubmit=async e=>{e.preventDefault();const ev=$('#evento').value.trim();if(!ev){$('#err').textContent='Scrivi prima il nome dell\'evento.';return}
-const row={evento:ev,data:$('#data').value,persona:$('#persona').value,oggetto:$('#oggetto').value,qty:+$('#qty').value};
-rows.push({id:'tmp'+Date.now(),...row});disegna();$('#persona').value='';$('#qty').value=1;$('#persona').focus();busy++;
-try{await api('add','Eventi',{row})}catch(er){$('#err').textContent='Errore: '+er.message}busy--;carica()};
-if(rows.length)disegna();avvia(carica,'Eventi');</script></body></html>
+<main>
+  <p id="err"></p>
+
+  <div class="box">
+    <h2>Evento</h2>
+    <div class="f">
+      <label>Nome evento<input id="evento" list="evs" placeholder="Es. Gara di pesca" autocomplete="off"></label>
+      <label>Data<input id="data" type="date"></label>
+    </div>
+    <datalist id="evs"></datalist>
+  </div>
+
+  <form class="box" id="form">
+    <h2>Consegna di un partecipante</h2>
+    <div class="f">
+      <label>Persona<input id="persona" required></label>
+      <label>Oggetto<input id="oggetto" required></label>
+      <label>Quantità<input id="qty" type="number" min="0" value="0" required></label>
+    </div>
+    <p><button>Registra consegna</button></p>
+  </form>
+
+  <div class="box">
+    <h2>Totali per oggetto</h2>
+    <div class="tot" id="tot"></div>
+  </div>
+
+  <div class="box">
+    <h2>Consegne registrate</h2>
+    <p class="nota-aggiunta">Dopo aver censito un partecipante puoi solo aggiungere nuove quantità al totale già registrato.</p>
+    <div id="lista"></div>
+  </div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+<script>
+$('#nav').innerHTML=nav('e');
+let rows=[];
+let gruppiVista=[];
+let busy=0;
+
+try{rows=JSON.parse(localStorage.getItem('mp_eventi')||'[]')}catch(e){}
+
+async function carica(){
+  if(busy)return;
+  try{
+    const r=(await api('list','Eventi')).rows;
+    if(busy)return;
+    rows=r;
+    disegna();
+    try{localStorage.setItem('mp_eventi',JSON.stringify(rows))}catch(e){}
+    $('#err').textContent='';
+  }catch(e){
+    $('#err').textContent='Errore: '+e.message;
+  }
+}
+
+function disegna(){
+  $('#evs').innerHTML=[...new Set(rows.map(r=>r.evento))]
+    .map(v=>'<option value="'+esc(v)+'">').join('');
+
+  const ev=$('#evento').value.trim();
+  const l=rows.filter(r=>r.evento===ev);
+
+  const t={};
+  l.forEach(r=>t[r.oggetto]=(t[r.oggetto]||0)+(+r.qty||0));
+  $('#tot').innerHTML=Object.entries(t)
+    .map(([k,v])=>'<span>'+esc(k)+': '+v+'</span>').join('')||'Nessun dato per questo evento.';
+
+  const gruppi=new Map();
+  l.forEach(r=>{
+    const persona=(r.persona||'').trim();
+    const oggetto=(r.oggetto||'').trim();
+    const key=persona+'\u0000'+oggetto;
+    if(!gruppi.has(key))gruppi.set(key,{persona,oggetto,qty:0});
+    gruppi.get(key).qty+=(+r.qty||0);
+  });
+
+  gruppiVista=[...gruppi.values()];
+
+  $('#lista').innerHTML=gruppiVista.length
+    ? '<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà totale</th><th class="n">Aggiungi</th></tr>'+
+      gruppiVista.map((r,i)=>
+        '<tr>'+
+          '<td><b>'+esc(r.persona)+'</b></td>'+
+          '<td>'+esc(r.oggetto)+'</td>'+
+          '<td class="n"><b>'+esc(r.qty)+'</b></td>'+
+          '<td class="n"><div class="aggiungi-qty">'+
+            '<input id="add_'+i+'" type="number" min="0" step="1" value="0" aria-label="Quantità da aggiungere">'+
+            '<button type="button" onclick="aggiungi('+i+')">+ Aggiungi</button>'+
+          '</div></td>'+
+        '</tr>'
+      ).join('')+
+      '</table>'
+    : '<p>Scrivi il nome dell\'evento e registra la prima consegna.</p>';
+}
+
+async function aggiungi(i){
+  const g=gruppiVista[i];
+  if(!g)return;
+
+  const input=$('#add_'+i);
+  const delta=Number(input.value);
+  if(!Number.isInteger(delta)||delta<0){
+    $('#err').textContent='Inserisci un numero intero uguale o maggiore di 0.';
+    input.focus();
+    return;
+  }
+
+  const ev=$('#evento').value.trim();
+  if(!ev){
+    $('#err').textContent='Scrivi prima il nome dell\'evento.';
+    return;
+  }
+
+  const row={
+    evento:ev,
+    data:$('#data').value,
+    persona:g.persona,
+    oggetto:g.oggetto,
+    qty:delta
+  };
+
+  rows.push({id:'tmp'+Date.now(),...row});
+  disegna();
+  $('#err').textContent='';
+  busy++;
+
+  try{
+    await api('add','Eventi',{row});
+  }catch(er){
+    $('#err').textContent='Errore: '+er.message;
+  }
+
+  busy--;
+  carica();
+}
+
+$('#evento').oninput=()=>{
+  const r=rows.find(x=>x.evento===$('#evento').value.trim());
+  if(r)$('#data').value=r.data;
+  disegna();
+};
+
+$('#form').onsubmit=async e=>{
+  e.preventDefault();
+  const ev=$('#evento').value.trim();
+  if(!ev){
+    $('#err').textContent='Scrivi prima il nome dell\'evento.';
+    return;
+  }
+
+  const qty=Number($('#qty').value);
+  if(!Number.isInteger(qty)||qty<0){
+    $('#err').textContent='Inserisci una quantità intera uguale o maggiore di 0.';
+    return;
+  }
+
+  const row={
+    evento:ev,
+    data:$('#data').value,
+    persona:$('#persona').value.trim(),
+    oggetto:$('#oggetto').value.trim(),
+    qty
+  };
+
+  rows.push({id:'tmp'+Date.now(),...row});
+  disegna();
+  $('#persona').value='';
+  $('#qty').value=0;
+  $('#persona').focus();
+  $('#err').textContent='';
+  busy++;
+
+  try{
+    await api('add','Eventi',{row});
+  }catch(er){
+    $('#err').textContent='Errore: '+er.message;
+  }
+
+  busy--;
+  carica();
+};
+
+if(rows.length)disegna();
+avvia(carica,'Eventi');
+</script>
+</body>
+</html>
