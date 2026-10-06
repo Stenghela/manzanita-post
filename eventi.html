@@ -10,6 +10,8 @@
     .aggiungi-qty{display:flex;gap:.45rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
     .aggiungi-qty input{width:78px;min-width:78px}
     .aggiungi-qty button{white-space:nowrap}
+    .azioni-riga{display:flex;gap:.45rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .azioni-riga .x{white-space:nowrap}
     .nota-aggiunta{margin:.35rem 0 0;font-size:.9em;opacity:.8}
   </style>
 </head>
@@ -44,7 +46,7 @@
 
   <div class="box">
     <h2>Consegne registrate</h2>
-    <p class="nota-aggiunta">Dopo aver censito un partecipante puoi solo aggiungere nuove quantità al totale già registrato.</p>
+    <p class="nota-aggiunta">Dopo aver censito un partecipante puoi aggiungere nuove quantità al totale già registrato oppure cancellare completamente la registrazione.</p>
     <div id="lista"></div>
   </div>
 </main>
@@ -98,15 +100,18 @@ function disegna(){
   gruppiVista=[...gruppi.values()];
 
   $('#lista').innerHTML=gruppiVista.length
-    ? '<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà totale</th><th class="n">Aggiungi</th></tr>'+
+    ? '<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà totale</th><th class="n">Azioni</th></tr>'+
       gruppiVista.map((r,i)=>
         '<tr>'+
           '<td><b>'+esc(r.persona)+'</b></td>'+
           '<td>'+esc(r.oggetto)+'</td>'+
           '<td class="n"><b>'+esc(r.qty)+'</b></td>'+
-          '<td class="n"><div class="aggiungi-qty">'+
-            '<input id="add_'+i+'" type="number" min="0" step="1" value="0" aria-label="Quantità da aggiungere">'+
-            '<button type="button" onclick="aggiungi('+i+')">+ Aggiungi</button>'+
+          '<td class="n"><div class="azioni-riga">'+
+            '<div class="aggiungi-qty">'+
+              '<input id="add_'+i+'" type="number" min="0" step="1" value="0" aria-label="Quantità da aggiungere">'+
+              '<button type="button" onclick="aggiungi('+i+')">+ Aggiungi</button>'+
+            '</div>'+
+            '<button type="button" class="x" title="Cancella registrazione" onclick="eliminaGruppo('+i+')">✕ Elimina</button>'+
           '</div></td>'+
         '</tr>'
       ).join('')+
@@ -147,6 +152,41 @@ async function aggiungi(i){
 
   try{
     await api('add','Eventi',{row});
+  }catch(er){
+    $('#err').textContent='Errore: '+er.message;
+  }
+
+  busy--;
+  carica();
+}
+
+
+async function eliminaGruppo(i){
+  const g=gruppiVista[i];
+  if(!g)return;
+
+  const ev=$('#evento').value.trim();
+  const daEliminare=rows.filter(r=>
+    r.evento===ev &&
+    (r.persona||'').trim()===g.persona &&
+    (r.oggetto||'').trim()===g.oggetto
+  );
+
+  if(!daEliminare.length)return;
+  if(!confirm('Cancellare completamente '+g.persona+' - '+g.oggetto+'?'))return;
+
+  const ids=new Set(daEliminare.map(r=>r.id));
+  rows=rows.filter(r=>!ids.has(r.id));
+  disegna();
+  $('#err').textContent='';
+  busy++;
+
+  try{
+    for(const r of daEliminare){
+      if(r.id && !String(r.id).startsWith('tmp')){
+        await api('delete','Eventi',{id:r.id});
+      }
+    }
   }catch(er){
     $('#err').textContent='Errore: '+er.message;
   }
