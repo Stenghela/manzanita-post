@@ -21,6 +21,7 @@
 @media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
 @media(max-width:900px){.cards-grid,.info-grid{grid-template-columns:1fr}.card-top{grid-template-columns:1fr}.icon-frame{max-width:220px}}
 @media(max-width:700px){body{padding:10px 8px 50px}.hero-inner{padding:20px 18px;grid-template-columns:1fr}.hero-mark{display:none}.quick{grid-template-columns:1fr 1fr}.quick a:last-child{grid-column:1/-1}.guide{grid-template-columns:auto 1fr}.guide-hint{display:none}.section-kicker{white-space:normal}}
+.legend-list{display:grid;gap:8px;margin-top:14px}.legend-fish{display:grid;grid-template-columns:1fr;gap:5px;padding:9px 11px;background:rgba(255,255,255,.19);border-left:3px solid var(--brass);font-size:12px;line-height:1.4}.legend-fish strong{font-size:13px;color:var(--forest-800)}.legend-fish span:nth-child(2)::before{content:"Esca: ";font-weight:bold}.legend-fish span:nth-child(3)::before{content:"Luogo: ";font-weight:bold}
 </style>
 </head>
 <body>
@@ -49,7 +50,18 @@
     <main>
       <section class="wiki-section" id="fish-types">
         <div class="section-heading"><span class="section-kicker">🐟 Tipologie di pesci</span></div>
-        <div class="info-grid"><article class="fish-card"><h3>Pesci piccoli</h3><p>Creatura leggere e comuni. Rendono meglio con esche piccole o leggere, come Esca per Pesci Piccoli o esche naturali.</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Piccoli · Grilli · Libellula</div></article><article class="fish-card"><h3>Pesci medi</h3><p>Una via di mezzo tra resa e difficoltà. Richiedono esche un po’ più robuste e specifiche.</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Medi · Esca di Pesce</div></article><article class="fish-card"><h3>Pesci grandi</h3><p>Più rari e più impegnativi da tirare su. Conviene usare esche forti e attrezzatura migliore.</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Grandi · Esca per Granchio · Esca di Pesce</div></article><article class="fish-card"><h3>Pesci leggendari</h3><p>Le prede più ambite. Per queste catture servono esche leggendarie e spesso componenti avanzati per la canna.</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca di Libellula Leggendaria · Esca Spinner V4/V6 · Esca di Aragosta Leggendaria · Esca di Pesce Leggendaria</div></article></div>
+        <div class="info-grid">
+<article class="fish-card"><h3>Pesci piccoli</h3><p>Pesci comuni di dimensioni ridotte, adatti a esche leggere.</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Piccoli · Grilli · Libellula</div></article>
+<article class="fish-card"><h3>Pesci medi</h3><p><strong>Specie:</strong> Pickerel Medio · Salmone Rosso Medio</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Medi · Esca di Pesce</div></article>
+<article class="fish-card"><h3>Pesci grandi</h3><p><strong>Specie:</strong> Luccio dal naso lungo (Northern Pike) · Pescegatto Grande</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Grandi · Esca per Granchio · Esca di Pesce</div></article>
+<article class="fish-card"><h3>Pesci leggendari</h3><p>Le catture speciali del Manzanita. Per ciascun pesce sono indicati esca richiesta e luogo.</p>
+<div class="legend-list">
+<div class="legend-fish"><strong>Boccalone Grande</strong><span>Esca di Pesce Leggendaria</span><span>O'Creagh's Run</span></div>
+<div class="legend-fish"><strong>Salmone Rosso Grande</strong><span>Esca Spinner V4 Leggendaria</span><span>Lake Isabella</span></div>
+<div class="legend-fish"><strong>Trota Iridea Grande</strong><span>Esca Spinner V6 Leggendaria</span><span>Elysian Pool</span></div>
+<div class="legend-fish"><strong>Persico Trota Dolomeu Grande</strong><span>Esca di Pesce</span><span>Lago del Calumet Ravine</span></div>
+</div></article>
+</div>
       </section>
       
     <section class="wiki-section" id="sec-1">
