@@ -21,7 +21,7 @@
 @media(max-width:1100px){.layout{grid-template-columns:1fr}.sidebar{position:static}}
 @media(max-width:900px){.cards-grid,.info-grid{grid-template-columns:1fr}.card-top{grid-template-columns:1fr}.icon-frame{max-width:220px}}
 @media(max-width:700px){body{padding:10px 8px 50px}.hero-inner{padding:20px 18px;grid-template-columns:1fr}.hero-mark{display:none}.quick{grid-template-columns:1fr 1fr}.quick a:last-child{grid-column:1/-1}.section-kicker{white-space:normal}}
-.craft-details{background:transparent;border:0}.craft-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 14px;border:1px solid rgba(65,49,32,.24);background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.25));border-radius:12px;color:var(--forest-800);user-select:none}.craft-summary::-webkit-details-marker{display:none}.craft-summary::after{content:"Apri ▾";margin-left:auto;font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--forest-700)}.craft-details[open] .craft-summary::after{content:"Chiudi ▴"}.craft-summary .section-kicker{margin:0}.craft-details .cards-grid{margin-top:8px}
+.craft-details{background:transparent;border:0}.craft-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:15px 18px;border:1px solid #8b6a3b;border-left:5px solid #bd9650;background:linear-gradient(115deg,#3a2a21 0%,#5c3c2b 48%,#2b241d 100%);border-radius:5px;color:#f4e6cb;user-select:none;box-shadow:inset 0 1px rgba(255,235,198,.16),inset 0 -1px rgba(0,0,0,.35),0 5px 14px rgba(45,27,18,.2);transition:background .15s ease,border-color .15s ease}.craft-summary::-webkit-details-marker{display:none}.craft-summary:hover{background:linear-gradient(115deg,#513727 0%,#744b33 48%,#392b20 100%);border-color:#d2ab68}.craft-summary:focus-visible{outline:3px solid #d2ab68;outline-offset:3px}.craft-summary::after{content:"APRI  ▾";margin-left:auto;font-family:'IM Fell English SC',Georgia,serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#eed4a0;white-space:nowrap}.craft-details[open]>.craft-summary{border-color:#b79051;background:linear-gradient(115deg,#33271f,#59402c 60%,#33271f)}.craft-details[open]>.craft-summary::after{content:"CHIUDI  ▴"}.craft-summary .section-kicker{margin:0;color:#f7e7c5;text-shadow:0 1px 1px rgba(0,0,0,.45)}.craft-details .cards-grid,.craft-details .info-grid{margin-top:12px}
 .legend-list{display:grid;gap:8px;margin-top:14px}.legend-fish{display:grid;grid-template-columns:1fr;gap:5px;padding:9px 11px;background:rgba(255,255,255,.19);border-left:3px solid var(--brass);font-size:12px;line-height:1.4}.legend-fish strong{font-size:13px;color:var(--forest-800)}.legend-fish span:nth-child(2)::before{content:"Esca: ";font-weight:bold}.legend-fish span:nth-child(3)::before{content:"Luogo: ";font-weight:bold}
 </style>
 </head>
@@ -49,10 +49,11 @@
   <div class="layout">
     <main>
       <section class="wiki-section" id="fish-types">
-        <div class="section-heading"><span class="section-kicker">🐟 Tipologie di pesci</span></div>
-        <div class="info-grid">
+        <details class="craft-details">
+          <summary class="craft-summary"><span class="section-kicker">🐟 Tipologie di pesci</span></summary>
+          <div class="info-grid">
 <article class="fish-card"><h3>Pesci piccoli</h3><p><strong>Specie:</strong> Perca di Scoglio Piccolo · Perca Gialla Piccolo · Pesce Gatto Nebuloso Piccolo · Pickerel Piccolo · Pickerel Rosso Piccolo · Salmone Rosso Piccolo</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Piccoli · Grilli · Libellula</div></article>
-<article class="fish-card"><h3>Pesci medi</h3><p><strong>Specie:</strong> Pickerel Medio · Salmone Rosso Medio · altri pesci con «Medio» nel nome</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Medi · Esca di Libellula</div></article>
+<article class="fish-card"><h3>Pesci medi</h3><p><strong>Specie:</strong> Perca di Scoglio Medio · Perca Gialla Medio · Pesce Gatto Nebuloso Medio · Pickerel Medio · Pickerel Rosso Medio · Salmone Rosso Medio · Persico Trota Dolomeu Medio · Trota Iridea Media · Boccalone Medio</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Medi · Esca di Libellula</div></article>
 <article class="fish-card"><h3>Pesci grandi</h3><p><strong>Specie:</strong> Luccio dal naso lungo (Northern Pike) · Pescegatto Grande · Pesce Storione</p><div class="fish-tip"><strong>Esche consigliate:</strong> Esca per Pesci Grandi · Esca per Granchio · Esca di Pesce</div></article>
 <article class="fish-card"><h3>Pesci leggendari</h3><p>Le catture speciali del Manzanita. Per ciascun pesce sono indicati esca richiesta e luogo.</p>
 <div class="legend-list">
@@ -62,6 +63,7 @@
 <div class="legend-fish"><strong>Persico Trota Dolomeu Grande</strong><span>Esca di Pesce</span><span>Lago del Calumet Ravine</span></div>
 </div></article>
 </div>
+        </details>
       </section>
       
     <section class="wiki-section" id="sec-1">
@@ -657,14 +659,14 @@
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   const openSection=(hash)=>{
-    if(!hash||!hash.startsWith('#sec-')) return;
-    const section=document.querySelector(hash);
+    if(!hash||!(hash.startsWith('#sec-')||hash==='#fish-types')) return;
+    const section=document.getElementById(hash.slice(1));
     if(!section) return;
     const details=section.querySelector('.craft-details');
     if(details) details.open=true;
   };
   openSection(location.hash);
-  document.querySelectorAll('a[href^="#sec-"]').forEach(a=>{
+  document.querySelectorAll('a[href^="#sec-"], a[href="#fish-types"]').forEach(a=>{
     a.addEventListener('click',()=>openSection(a.getAttribute('href')));
   });
   window.addEventListener('hashchange',()=>openSection(location.hash));
