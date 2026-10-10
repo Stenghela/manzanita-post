@@ -2,52 +2,102 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="stile.css">
-  <title>Manzanita Post · Eventi gara</title>
+  <title>Manzanita Post · Eventi di pesca e caccia</title>
   <style>
-    .aggiungi-qty{display:flex;gap:.45rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
-    .aggiungi-qty input{width:78px;min-width:78px}
-    .aggiungi-qty button{white-space:nowrap}
-    .azioni-riga{display:flex;gap:.45rem;align-items:center;justify-content:flex-end;flex-wrap:wrap}
-    .azioni-riga .x{white-space:nowrap}
-    .nota-aggiunta{margin:.35rem 0 0;font-size:.9em;opacity:.8}
+    /* Due gare permanenti e indipendenti: pesca a sinistra, caccia a destra. */
+    .eventi-main{max-width:1520px;width:calc(100% - 32px);margin:24px auto 60px}
+    .eventi-intro{margin:0 0 18px;color:var(--inchiostro,#3d3025);line-height:1.55}
+    .eventi-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:20px}
+    .evento-col{min-width:0;display:flex;flex-direction:column;gap:14px}
+    .evento-col>.box{margin:0;min-width:0}
+    .evento-banner{border-top:5px solid #3b6570;padding-top:16px}
+    .evento-col[data-tipo="caccia"] .evento-banner{border-top-color:#786038}
+    .evento-banner h2{font-family:'Rye',Georgia,serif;letter-spacing:.5px;font-weight:400;margin:0 0 8px;font-size:clamp(22px,2.3vw,32px)}
+    .evento-banner p{margin:0;color:var(--inchiostro,#625744);opacity:.85;font-size:.92em}
+    .evento-form h3,.evento-totali h3,.evento-elenco h3{font-family:'IM Fell English SC',Georgia,serif;font-weight:400;font-size:1.45rem;margin:0 0 12px}
+    .evento-campi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:10px}
+    .evento-campi label,.evento-data label{display:flex;flex-direction:column;gap:5px;font-weight:700;font-size:.9rem;min-width:0}
+    .evento-campi input,.evento-data input{box-sizing:border-box;width:100%;min-width:0;max-width:100%;padding:9px;border:1px solid #a38e6d;background:#faf1de;color:#30271f;font:inherit}
+    .evento-campi .campo-oggetto{grid-column:1/-1}
+    .evento-data{margin:16px 0 0;max-width:260px}
+    .evento-data input{margin-top:2px}
+    .evento-form button,.aggiungi-qty button,.azioni-riga .x{cursor:pointer}
+    .evento-form button{margin-top:6px}
+    .evento-errore{display:none;color:#942f25;padding:10px 12px;border:1px solid #b87d71;background:#fce8df;margin:0}
+    .evento-errore:not(:empty){display:block}
+    .evento-totali .tot{display:flex;gap:8px;flex-wrap:wrap}
+    .evento-totali .tot span{background:rgba(123,94,54,.1);border:1px solid rgba(112,84,46,.27);padding:6px 10px;border-radius:3px}
+    .nota-aggiunta{margin:0 0 12px;font-size:.87em;opacity:.82;line-height:1.5}
+    .tabella-scroll{width:100%;overflow-x:auto}
+    .evento-elenco table{width:100%;border-collapse:collapse;font-size:.89rem}
+    .evento-elenco th,.evento-elenco td{padding:9px 7px;vertical-align:middle;border-bottom:1px solid rgba(95,73,43,.23)}
+    .evento-elenco td:first-child,.evento-elenco th:first-child{text-align:left}
+    .evento-elenco .n{text-align:right}
+    .azioni-riga{display:flex;justify-content:flex-end;align-items:center;gap:7px;flex-wrap:wrap}
+    .aggiungi-qty{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:nowrap}
+    .aggiungi-qty input{width:62px;min-width:62px;box-sizing:border-box;padding:7px;border:1px solid #a38e6d;background:#faf1de;font:inherit}
+    .aggiungi-qty button,.azioni-riga .x{white-space:nowrap;padding:7px 9px}
+    .evento-elenco .x{color:#842b25}
+    .evento-vuoto{font-size:.93em;opacity:.85}
+    @media(max-width:1000px){.eventi-grid{grid-template-columns:minmax(0,1fr)}.evento-col{gap:12px}}
+    @media(max-width:500px){.eventi-main{width:calc(100% - 16px)}.evento-campi{grid-template-columns:1fr}.evento-campi .campo-oggetto{grid-column:auto}.evento-elenco table{min-width:460px}}
   </style>
 </head>
 <body>
 <header><h1>Manzanita Post</h1><div id="nav"></div></header>
-<main>
-  <p id="err"></p>
+<main class="eventi-main">
+  <p class="eventi-intro">Le due gare del Manzanita Post hanno registri separati. Seleziona direttamente il riquadro della <strong>pesca</strong> o della <strong>caccia</strong>: non serve più creare o scegliere un nome evento.</p>
+  <div class="eventi-grid">
+    <section class="evento-col" data-tipo="pesca" aria-labelledby="titolo-pesca">
+      <div class="box evento-banner">
+        <h2 id="titolo-pesca">🎣 Gara di pesca</h2>
+        <p>Evento fisso · Registro delle consegne di pesca</p>
+        <div class="evento-data"><label>Data della consegna <input id="data-pesca" type="date"></label></div>
+      </div>
+      <p id="err-pesca" class="evento-errore" role="alert"></p>
+      <form class="box evento-form" id="form-pesca">
+        <h3>Consegna di un partecipante</h3>
+        <div class="evento-campi">
+          <label>Persona<input id="persona-pesca" required autocomplete="off"></label>
+          <label>Quantità<input id="qty-pesca" type="number" min="0" step="1" value="0" required></label>
+          <label class="campo-oggetto">Oggetto<input id="oggetto-pesca" required autocomplete="off"></label>
+        </div>
+        <button type="submit">Registra consegna pesca</button>
+      </form>
+      <div class="box evento-totali"><h3>Totali per oggetto · Pesca</h3><div class="tot" id="tot-pesca"></div></div>
+      <div class="box evento-elenco">
+        <h3>Consegne registrate · Pesca</h3>
+        <p class="nota-aggiunta">Puoi aggiungere quantità (anche 0) a un partecipante già censito oppure eliminare completamente la registrazione.</p>
+        <div id="lista-pesca"></div>
+      </div>
+    </section>
 
-  <div class="box">
-    <h2>Evento</h2>
-    <div class="f">
-      <label>Nome evento<input id="evento" list="evs" placeholder="Es. Gara di pesca" autocomplete="off"></label>
-      <label>Data<input id="data" type="date"></label>
-    </div>
-    <datalist id="evs"></datalist>
-  </div>
-
-  <form class="box" id="form">
-    <h2>Consegna di un partecipante</h2>
-    <div class="f">
-      <label>Persona<input id="persona" required></label>
-      <label>Oggetto<input id="oggetto" required></label>
-      <label>Quantità<input id="qty" type="number" min="0" value="0" required></label>
-    </div>
-    <p><button>Registra consegna</button></p>
-  </form>
-
-  <div class="box">
-    <h2>Totali per oggetto</h2>
-    <div class="tot" id="tot"></div>
-  </div>
-
-  <div class="box">
-    <h2>Consegne registrate</h2>
-    <p class="nota-aggiunta">Dopo aver censito un partecipante puoi aggiungere nuove quantità al totale già registrato oppure cancellare completamente la registrazione.</p>
-    <div id="lista"></div>
+    <section class="evento-col" data-tipo="caccia" aria-labelledby="titolo-caccia">
+      <div class="box evento-banner">
+        <h2 id="titolo-caccia">🏹 Gara di caccia</h2>
+        <p>Evento fisso · Registro delle consegne di caccia</p>
+        <div class="evento-data"><label>Data della consegna <input id="data-caccia" type="date"></label></div>
+      </div>
+      <p id="err-caccia" class="evento-errore" role="alert"></p>
+      <form class="box evento-form" id="form-caccia">
+        <h3>Consegna di un partecipante</h3>
+        <div class="evento-campi">
+          <label>Persona<input id="persona-caccia" required autocomplete="off"></label>
+          <label>Quantità<input id="qty-caccia" type="number" min="0" step="1" value="0" required></label>
+          <label class="campo-oggetto">Oggetto<input id="oggetto-caccia" required autocomplete="off"></label>
+        </div>
+        <button type="submit">Registra consegna caccia</button>
+      </form>
+      <div class="box evento-totali"><h3>Totali per oggetto · Caccia</h3><div class="tot" id="tot-caccia"></div></div>
+      <div class="box evento-elenco">
+        <h3>Consegne registrate · Caccia</h3>
+        <p class="nota-aggiunta">Puoi aggiungere quantità (anche 0) a un partecipante già censito oppure eliminare completamente la registrazione.</p>
+        <div id="lista-caccia"></div>
+      </div>
+    </section>
   </div>
 </main>
 
@@ -55,193 +105,174 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script>
 <script>
+'use strict';
 $('#nav').innerHTML=nav('e');
-let rows=[];
-let gruppiVista=[];
-let busy=0;
 
-try{rows=JSON.parse(localStorage.getItem('mp_eventi')||'[]')}catch(e){}
+const EVENTI_FISSI={pesca:'Gara di pesca',caccia:'Gara di caccia'};
+let rows=[];
+let busy=0;
+const gruppiVista={pesca:[],caccia:[]};
+try{
+  const mem=JSON.parse(localStorage.getItem('mp_eventi')||'[]');
+  if(Array.isArray(mem))rows=mem;
+}catch(e){}
+
+function mostraErrore(tipo,msg){$('#err-'+tipo).textContent=msg||'';}
+function salvaCache(){try{localStorage.setItem('mp_eventi',JSON.stringify(rows));}catch(e){}}
+
+// Includiamo anche le gare vecchie chiamate, ad esempio, "Gara di pesca del Manzanita".
+// Le righe con altri nomi non vengono modificate né cancellate.
+function appartieneA(r,tipo){
+  const nome=String(r.evento||'').toLocaleLowerCase('it').trim();
+  return tipo==='pesca'? /\bpesca\b/.test(nome) : /\bcaccia\b/.test(nome);
+}
+
+function gruppoPerTipo(tipo){
+  const gruppi=new Map();
+  for(const r of rows.filter(r=>appartieneA(r,tipo))){
+    const persona=String(r.persona||'').trim();
+    const oggetto=String(r.oggetto||'').trim();
+    const key=persona+'\u0000'+oggetto;
+    if(!gruppi.has(key))gruppi.set(key,{persona,oggetto,qty:0});
+    gruppi.get(key).qty+=Number(r.qty)||0;
+  }
+  return [...gruppi.values()];
+}
+
+function disegnaTipo(tipo){
+  const elenco=rows.filter(r=>appartieneA(r,tipo));
+  const totali=new Map();
+  for(const r of elenco){
+    const oggetto=String(r.oggetto||'').trim();
+    totali.set(oggetto,(totali.get(oggetto)||0)+(Number(r.qty)||0));
+  }
+  $('#tot-'+tipo).innerHTML=totali.size
+    ? [...totali].map(([k,v])=>'<span>'+esc(k)+': <b>'+esc(v)+'</b></span>').join('')
+    : '<span class="evento-vuoto">Nessuna consegna ancora registrata.</span>';
+
+  const gruppi=gruppoPerTipo(tipo);
+  gruppiVista[tipo]=gruppi;
+  $('#lista-'+tipo).innerHTML=gruppi.length
+    ? '<div class="tabella-scroll"><table><thead><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà totale</th><th class="n">Azioni</th></tr></thead><tbody>'+
+      gruppi.map((r,i)=>
+        '<tr><td><b>'+esc(r.persona)+'</b></td><td>'+esc(r.oggetto)+'</td><td class="n"><b>'+esc(r.qty)+'</b></td>'+
+        '<td class="n"><div class="azioni-riga"><div class="aggiungi-qty">'+
+        '<input id="add_'+tipo+'_'+i+'" type="number" min="0" step="1" value="0" aria-label="Quantità da aggiungere a '+esc(r.persona)+'">'+
+        '<button type="button" onclick="aggiungi(\''+tipo+'\','+i+')">+ Aggiungi</button></div>'+
+        '<button type="button" class="x" onclick="eliminaGruppo(\''+tipo+'\','+i+')">✕ Elimina</button>'+
+        '</div></td></tr>'
+      ).join('')+'</tbody></table></div>'
+    : '<p class="evento-vuoto">Nessuna consegna registrata. Usa il modulo qui sopra per iniziare.</p>';
+
+  // Mostra l'ultima data registrata senza sovrascrivere una data scelta dall'utente.
+  const dataEl=$('#data-'+tipo);
+  if(!dataEl.value){
+    const dataEsistente=[...elenco].reverse().find(r=>r.data);
+    if(dataEsistente)dataEl.value=dataEsistente.data;
+  }
+}
+function disegna(){disegnaTipo('pesca');disegnaTipo('caccia');}
 
 async function carica(){
   if(busy)return;
   try{
-    const r=(await api('list','Eventi')).rows;
+    const risposta=await api('list','Eventi');
     if(busy)return;
-    rows=r;
+    rows=Array.isArray(risposta.rows)?risposta.rows:[];
+    salvaCache();
     disegna();
-    try{localStorage.setItem('mp_eventi',JSON.stringify(rows))}catch(e){}
-    $('#err').textContent='';
+    mostraErrore('pesca','');
+    mostraErrore('caccia','');
   }catch(e){
-    $('#err').textContent='Errore: '+e.message;
+    // Manteniamo sullo schermo i dati della cache in caso di problemi di rete.
+    mostraErrore('pesca','Sincronizzazione non riuscita: '+e.message);
+    mostraErrore('caccia','Sincronizzazione non riuscita: '+e.message);
   }
 }
 
-function disegna(){
-  $('#evs').innerHTML=[...new Set(rows.map(r=>r.evento))]
-    .map(v=>'<option value="'+esc(v)+'">').join('');
-
-  const ev=$('#evento').value.trim();
-  const l=rows.filter(r=>r.evento===ev);
-
-  const t={};
-  l.forEach(r=>t[r.oggetto]=(t[r.oggetto]||0)+(+r.qty||0));
-  $('#tot').innerHTML=Object.entries(t)
-    .map(([k,v])=>'<span>'+esc(k)+': '+v+'</span>').join('')||'Nessun dato per questo evento.';
-
-  const gruppi=new Map();
-  l.forEach(r=>{
-    const persona=(r.persona||'').trim();
-    const oggetto=(r.oggetto||'').trim();
-    const key=persona+'\u0000'+oggetto;
-    if(!gruppi.has(key))gruppi.set(key,{persona,oggetto,qty:0});
-    gruppi.get(key).qty+=(+r.qty||0);
-  });
-
-  gruppiVista=[...gruppi.values()];
-
-  $('#lista').innerHTML=gruppiVista.length
-    ? '<table><tr><th>Persona</th><th>Oggetto</th><th class="n">Qtà totale</th><th class="n">Azioni</th></tr>'+
-      gruppiVista.map((r,i)=>
-        '<tr>'+
-          '<td><b>'+esc(r.persona)+'</b></td>'+
-          '<td>'+esc(r.oggetto)+'</td>'+
-          '<td class="n"><b>'+esc(r.qty)+'</b></td>'+
-          '<td class="n"><div class="azioni-riga">'+
-            '<div class="aggiungi-qty">'+
-              '<input id="add_'+i+'" type="number" min="0" step="1" value="0" aria-label="Quantità da aggiungere">'+
-              '<button type="button" onclick="aggiungi('+i+')">+ Aggiungi</button>'+
-            '</div>'+
-            '<button type="button" class="x" title="Cancella registrazione" onclick="eliminaGruppo('+i+')">✕ Elimina</button>'+
-          '</div></td>'+
-        '</tr>'
-      ).join('')+
-      '</table>'
-    : '<p>Scrivi il nome dell\'evento e registra la prima consegna.</p>';
+async function registra(tipo,row,nuovaConsegna){
+  const temp={id:'tmp_'+Date.now()+'_'+Math.random().toString(36).slice(2),...row};
+  rows.push(temp);
+  salvaCache();
+  disegna();
+  mostraErrore(tipo,'');
+  busy++;
+  try{
+    await api('add','Eventi',{row});
+    if(nuovaConsegna){
+      $('#persona-'+tipo).value='';
+      $('#qty-'+tipo).value='0';
+      $('#persona-'+tipo).focus();
+    }
+  }catch(e){
+    rows=rows.filter(r=>r!==temp);
+    salvaCache();
+    disegna();
+    mostraErrore(tipo,'Errore durante la registrazione: '+e.message);
+  }finally{
+    busy--;
+    // Sincronizza con gli ID generati dal server e con gli altri utenti.
+    // Non cancelliamo qui l'errore per poterlo mostrare all'utente.
+    try{
+      if(!busy){
+        const result=await api('list','Eventi');
+        if(!busy&&Array.isArray(result.rows)){rows=result.rows;salvaCache();disegna();}
+      }
+    }catch(e){}
+  }
 }
 
-async function aggiungi(i){
-  const g=gruppiVista[i];
+async function aggiungi(tipo,i){
+  const g=gruppiVista[tipo]?.[i];
   if(!g)return;
-
-  const input=$('#add_'+i);
+  const input=$('#add_'+tipo+'_'+i);
   const delta=Number(input.value);
   if(!Number.isInteger(delta)||delta<0){
-    $('#err').textContent='Inserisci un numero intero uguale o maggiore di 0.';
-    input.focus();
-    return;
+    mostraErrore(tipo,'Inserisci un numero intero uguale o maggiore di 0.');input.focus();return;
   }
-
-  const ev=$('#evento').value.trim();
-  if(!ev){
-    $('#err').textContent='Scrivi prima il nome dell\'evento.';
-    return;
-  }
-
-  const row={
-    evento:ev,
-    data:$('#data').value,
-    persona:g.persona,
-    oggetto:g.oggetto,
-    qty:delta
-  };
-
-  rows.push({id:'tmp'+Date.now(),...row});
-  disegna();
-  $('#err').textContent='';
-  busy++;
-
-  try{
-    await api('add','Eventi',{row});
-  }catch(er){
-    $('#err').textContent='Errore: '+er.message;
-  }
-
-  busy--;
-  carica();
+  await registra(tipo,{evento:EVENTI_FISSI[tipo],data:$('#data-'+tipo).value,
+    persona:g.persona,oggetto:g.oggetto,qty:delta},false);
 }
 
-
-async function eliminaGruppo(i){
-  const g=gruppiVista[i];
+async function eliminaGruppo(tipo,i){
+  const g=gruppiVista[tipo]?.[i];
   if(!g)return;
-
-  const ev=$('#evento').value.trim();
-  const daEliminare=rows.filter(r=>
-    r.evento===ev &&
-    (r.persona||'').trim()===g.persona &&
-    (r.oggetto||'').trim()===g.oggetto
-  );
-
-  if(!daEliminare.length)return;
-  if(!confirm('Cancellare completamente '+g.persona+' - '+g.oggetto+'?'))return;
-
-  const ids=new Set(daEliminare.map(r=>r.id));
-  rows=rows.filter(r=>!ids.has(r.id));
-  disegna();
-  $('#err').textContent='';
-  busy++;
-
+  const corrispondenti=rows.filter(r=>appartieneA(r,tipo)
+    &&String(r.persona||'').trim()===g.persona
+    &&String(r.oggetto||'').trim()===g.oggetto);
+  if(!corrispondenti.length)return;
+  if(!confirm('Eliminare tutte le consegne di '+g.persona+' – '+g.oggetto+' dalla gara di '+tipo+'?'))return;
+  // Elimina solo gli oggetti corrispondenti, senza toccare eventuali altre righe prive di ID.
+  rows=rows.filter(r=>!corrispondenti.includes(r));
+  salvaCache();disegna();mostraErrore(tipo,'');busy++;
   try{
-    for(const r of daEliminare){
-      if(r.id && !String(r.id).startsWith('tmp')){
-        await api('delete','Eventi',{id:r.id});
-      }
+    for(const r of corrispondenti){
+      if(r.id && !String(r.id).startsWith('tmp'))await api('delete','Eventi',{id:r.id});
     }
-  }catch(er){
-    $('#err').textContent='Errore: '+er.message;
+  }catch(e){
+    mostraErrore(tipo,'Errore durante la cancellazione: '+e.message);
+  }finally{
+    busy--;
+    try{
+      if(!busy){const result=await api('list','Eventi');
+        if(!busy&&Array.isArray(result.rows)){rows=result.rows;salvaCache();disegna();}}
+    }catch(e){}
   }
-
-  busy--;
-  carica();
 }
 
-$('#evento').oninput=()=>{
-  const r=rows.find(x=>x.evento===$('#evento').value.trim());
-  if(r)$('#data').value=r.data;
-  disegna();
-};
+for(const tipo of Object.keys(EVENTI_FISSI)){
+  $('#form-'+tipo).addEventListener('submit',async e=>{
+    e.preventDefault();
+    const persona=$('#persona-'+tipo).value.trim();
+    const oggetto=$('#oggetto-'+tipo).value.trim();
+    const qty=Number($('#qty-'+tipo).value);
+    if(!persona||!oggetto){mostraErrore(tipo,'Inserisci persona e oggetto.');return;}
+    if(!Number.isInteger(qty)||qty<0){mostraErrore(tipo,'La quantità deve essere un intero uguale o maggiore di 0.');return;}
+    await registra(tipo,{evento:EVENTI_FISSI[tipo],data:$('#data-'+tipo).value,persona,oggetto,qty},true);
+  });
+}
 
-$('#form').onsubmit=async e=>{
-  e.preventDefault();
-  const ev=$('#evento').value.trim();
-  if(!ev){
-    $('#err').textContent='Scrivi prima il nome dell\'evento.';
-    return;
-  }
-
-  const qty=Number($('#qty').value);
-  if(!Number.isInteger(qty)||qty<0){
-    $('#err').textContent='Inserisci una quantità intera uguale o maggiore di 0.';
-    return;
-  }
-
-  const row={
-    evento:ev,
-    data:$('#data').value,
-    persona:$('#persona').value.trim(),
-    oggetto:$('#oggetto').value.trim(),
-    qty
-  };
-
-  rows.push({id:'tmp'+Date.now(),...row});
-  disegna();
-  $('#persona').value='';
-  $('#qty').value=0;
-  $('#persona').focus();
-  $('#err').textContent='';
-  busy++;
-
-  try{
-    await api('add','Eventi',{row});
-  }catch(er){
-    $('#err').textContent='Errore: '+er.message;
-  }
-
-  busy--;
-  carica();
-};
-
-if(rows.length)disegna();
+disegna();
 avvia(carica,'Eventi');
 </script>
 </body>

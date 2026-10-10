@@ -1,12 +1,54 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><style>main p,main li{max-width:70ch}li{margin-bottom:8px}.b{font-size:11px;font-weight:700;border:1px solid currentColor;padding:1px 6px;text-transform:uppercase}.f1{color:var(--ruggine)}.f2{color:var(--bosco2)}.pena{color:var(--ruggine)}</style><title>Manzanita Post · Regole</title></head><body><header><h1>Manzanita Post</h1><div id="nav"></div></header>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manzanita Post · Regole</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stile.css">
+<style>
+main p,main li{max-width:80ch}li{margin-bottom:8px}.b{font-size:11px;font-weight:700;border:1px solid currentColor;padding:1px 6px;text-transform:uppercase}.f1{color:var(--ruggine,#8f3f2f)}.f2{color:var(--bosco2,#334a38)}.pena{color:var(--ruggine,#8f3f2f)}
+.regole-actions{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:22px;margin:25px 0;background:#e7d4a9;border:2px solid #896439;box-shadow:0 4px 15px #33231021;color:#322114;font-family:'Merriweather',Georgia,serif}
+.regole-actions .description{flex:1;min-width:230px}.regole-actions h2{margin:0 0 5px;font-family:'IM Fell English SC',Georgia,serif;font-size:26px;color:#34251b}.regole-actions p{margin:0;font-size:13px;line-height:1.6}
+.regole-create,.regole-download{border:2px solid #553820;background:#273b2c;color:#f5e5c5;padding:14px 22px;font:20px 'IM Fell English SC',Georgia,serif;cursor:pointer;letter-spacing:.2px;box-shadow:inset 0 0 0 2px #ad8b4a}
+.regole-create:hover,.regole-download:hover:not(:disabled){background:#37543d}.regole-create:focus-visible,.regole-download:focus-visible{outline:3px solid #9f7137;outline-offset:3px}
+.regole-download:disabled{opacity:.5;cursor:not-allowed}
+.regole-modal[hidden]{display:none!important}.regole-modal{position:fixed;inset:0;background:rgba(23,18,14,.82);z-index:99999;display:flex;justify-content:center;align-items:center;padding:20px;overflow:auto}
+.regole-dialog{background:#e7d5b0;color:#362517;border:4px double #744d2c;width:min(880px,100%);max-height:95vh;display:flex;flex-direction:column;box-shadow:0 20px 70px #0009;min-height:0}
+.regole-modal-header,.regole-modal-footer{padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#dec69b}
+.regole-modal-header h2{font:26px 'IM Fell English SC',Georgia,serif;margin:0}.regole-modal-header p{font:12px Georgia,serif;margin:3px 0 0}
+.regole-close{border:1px solid #775239;background:transparent;color:#482d1c;padding:6px 13px;cursor:pointer;font-size:26px}.regole-close:hover{background:#c2a374}
+.regole-preview{overflow:auto;min-height:170px;flex:1;padding:14px;text-align:center;display:flex;justify-content:center;align-items:flex-start;background:#bd9f72;box-shadow:inset 0 2px 8px #0002}
+.regole-preview canvas{width:auto;height:auto;max-height:65vh;max-width:100%;box-shadow:0 8px 20px #21170a77}
+.regole-modal-footer .status{font:12px Georgia,serif;flex:1}
+.regole-modal-footer .regole-download{font-size:17px;padding:10px 16px}
+body.regole-modal-open{overflow:hidden}
+@media(max-width:620px){.regole-modal{padding:6px}.regole-modal-footer{flex-wrap:wrap}.regole-modal-header{padding:9px}.regole-preview{padding:8px}.regole-preview canvas{max-height:57vh}}
+</style>
+</head>
+<body>
+<header><h1>Manzanita Post</h1><div id="nav"></div></header>
 <main>
-<div class="box"><h2>Regolamento · Manzanita Post!</h2>
-<ol><li>Chiunque si lamenta dei prezzi è bandito per <b class="pena">3 giorni</b>.</li>
-<li>Chiunque raggira o tratta male i dipendenti è bandito <b class="pena">a vita</b>.</li>
-<li>Chiunque lascia incustoditi i cavalli all'interno del recinto è bandito per <b class="pena">3 giorni</b>.</li>
-<li>Chiunque salta la fila, o tenta di farlo, è bandito per <b class="pena">1 giorno</b>.</li></ol>
-<li>Chiunque entra in casa, è bandito per <b class="pena">1 giorno</b>.</li></ol>
-<p>Ricordiamo inoltre che non siamo tenuti a comprare né a servire nessuno. Tutto ciò che serve si può comprare e vendere all'Emporio e dal Macellaio.</p></div>
+<div class="box">
+  <h2>Regolamento · Manzanita Post</h2>
+  <ol id="regoleManzanita">
+    <li>Chiunque si lamenta dei prezzi è bandito per <b class="pena">3 giorni</b>.</li>
+    <li>Chiunque raggira o tratta male i dipendenti è bandito <b class="pena">a vita</b>.</li>
+    <li>Chiunque lascia incustoditi i cavalli all'interno del recinto è bandito per <b class="pena">3 giorni</b>.</li>
+    <li>Chiunque salta la fila, o tenta di farlo, è bandito per <b class="pena">1 giorno</b>.</li>
+    <li>Non entrare in casa, attendere il proprio turno fuori. Chi non rispetta questa regola è bandito per <b class="pena">1 giorno</b>.</li>
+  </ol>
+  <p id="noticeOne">Ricordiamo inoltre che noi non siamo tenuti a comprare né a servire nessuno.</p>
+  <p id="noticeTwo">Chi non rispetta tali regole può vendere la propria roba al Macellaio.</p>
+  <p id="noticeThree">Possono acquistare e vendere tutto ciò che serve anche all'Emporio.</p>
+</div>
+<div class="box">
+  <h2>Codice penale Art. 2.2 — Bracconaggio</h2>
+  <p id="poachIntro">Chiunque abusivamente caccia, macella, sottrae, detiene, importa, esporta, vende, acquista, baratta, commercia o permuta i seguenti animali:</p>
+  <ol type="a" id="protectedSpecies"><li><b>AQUILA</b></li><li><b>ALCE MASCHIO</b></li><li><b>BISONTE</b></li></ol>
+  <p id="poachClause">Incluse parte di essi, a scopo di lucro o tornaconto personale, è colpevole ai sensi di questa sezione di codice.</p>
+  <p id="poachFine"><b class="pena">È punito con l'ammenda da $75, oltre al sequestro permanente della cacciagione di frodo.</b></p>
+</div>
 <div class="box"><h2>Più casse dello stesso articolo</h2>
 <p>Ogni casella di un articolo è una cassa o uno stack. Premi <b>+</b> per aggiungerne un'altra: la colonna <b>Qtà</b> somma tutto da sola.</p>
 <p>Esempio: 18 + 23 + 11 danno Qtà 52.</p></div>
@@ -21,5 +63,125 @@
 <div class="box"><h2>Registro corrente</h2><ul>
 <li>Il pannello a lato mostra solo gli articoli con una quantità inserita.</li>
 <li><b>Svuota registro</b> cancella tutte le quantità: usalo quando inizi con un nuovo cliente.</li></ul></div>
+
+<section class="regole-actions" aria-label="Generatore manifesto delle regole">
+ <div class="description"><h2>Manifesto delle regole · Manzanita</h2><p>Genera il manifesto western 1900 con il regolamento e il divieto di bracconaggio. Usa le illustrazioni della cartella <code>listino-assets</code>.</p></div>
+ <button class="regole-create" id="generaRegole" type="button">↓ Genera listino regole</button>
+</section>
 <p><a href="index.html">Torna al registro</a></p>
-</main><script src="app.js"></script><script>$('#nav').innerHTML=nav('r')</script></body></html>
+</main>
+
+<div class="regole-modal" id="regoleModal" role="dialog" aria-modal="true" aria-labelledby="regoleModalTitle" hidden>
+ <div class="regole-dialog">
+  <div class="regole-modal-header"><div><h2 id="regoleModalTitle">Regole del Manzanita Post</h2><p>Manifesto western 1900 · anteprima e download PNG</p></div><button id="regoleClose" type="button" class="regole-close" aria-label="Chiudi anteprima">×</button></div>
+  <div id="regolePreview" class="regole-preview">Preparazione del manifesto…</div>
+  <div class="regole-modal-footer"><span class="status" id="regoleStatus" role="status">Pronto per generare.</span><button id="regoleCancel" type="button" class="regole-close" style="font-size:16px">Chiudi</button><button type="button" id="regoleDownload" class="regole-download" disabled>↓ Scarica PNG</button></div>
+ </div>
+</div>
+<script src="app.js"></script>
+<script>if(typeof nav==='function') document.getElementById('nav').innerHTML=nav('r'); else document.getElementById('nav').innerHTML='<a href="index.html">Registro</a> · <strong>Regole</strong>';</script>
+<script src="listino-assets/offline-assets.js"></script>
+<script>
+(function(){
+'use strict';
+const W=1600,H=2800;
+const ART={paper:'parchment_bg.png',border:'ornate_border.png',landscape:'mountain_footer.png',lodge:'lodge_vignette.png',deer:'deer_vignette.png',eagle:'eagle_vignette.png'};
+const base='listino-assets/';
+let currentCanvas=null,busy=false;
+const byId=id=>document.getElementById(id);
+const source=id=>byId(id).textContent.replace(/\s+/g,' ').trim();
+function line(ctx,x,y,x2,y2,width=2){ctx.save();ctx.strokeStyle='#68452d';ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x2,y2);ctx.stroke();ctx.restore();}
+function ornament(ctx,cx,y,size=1){ctx.save();ctx.translate(cx,y);ctx.scale(size,size);ctx.lineWidth=2.2;ctx.strokeStyle='#52301b';for(const dir of [-1,1]){ctx.save();ctx.scale(dir,1);ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(42,-31,69,5,112,-10);ctx.bezierCurveTo(150,-28,165,-12,178,-20);ctx.stroke();ctx.beginPath();ctx.moveTo(48,-15);ctx.bezierCurveTo(60,-55,100,-43,85,-23);ctx.bezierCurveTo(75,-12,64,-19,75,-28);ctx.stroke();ctx.restore();}ctx.beginPath();ctx.moveTo(0,-16);ctx.lineTo(16,0);ctx.lineTo(0,16);ctx.lineTo(-16,0);ctx.closePath();ctx.fillStyle='#52301b';ctx.fill();ctx.restore();}
+function panel(ctx,x,y,w,h){ctx.save();ctx.fillStyle='rgba(250,225,180,.70)';ctx.fillRect(x,y,w,h);ctx.lineWidth=3;ctx.strokeStyle='#67462b';ctx.strokeRect(x,y,w,h);ctx.lineWidth=1;ctx.strokeStyle='#a78151';ctx.strokeRect(x+9,y+9,w-18,h-18);ctx.restore();}
+function wrap(ctx,s,width){let words=s.split(/\s+/),lines=[],ln='';for(const word of words){const next=ln?ln+' '+word:word;if(ln&&ctx.measureText(next).width>width){lines.push(ln);ln=word;}else ln=next;}if(ln)lines.push(ln);return lines;}
+function printLines(ctx,s,x,y,width,options={}){
+ ctx.save();ctx.textAlign=options.center?'center':'left';ctx.fillStyle=options.color||'#382417';ctx.font=options.font||'32px Georgia, serif';
+ const rows=wrap(ctx,s,width),h=options.lineHeight||42;for(const text of rows){ctx.fillText(text,x,y);y+=h;}ctx.restore();return y;
+}
+function fitTitle(ctx,s,max,size,min=32,font='"Rye", Georgia, serif') {let z=size;do{ctx.font=`${z}px ${font}`;if(ctx.measureText(s).width<=max)break;z-=2;}while(z>min);return z;}
+function drawEdgeFrame(ctx,img){if(!img){ctx.strokeStyle='#67462b';ctx.lineWidth=8;ctx.strokeRect(26,28,W-52,H-56);return;}
+ const sw=img.naturalWidth,sh=img.naturalHeight,cw=210,ch=230,tw=220,th=240;
+ ctx.save();ctx.globalAlpha=.87;const crop=(sx,sy,ssw,ssh,dx,dy,ww,hh)=>ctx.drawImage(img,sx,sy,ssw,ssh,dx,dy,ww,hh);
+ crop(0,0,cw,ch,0,0,tw,th);crop(sw-cw,0,cw,ch,W-tw,0,tw,th);crop(0,sh-ch,cw,ch,0,H-th,tw,th);crop(sw-cw,sh-ch,cw,ch,W-tw,H-th,tw,th);
+ crop(cw,0,sw-2*cw,ch,tw,0,W-2*tw,th);crop(cw,sh-ch,sw-2*cw,ch,tw,H-th,W-2*tw,th);
+ crop(0,ch,cw,sh-2*ch,0,th,tw,H-2*th);crop(sw-cw,ch,cw,sh-2*ch,W-tw,th,tw,H-2*th);ctx.restore();}
+async function assets(){const arr=await Promise.all(Object.entries(ART).map(async([key,file])=>{
+ const local=location.protocol==='file:';
+ const fallback=window.MANZANITA_OFFLINE_ASSETS?.[key];
+ const attempts=local&&fallback?[fallback,base+file]:[base+file,...(fallback?[fallback]:[])];
+ for(const src of attempts){const img=new Image();const result=await new Promise(resolve=>{img.onload=()=>resolve(true);img.onerror=()=>resolve(false);img.src=src;});if(result)return [key,img];}
+ return [key,null];
+ }));return Object.fromEntries(arr);}
+async function createRulesPoster(){
+ if(document.fonts&&document.fonts.ready)await document.fonts.ready;
+ const art=await assets();
+ if(!art.paper)throw new Error('Sfondo non trovato: controlla listino-assets/parchment_bg.png');
+ const c=document.createElement('canvas');c.width=W;c.height=H;
+ const ctx=c.getContext('2d',{alpha:false});if(!ctx)throw new Error('Canvas non supportato dal browser');
+ ctx.fillStyle='#e8c995';ctx.fillRect(0,0,W,H);ctx.drawImage(art.paper,0,0,W,H);
+ // Illustrazioni, inserite prima dei pannelli testuali.
+ ctx.save();ctx.globalAlpha=.66;if(art.lodge)ctx.drawImage(art.lodge,83,180,355,420);if(art.deer)ctx.drawImage(art.deer,1207,180,315,410);ctx.restore();
+ ctx.textAlign='center';ctx.fillStyle='#301c12';
+ fitTitle(ctx,'REGOLE MANZANITA',1050,88,54);ctx.fillText('REGOLE MANZANITA',800,177);
+ ctx.font='53px "IM Fell English SC",Georgia,serif';ctx.fillText('MANZANITA POST',800,264);
+ ornament(ctx,800,325,.9);
+ ctx.font='29px "IM Fell English SC",Georgia,serif';ctx.fillText('AVVISI E REGOLAMENTI DELLA LOGGIA · WESTERN 1900',800,390);
+ line(ctx,135,465,1465,465,3);ornament(ctx,800,465,.68);
+ // Regolamento ufficiale, letto dalla pagina HTML.
+ panel(ctx,117,510,1366,892);
+ ctx.textAlign='center';ctx.fillStyle='#382314';ctx.font='58px "IM Fell English SC",Georgia,serif';ctx.fillText('REGOLAMENTO DEL MANZANITA',800,595);ornament(ctx,800,625,.6);
+ const rules=[...byId('regoleManzanita').querySelectorAll('li')].map(el=>el.textContent.replace(/\s+/g,' ').trim());
+ let y=686;ctx.textAlign='left';
+ // Distribuisce i cinque punti nello spazio disponibile, senza lasciare un grande vuoto.
+ const ruleFont='bold 39px Georgia, serif',ruleLine=54;
+ ctx.font=ruleFont;
+ const lineCount=rules.map(rule=>wrap(ctx,rule,1100).length);
+ const gap=Math.max(17,(1358-y-lineCount.reduce((a,b)=>a+b,0)*ruleLine)/(rules.length-1));
+ rules.forEach((rule,i)=>{
+  ctx.fillStyle='#382313';ctx.font='bold 48px "IM Fell English SC",Georgia,serif';ctx.fillText(`${i+1}.`,215,y);
+  y=printLines(ctx,rule,294,y,1100,{font:ruleFont,lineHeight:ruleLine})+gap;
+ });
+ // Avviso commerciale.
+ panel(ctx,146,1436,1308,315);
+ ctx.textAlign='center';ctx.fillStyle='#3f2918';ctx.font='54px "IM Fell English SC",Georgia,serif';ctx.fillText('AVVISO AI VISITATORI',800,1506);
+ let noteY=1561;
+ ['noticeOne','noticeTwo','noticeThree'].forEach(id=>{noteY=printLines(ctx,source(id),800,noteY,1160,{center:true,font:'bold 28px Georgia, serif',lineHeight:39})+12;});
+ // Divieto di bracconaggio.
+ panel(ctx,117,1790,1366,780);
+ ctx.textAlign='center';ctx.fillStyle='#342214';ctx.font='70px "Rye", Georgia, serif';ctx.fillText('RICORDIAMO',800,1880);
+ ctx.font='43px "IM Fell English SC",Georgia,serif';ctx.fillText('CODICE PENALE ART. 2.2 — BRACCONAGGIO',800,1942);
+ ornament(ctx,800,1973,.68);
+ // Fauna illustrativa su lati del pannello, sotto il testo.
+ ctx.save();ctx.globalAlpha=.28;if(art.eagle)ctx.drawImage(art.eagle,135,2000,255,320);if(art.deer)ctx.drawImage(art.deer,1210,2010,250,315);ctx.restore();
+ let introY=2028;introY=printLines(ctx,source('poachIntro'),800,introY,930,{center:true,font:'bold 27px Georgia,serif',lineHeight:37});
+ const species=[...byId('protectedSpecies').querySelectorAll('li')].map(el=>el.textContent.trim());
+ const speciesTop=introY+9;const speciesHeight=species.length*52+35;
+ ctx.fillStyle='rgba(255,239,207,.52)';ctx.fillRect(420,speciesTop-26,760,speciesHeight);ctx.strokeStyle='#68472c';ctx.lineWidth=2;ctx.strokeRect(420,speciesTop-26,760,speciesHeight);
+ species.forEach((sp,i)=>{ctx.textAlign='center';ctx.fillStyle='#311d10';ctx.font='bold 39px "IM Fell English SC",Georgia,serif';ctx.fillText(String.fromCharCode(97+i)+'.  '+sp,800,speciesTop+17+i*52);});
+ const clauseY=speciesTop+speciesHeight+15;
+ let fy=printLines(ctx,source('poachClause'),800,clauseY,1050,{center:true,font:'26px Georgia,serif',lineHeight:37});
+ fy+=8;const fine=source('poachFine');
+ ctx.save();ctx.fillStyle='rgba(247,217,172,.88)';ctx.fillRect(231,fy-26,1138,115);ctx.strokeStyle='#5d3922';ctx.lineWidth=3;ctx.strokeRect(231,fy-26,1138,115);ctx.restore();
+ printLines(ctx,fine,800,fy+11,1040,{center:true,font:'bold 31px Georgia,serif',lineHeight:43});
+ // Panorama inferiore e cornice.
+ if(art.landscape){ctx.save();ctx.globalAlpha=.65;ctx.drawImage(art.landscape,74,2590,1452,150);ctx.restore();}
+ drawEdgeFrame(ctx,art.border);
+ return c;
+}
+const modal=byId('regoleModal'),preview=byId('regolePreview'),status=byId('regoleStatus'),button=byId('regoleDownload');
+function close(){modal.hidden=true;document.body.classList.remove('regole-modal-open');}
+async function open(){if(busy)return;modal.hidden=false;document.body.classList.add('regole-modal-open');byId('regoleClose').focus();busy=true;button.disabled=true;currentCanvas=null;preview.textContent='Creazione del manifesto…';status.textContent='Caricamento delle illustrazioni…';
+ try{const canvas=await createRulesPoster();currentCanvas=canvas;preview.replaceChildren(canvas);status.textContent=`Manifesto pronto · ${canvas.width} × ${canvas.height} px`;button.disabled=false;}
+ catch(e){preview.textContent='Non è stato possibile generare il manifesto.';status.textContent=e.message||'Errore durante la generazione.';}
+ finally{busy=false;}}
+function download(){if(!currentCanvas)return;button.disabled=true;try{currentCanvas.toBlob(blob=>{button.disabled=false;if(!blob){status.textContent='Esportazione PNG non riuscita.';return;}const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='Manzanita_Regole.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),20000);status.textContent='Manifesto scaricato.';},'image/png');}catch(e){button.disabled=false;status.textContent='Errore nel download. Controlla gli asset caricati.';}}
+byId('generaRegole').addEventListener('click',open);
+byId('regoleClose').addEventListener('click',close);
+byId('regoleCancel').addEventListener('click',close);
+button.addEventListener('click',download);
+modal.addEventListener('click',event=>{if(event.target===modal)close();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)close();});
+})();
+</script>
+</body>
+</html>
