@@ -22,17 +22,18 @@ body{
   font:15px/1.45 'Merriweather',Georgia,serif;
   padding:0 0 42px;
   background-color:#9e8556;
-  background-image:linear-gradient(rgba(71,52,31,.42),rgba(214,193,149,.78)), url("theme-assets/bg-index.png");
+  background-image:linear-gradient(rgba(70,51,31,.44),rgba(214,193,149,.79)), url("theme-assets/bg-index.png");
   background-position:center center;
   background-size:cover;
   background-repeat:no-repeat;
   background-attachment:fixed;
 }
-body.page-ordini{background-image:linear-gradient(rgba(66,48,29,.44),rgba(215,194,151,.80)), url("theme-assets/bg-ordini.png");}
-body.page-eventi{background-image:linear-gradient(rgba(67,47,27,.42),rgba(214,193,149,.76)), url("theme-assets/bg-eventi.png");}
-body.page-regole{background-image:linear-gradient(rgba(63,45,27,.46),rgba(214,193,149,.82)), url("theme-assets/bg-regole.png");}
-body.page-index{background-image:linear-gradient(rgba(71,52,31,.42),rgba(214,193,149,.78)), url("theme-assets/bg-index.png");}
-body.page-wiki{background-image:linear-gradient(rgba(69,50,30,.44),rgba(214,193,149,.80)), url("theme-assets/bg-wiki.png");}
+
+
+
+
+
+body.page-ordini,body.page-eventi,body.page-regole,body.page-index,body.page-wiki{background-image:linear-gradient(rgba(70,51,31,.44),rgba(214,193,149,.79)),url("theme-assets/bg-index.png");}
 body::before{
   content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
