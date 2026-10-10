@@ -13,6 +13,7 @@
 .hero{position:relative;overflow:hidden;background:linear-gradient(115deg,rgba(23,33,26,.98),rgba(39,56,43,.96)),var(--forest-900);color:#f3ead6;border:1px solid rgba(29,43,33,.8);box-shadow:var(--shadow);margin-bottom:16px}.hero::before,.hero::after{content:"";position:absolute;border:1px solid rgba(215,185,117,.24);pointer-events:none}.hero::before{inset:7px}.hero::after{inset:12px;border-style:dashed;opacity:.55}.hero-inner{position:relative;z-index:1;padding:24px 28px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}.eyebrow{font-family:'Merriweather',Georgia,serif;text-transform:uppercase;letter-spacing:2px;font-size:10px;color:var(--brass-light);margin-bottom:6px}.hero h1{margin:0;font-family:'Rye',Georgia,serif;font-weight:400;font-size:clamp(30px,5vw,52px);line-height:1;letter-spacing:1.5px}.hero-sub{margin:9px 0 0;color:#d9ceb6;font-size:13px;letter-spacing:.3px;max-width:760px}.hero-mark{width:92px;height:92px;border:1px solid rgba(215,185,117,.5);outline:1px solid rgba(215,185,117,.18);outline-offset:6px;display:grid;place-items:center;text-align:center;transform:rotate(2deg);color:var(--brass-light)}.hero-mark .big{font-size:34px;line-height:1}.hero-mark .small{margin-top:5px;font-family:'IM Fell English SC',Georgia,serif;font-size:11px;letter-spacing:1px}.logo-mark{width:230px;height:auto;outline:none;border:0;background:none;display:block}.logo-mark img{display:block;width:230px;height:auto;filter:drop-shadow(0 8px 16px rgba(0,0,0,.26))}
 .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.quick a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 10px;text-decoration:none;text-align:center;font-family:'Rye',Georgia,serif;font-size:clamp(18px,3vw,26px);letter-spacing:1.5px;color:#f3ead6;background:linear-gradient(115deg,var(--forest-950),var(--forest-700));border:1px solid var(--forest-950);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft)}.quick a:hover{background:var(--forest-600)}.quick a span{font-size:24px}.quick a small{font-family:'Merriweather',Georgia,serif;font-size:11px;font-weight:700;letter-spacing:.3px;color:var(--brass-light)}
 
+.wide-section{margin-bottom:20px}.wide-section .craft-details{margin:0}.wide-section .fish-map-explorer{margin-top:14px}.wide-section .fish-map-stage{grid-template-columns:340px minmax(0,1fr)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;align-items:start}.sidebar{position:sticky;top:16px;overflow:hidden;background:linear-gradient(rgba(31,45,35,.98),rgba(24,35,27,.99));color:#efe6d1;border:1px solid #162019;border-top:4px solid var(--brass);box-shadow:var(--shadow)}.sidebar-head{padding:14px 14px 10px;border-bottom:1px solid rgba(255,255,255,.10)}.sidebar-title{margin:0;font-family:'IM Fell English SC',Georgia,serif;font-size:18px;font-weight:400;letter-spacing:.5px}.sidebar-sub{margin:4px 0 0;color:#b7aa8e;font-size:10px;font-family:'Courier New',monospace}.side-links{display:flex;flex-direction:column;padding:8px 10px 14px}.side-links a{display:flex;align-items:center;gap:8px;color:#f2e6cb;text-decoration:none;padding:10px 10px;border-bottom:1px dashed rgba(255,255,255,.10);font-size:13px}.side-links a:last-child{border-bottom:0}.side-links a span{font-size:18px}.side-links a:hover{background:rgba(255,255,255,.06)}
 .section-heading{display:flex;align-items:center;gap:10px;margin:0 0 10px;color:var(--forest-800)}.section-heading::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(51,74,56,.55),transparent)}.section-kicker{font-family:'IM Fell English SC',Georgia,serif;letter-spacing:.8px;font-size:19px;white-space:nowrap}.wiki-section{margin-bottom:24px}
 .info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:24px}.fish-card,.recipe-card{background:linear-gradient(rgba(227,211,175,.96),rgba(227,211,175,.96)),repeating-linear-gradient(0deg,rgba(79,60,39,.025) 0 1px,transparent 1px 5px);border:1px solid rgba(65,49,32,.22);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft)}.fish-card{padding:16px}.fish-card h3{margin:0 0 8px;font-family:'IM Fell English SC',Georgia,serif;font-size:22px}.fish-card p{margin:0 0 10px;font-size:13px;line-height:1.55}.fish-tip{font-size:12px;color:var(--forest-800)}
@@ -38,7 +39,8 @@
 .fish-map-info p{margin:0 0 9px;font-size:13px;line-height:1.55}
 .fish-map-note{font-size:12px;color:var(--ink-soft)}
 .fish-map-frame{background:rgba(255,255,255,.18);border:1px solid rgba(65,49,32,.22);padding:10px}
-.fish-map-frame img{display:block;width:100%;height:auto;border:1px solid rgba(65,49,32,.15);box-shadow:var(--shadow-soft)}
+.fish-map-frame img{display:block;width:100%;height:auto;min-height:420px;object-fit:contain;border:1px solid rgba(65,49,32,.15);box-shadow:var(--shadow-soft)}
+@media(max-width:1100px){.wide-section .fish-map-stage{grid-template-columns:1fr}}
 @media(max-width:900px){.fish-map-stage{grid-template-columns:1fr}.fish-map-info h3{font-size:24px}}
 
 /* Richieste attive: notifica comune a tutto il sito */
@@ -71,9 +73,7 @@
   </nav>
 
 
-  <div class="layout">
-    <main>
-      <section class="wiki-section" id="fish-types">
+  <section class="wiki-section wide-section" id="fish-types">
         <details class="craft-details">
           <summary class="craft-summary"><span class="section-kicker">🐟 Tipologie di pesci</span></summary>
           <div class="info-grid">
@@ -122,8 +122,10 @@
 </div>
         </details>
       </section>
-      
-    <section class="wiki-section" id="sec-1">
+
+  <div class="layout">
+    <main>
+<section class="wiki-section" id="sec-1">
       <details class="craft-details">
         <summary class="craft-summary"><span class="section-kicker">🛠️ Attrezzatura e utilità</span></summary>
         <div class="cards-grid">
