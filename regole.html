@@ -25,7 +25,6 @@ main p,main li{max-width:80ch}li{margin-bottom:8px}.b{font-size:11px;font-weight
 body.regole-modal-open{overflow:hidden}
 @media(max-width:620px){.regole-modal{padding:6px}.regole-modal-footer{flex-wrap:wrap}.regole-modal-header{padding:9px}.regole-preview{padding:8px}.regole-preview canvas{max-height:57vh}}
 </style>
-<link rel="stylesheet" href="manzanita-ui.css">
 </head>
 <body>
 <header><h1>Manzanita Post</h1><div id="nav"></div></header>
@@ -79,8 +78,6 @@ body.regole-modal-open{overflow:hidden}
   <div class="regole-modal-footer"><span class="status" id="regoleStatus" role="status">Pronto per generare.</span><button id="regoleCancel" type="button" class="regole-close" style="font-size:16px">Chiudi</button><button type="button" id="regoleDownload" class="regole-download" disabled>↓ Scarica PNG</button></div>
  </div>
 </div>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script>
 <script>if(typeof nav==='function') document.getElementById('nav').innerHTML=nav('r'); else document.getElementById('nav').innerHTML='<a href="index.html">Registro</a> · <strong>Regole</strong>';</script>
 <script src="listino-assets/offline-assets.js"></script>
@@ -186,6 +183,5 @@ modal.addEventListener('click',event=>{if(event.target===modal)close();});
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!modal.hidden)close();});
 })();
 </script>
-<script src="manzanita-ui.js"></script>
 </body>
 </html>

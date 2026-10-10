@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><title>Manzanita Post · Ordini fattura</title><link rel="stylesheet" href="manzanita-ui.css">
-</head><body>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><title>Manzanita Post · Ordini fattura</title></head><body>
 <header><h1>Manzanita Post</h1><div id="nav"></div></header>
 <main><p id="err"></p>
 <form class="box" id="form"><h2>Nuovo ordine con fattura</h2><div class="f">
@@ -22,5 +21,4 @@ $('#filtro').onchange=disegna;
 $('#form').onsubmit=async e=>{e.preventDefault();const row={cliente:$('#cliente').value,articolo:$('#articolo').value,qty:+$('#qty').value,importo:$('#importo').value,note:$('#note').value,stato:'Da fare'};
 rows.push({id:'tmp'+Date.now(),data:new Date().toISOString().slice(0,10),...row});disegna();e.target.reset();$('#qty').value=1;busy++;
 try{await api('add','Ordini',{row})}catch(er){$('#err').textContent='Errore: '+er.message}busy--;carica()};
-if(rows.length)disegna();avvia(carica,'Ordini');</script><script src="manzanita-ui.js"></script>
-</body></html>
+if(rows.length)disegna();avvia(carica,'Ordini');</script></body></html>
