@@ -1,0 +1,32 @@
+MANZANITA POST - LOGO E NOTIFICHE ORDINI
+
+Aggiornamento applicato a:
+- index.html
+- ordini.html
+- eventi.html
+- regole.html
+- wiki.html
+
+Nuovi file:
+- manzanita-ui.css
+- manzanita-ui.js
+- brand-assets/manzanita-post-grizzly.png
+
+LOGO
+Il logo MANZANITA POST con orso grizzly è mostrato in alto a destra
+in tutte e cinque le pagine. Cliccandolo si torna al registro.
+
+NOTIFICHE ORDINI
+Nelle pagine diverse da ordini.html viene visualizzata una campanella
+con contatore rosso quando ci sono ordini 'Da fare' o 'Preparato'.
+Gli ordini 'Consegnato' non sono inclusi nel conteggio.
+La campanella apre ordini.html; il contatore scompare quando non
+ci sono ordini ancora da gestire.
+I dati arrivano in tempo reale dallo stesso Firebase/Firestore già usato
+nella pagina Ordini. Occorre una connessione a Internet e il permesso
+di lettura della raccolta Firestore 'Ordini'.
+
+PUBBLICAZIONE
+Sostituire tutti i file con il contenuto dello ZIP, mantenendo la
+struttura delle cartelle. Non è necessario modificare le regole Firestore
+se i permessi sono già gli stessi usati dalla pagina Ordini.

@@ -24,6 +24,7 @@
 .craft-details{background:transparent;border:0}.craft-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:15px 18px;border:1px solid #8b6a3b;border-left:5px solid #bd9650;background:linear-gradient(115deg,#3a2a21 0%,#5c3c2b 48%,#2b241d 100%);border-radius:5px;color:#f4e6cb;user-select:none;box-shadow:inset 0 1px rgba(255,235,198,.16),inset 0 -1px rgba(0,0,0,.35),0 5px 14px rgba(45,27,18,.2);transition:background .15s ease,border-color .15s ease}.craft-summary::-webkit-details-marker{display:none}.craft-summary:hover{background:linear-gradient(115deg,#513727 0%,#744b33 48%,#392b20 100%);border-color:#d2ab68}.craft-summary:focus-visible{outline:3px solid #d2ab68;outline-offset:3px}.craft-summary::after{content:"APRI  ▾";margin-left:auto;font-family:'IM Fell English SC',Georgia,serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#eed4a0;white-space:nowrap}.craft-details[open]>.craft-summary{border-color:#b79051;background:linear-gradient(115deg,#33271f,#59402c 60%,#33271f)}.craft-details[open]>.craft-summary::after{content:"CHIUDI  ▴"}.craft-summary .section-kicker{margin:0;color:#f7e7c5;text-shadow:0 1px 1px rgba(0,0,0,.45)}.craft-details .cards-grid,.craft-details .info-grid{margin-top:12px}
 .legend-list{display:grid;gap:8px;margin-top:14px}.legend-fish{display:grid;grid-template-columns:1fr;gap:5px;padding:9px 11px;background:rgba(255,255,255,.19);border-left:3px solid var(--brass);font-size:12px;line-height:1.4}.legend-fish strong{font-size:13px;color:var(--forest-800)}.legend-fish span:nth-child(2)::before{content:"Esca: ";font-weight:bold}.legend-fish span:nth-child(3)::before{content:"Luogo: ";font-weight:bold}
 </style>
+<link rel="stylesheet" href="manzanita-ui.css">
 </head>
 <body>
 <div class="shell">
@@ -672,5 +673,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('hashchange',()=>openSection(location.hash));
 });
 </script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+<script src="manzanita-ui.js"></script>
 </body>
 </html>

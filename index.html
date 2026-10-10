@@ -82,6 +82,7 @@
 @media(max-width:760px){body{padding-bottom:205px}.footer-actions{order:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.footer-actions .reset-btn{grid-column:1/-1;order:3}.footer-actions .poster-download{white-space:normal;font-size:13px;line-height:1.1;padding:9px 6px}.totals{order:0}.poster-private-note{line-height:1.5}}
 @media(max-width:430px){body{padding-bottom:216px}}
 </style>
+<link rel="stylesheet" href="manzanita-ui.css">
 </head>
 <body>
 <div class="shell">
@@ -403,5 +404,9 @@ document.getElementById('posterModal').addEventListener('click',event=>{if(event
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!document.getElementById('posterModal').hidden)posterClose();});
 
 </script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="app.js"></script>
+<script src="manzanita-ui.js"></script>
 </body>
 </html>
