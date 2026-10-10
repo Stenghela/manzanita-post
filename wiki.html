@@ -24,6 +24,23 @@
 .craft-details{background:transparent;border:0}.craft-summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:15px 18px;border:1px solid #8b6a3b;border-left:5px solid #bd9650;background:linear-gradient(115deg,#3a2a21 0%,#5c3c2b 48%,#2b241d 100%);border-radius:5px;color:#f4e6cb;user-select:none;box-shadow:inset 0 1px rgba(255,235,198,.16),inset 0 -1px rgba(0,0,0,.35),0 5px 14px rgba(45,27,18,.2);transition:background .15s ease,border-color .15s ease}.craft-summary::-webkit-details-marker{display:none}.craft-summary:hover{background:linear-gradient(115deg,#513727 0%,#744b33 48%,#392b20 100%);border-color:#d2ab68}.craft-summary:focus-visible{outline:3px solid #d2ab68;outline-offset:3px}.craft-summary::after{content:"APRI  ▾";margin-left:auto;font-family:'IM Fell English SC',Georgia,serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#eed4a0;white-space:nowrap}.craft-details[open]>.craft-summary{border-color:#b79051;background:linear-gradient(115deg,#33271f,#59402c 60%,#33271f)}.craft-details[open]>.craft-summary::after{content:"CHIUDI  ▴"}.craft-summary .section-kicker{margin:0;color:#f7e7c5;text-shadow:0 1px 1px rgba(0,0,0,.45)}.craft-details .cards-grid,.craft-details .info-grid{margin-top:12px}
 .legend-list{display:grid;gap:8px;margin-top:14px}.legend-fish{display:grid;grid-template-columns:1fr;gap:5px;padding:9px 11px;background:rgba(255,255,255,.19);border-left:3px solid var(--brass);font-size:12px;line-height:1.4}.legend-fish strong{font-size:13px;color:var(--forest-800)}.legend-fish span:nth-child(2)::before{content:"Esca: ";font-weight:bold}.legend-fish span:nth-child(3)::before{content:"Luogo: ";font-weight:bold}
 
+
+.fish-map-explorer{margin-top:2px;background:linear-gradient(rgba(227,211,175,.96),rgba(227,211,175,.96)),repeating-linear-gradient(0deg,rgba(79,60,39,.025) 0 1px,transparent 1px 5px);border:1px solid rgba(65,49,32,.22);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft);padding:16px}
+.fish-map-intro{margin:0 0 14px;font-size:13px;line-height:1.55;color:var(--ink)}
+.fish-map-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.fish-map-btn{appearance:none;border:1px solid rgba(57,40,23,.35);background:linear-gradient(180deg,#f1e4c8,#e0cb9d);color:var(--ink);padding:8px 12px;border-radius:999px;font:700 12px/1.2 'Merriweather',Georgia,serif;letter-spacing:.2px;cursor:pointer;box-shadow:var(--shadow-soft)}
+.fish-map-btn:hover{filter:brightness(1.03)}
+.fish-map-btn.active{background:linear-gradient(135deg,#355240,#203326);color:#f5e7cc;border-color:#294233}
+.fish-map-stage{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
+.fish-map-info{background:rgba(255,255,255,.22);border:1px solid rgba(65,49,32,.18);padding:14px}
+.fish-map-kicker{font:700 11px/1 'Merriweather',Georgia,serif;letter-spacing:1.2px;text-transform:uppercase;color:var(--forest-700);margin-bottom:6px}
+.fish-map-info h3{margin:0 0 8px;font-family:'IM Fell English SC',Georgia,serif;font-size:26px;color:var(--forest-800)}
+.fish-map-info p{margin:0 0 9px;font-size:13px;line-height:1.55}
+.fish-map-note{font-size:12px;color:var(--ink-soft)}
+.fish-map-frame{background:rgba(255,255,255,.18);border:1px solid rgba(65,49,32,.22);padding:10px}
+.fish-map-frame img{display:block;width:100%;height:auto;border:1px solid rgba(65,49,32,.15);box-shadow:var(--shadow-soft)}
+@media(max-width:900px){.fish-map-stage{grid-template-columns:1fr}.fish-map-info h3{font-size:24px}}
+
 /* Richieste attive: notifica comune a tutto il sito */
 .wiki-hero-tools{display:flex;align-items:center;gap:20px}
 .wiki-order-bell{position:relative;display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:50%;color:#f7e7c6;text-decoration:none;background:linear-gradient(135deg,#39523c,#1b2b21);border:1px solid #d2a968;box-shadow:0 5px 15px #0005}
@@ -70,6 +87,38 @@
 <div class="legend-fish"><strong>Trota Iridea Grande</strong><span>Esca Spinner V6 Leggendaria</span><span>Elysian Pool</span></div>
 <div class="legend-fish"><strong>Persico Trota Dolomeu Grande</strong><span>Esca di Pesce</span><span>Lago del Calumet Ravine</span></div>
 </div></article>
+
+<div class="fish-map-explorer" id="fish-map-explorer">
+  <p class="fish-map-intro"><strong>Mappe delle zone di pesca:</strong> seleziona una specie per visualizzare le aree consigliate. Le zone rosse indicano i punti migliori sulla mappa.</p>
+  <div class="fish-map-toolbar" id="fish-map-toolbar">
+    <button type="button" class="fish-map-btn active" data-fish-map-btn data-map="wiki-assets/fish-maps/persico_branchie_blu.png" data-title="Persico branchie blu" data-category="Pesce piccolo">Persico branchie blu</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pickerel.png" data-title="Pickerel" data-category="Pesce piccolo/medio">Pickerel</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pickerel_rosso.png" data-title="Pickerel rosso" data-category="Pesce piccolo/medio">Pickerel rosso</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/perca_di_scoglio.png" data-title="Perca di scoglio" data-category="Pesce piccolo/medio">Perca di scoglio</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/persico_trota_dolomeu.png" data-title="Persico trota dolomeu" data-category="Pesce medio">Persico trota dolomeu</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pesce_gatto_nebuloso.png" data-title="Pesce gatto nebuloso" data-category="Pesce piccolo/medio">Pesce gatto nebuloso</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/perca_gialla.png" data-title="Perca gialla" data-category="Pesce piccolo/medio">Perca gialla</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pesce_storione.png" data-title="Pesce storione" data-category="Pesce grande">Pesce storione</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/boccalone.png" data-title="Boccalone" data-category="Pesce medio">Boccalone</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/trota_iridea.png" data-title="Trota iridea" data-category="Pesce medio">Trota iridea</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pesce_gatto_di_canale.png" data-title="Pesce gatto di canale" data-category="Pesce medio/grande">Pesce gatto di canale</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/luccio_dal_naso_lungo.png" data-title="Luccio dal naso lungo" data-category="Pesce grande">Luccio dal naso lungo</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/luccio_muschiato.png" data-title="Luccio muschiato" data-category="Pesce grande">Luccio muschiato</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/luccio_del_nord.png" data-title="Luccio del nord" data-category="Pesce grande">Luccio del nord</button>
+    <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/salmone_rosso.png" data-title="Salmone rosso" data-category="Pesce piccolo/medio">Salmone rosso</button>
+  </div>
+  <div class="fish-map-stage">
+    <div class="fish-map-info">
+      <div class="fish-map-kicker">Zona di pesca</div>
+      <h3 id="fish-map-title">Persico branchie blu</h3>
+      <p id="fish-map-category"><strong>Categoria:</strong> Pesce piccolo</p>
+      <p class="fish-map-note">Le aree rosse mostrano i punti consigliati per trovare la specie selezionata.</p>
+    </div>
+    <div class="fish-map-frame">
+      <img id="fish-map-image" src="wiki-assets/fish-maps/persico_branchie_blu.png" alt="Mappa zone di pesca: Persico branchie blu">
+    </div>
+  </div>
+</div>
 </div>
         </details>
       </section>
@@ -682,6 +731,24 @@ document.addEventListener('DOMContentLoaded',()=>{
     a.addEventListener('click',()=>openSection(a.getAttribute('href')));
   });
   window.addEventListener('hashchange',()=>openSection(location.hash));
+
+  const fishMapButtons = [...document.querySelectorAll('[data-fish-map-btn]')];
+  const fishMapImage = document.getElementById('fish-map-image');
+  const fishMapTitle = document.getElementById('fish-map-title');
+  const fishMapCategory = document.getElementById('fish-map-category');
+  fishMapButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      fishMapButtons.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const title = btn.dataset.title;
+      const category = btn.dataset.category;
+      const map = btn.dataset.map;
+      fishMapImage.src = map;
+      fishMapImage.alt = 'Mappa zone di pesca: ' + title;
+      fishMapTitle.textContent = title;
+      fishMapCategory.innerHTML = '<strong>Categoria:</strong> ' + category;
+    });
+  });
 });
 </script>
 </body>
