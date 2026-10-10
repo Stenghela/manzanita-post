@@ -49,6 +49,35 @@
 .wiki-order-bell .bell-count{position:absolute;top:-8px;right:-5px;color:#fff;background:#b7352b;border:2px solid #f4e2c2;border-radius:99px;min-width:27px;text-align:center;padding:4px;font:bold 12px Arial,sans-serif}
 .wiki-order-bell[hidden]{display:none!important}
 @media(max-width:700px){.wiki-hero-tools{width:100%;justify-content:space-between}.wiki-hero-tools .hero-mark{display:block;width:155px;height:auto}.wiki-hero-tools .hero-mark img{width:155px}}
+
+/* La cartografia occupa le due colonne interne senza debordare dalla Wiki. */
+.layout > main, .wiki-section, .craft-details, .info-grid,
+.fish-map-explorer, .fish-map-stage, .fish-map-frame {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.info-grid > .fish-map-explorer {
+  grid-column: 1 / -1;
+  width: 100%;
+  overflow: hidden;
+}
+.fish-map-top {
+  min-width: 0;
+  grid-template-columns: minmax(0,1fr) minmax(0,280px);
+}
+.fish-map-frame {overflow: hidden}
+.fish-map-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+@media (max-width:740px) {
+  .fish-map-top {grid-template-columns: minmax(0,1fr)}
+}
 </style>
 </head>
 <body class="page-wiki">
