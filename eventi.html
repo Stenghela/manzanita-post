@@ -8,13 +8,13 @@
   <title>Manzanita Post · Eventi di pesca e caccia</title>
   <style>
     /* Due gare permanenti e indipendenti: pesca a sinistra, caccia a destra. */
-    .eventi-main{max-width:1520px;width:calc(100% - 32px);margin:24px auto 60px}
+    .eventi-main{max-width:none;width:100%;margin:0 auto 50px}
     .eventi-intro{margin:0 0 18px;color:var(--inchiostro,#3d3025);line-height:1.55}
     .eventi-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:20px}
     .evento-col{min-width:0;display:flex;flex-direction:column;gap:14px}
     .evento-col>.box{margin:0;min-width:0}
-    .evento-banner{border-top:5px solid #3b6570;padding-top:16px}
-    .evento-col[data-tipo="caccia"] .evento-banner{border-top-color:#786038}
+    .evento-banner{border-top:5px solid #3b6570;padding-top:16px;background:linear-gradient(114deg,rgba(234,220,191,.98),rgba(196,206,182,.84))}
+    .evento-col[data-tipo="caccia"] .evento-banner{border-top-color:#786038;background:linear-gradient(114deg,rgba(234,220,191,.98),rgba(211,186,145,.92))}
     .evento-banner h2{font-family:'Rye',Georgia,serif;letter-spacing:.5px;font-weight:400;margin:0 0 8px;font-size:clamp(22px,2.3vw,32px)}
     .evento-banner p{margin:0;color:var(--inchiostro,#625744);opacity:.85;font-size:.92em}
     .evento-form h3,.evento-totali h3,.evento-elenco h3{font-family:'IM Fell English SC',Georgia,serif;font-weight:400;font-size:1.45rem;margin:0 0 12px}
@@ -29,7 +29,7 @@
     .evento-errore{display:none;color:#942f25;padding:10px 12px;border:1px solid #b87d71;background:#fce8df;margin:0}
     .evento-errore:not(:empty){display:block}
     .evento-totali .tot{display:flex;gap:8px;flex-wrap:wrap}
-    .evento-totali .tot span{background:rgba(123,94,54,.1);border:1px solid rgba(112,84,46,.27);padding:6px 10px;border-radius:3px}
+    .evento-totali .tot span{background:linear-gradient(#344b3b,#1f3429);color:#f5e8d0;border:1px solid #6e855f;padding:6px 10px;border-radius:3px}
     .nota-aggiunta{margin:0 0 12px;font-size:.87em;opacity:.82;line-height:1.5}
     .tabella-scroll{width:100%;overflow-x:auto}
     .evento-elenco table{width:100%;border-collapse:collapse;font-size:.89rem}
@@ -47,9 +47,15 @@
   </style>
 </head>
 <body class="page-eventi">
-<header><h1>Manzanita Post</h1><div id="nav"></div></header>
+<div class="mp-page-shell"><header class="site-hero"><div class="site-hero-inner">
+  <div class="site-hero-copy"><div class="site-eyebrow">Competizioni di frontiera · Caccia e pesca</div>
+    <h1>Gare del Manzanita</h1><p class="site-hero-sub">Le sfide della loggia: due registri distinti, consegne e classifiche per specie.</p></div>
+  <a class="site-bell" href="ordini.html" data-order-bell hidden aria-label="Ordini da gestire"><span class="bell-symbol">🔔</span><span class="bell-count" data-bell-count>0</span></a>
+  <a href="index.html" class="site-logo" aria-label="Manzanita Post · Registro"><img src="theme-assets/manzanita-logo.png" alt="Manzanita Post, grizzly della California"></a>
+</div></header><div id="nav"></div>
 <main class="eventi-main">
-  <p class="eventi-intro">Le due gare del Manzanita Post hanno registri separati. Seleziona direttamente il riquadro della <strong>pesca</strong> o della <strong>caccia</strong>: non serve più creare o scegliere un nome evento.</p>
+<div class="section-heading"><span class="section-kicker">Gare e consegne</span></div>
+  <p class="eventi-intro page-lead">Le due gare del Manzanita Post hanno registri separati. Seleziona direttamente il riquadro della <strong>pesca</strong> o della <strong>caccia</strong>: non serve più creare o scegliere un nome evento.</p>
   <div class="eventi-grid">
     <section class="evento-col" data-tipo="pesca" aria-labelledby="titolo-pesca">
       <div class="box evento-banner">
@@ -99,7 +105,7 @@
       </div>
     </section>
   </div>
-</main>
+</main></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>

@@ -31,39 +31,39 @@ function avvia(carica, sheet) {
 const $ = s => document.querySelector(s);
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function nav(p) {
+  // L'intestazione è identica su Ordini, Eventi e Regole.
   setTimeout(initChrome, 0);
   const items = [
-    ['index.html','Registro','i','📒'],
-    ['ordini.html','Ordini','o','📦'],
-    ['eventi.html','Eventi','e','🏆'],
-    ['regole.html','Regole','r','📜']
+    ['index.html','REGISTRO','i','📒','Acquisti e vendite'],
+    ['ordini.html','ORDINI','o','📦','Fatture e richieste'],
+    ['eventi.html','EVENTI','e','🏆','Caccia e pesca'],
+    ['regole.html','REGOLE','r','📜','Il regolamento'],
+    ['wiki.html','WIKI','w','📚','Ricette e manuale']
   ];
-  return `
-    <div class="nav-shell">
-      <nav>${items.map(([href,label,key,ico]) => `<a href="${href}"${p===key?' class="on"':''}><span class="ico">${ico}</span>${label}</a>`).join('')}</nav>
-      <a class="order-alert" href="ordini.html" aria-label="Ordini da gestire">
-        <span class="bell">🔔</span>
-        <span class="badge" hidden>0</span>
-      </a>
-      <a class="mp-logo" href="index.html" aria-label="Manzanita Post">
-        <img src="theme-assets/manzanita-logo.png" alt="Logo Manzanita Post con orso grizzly">
-      </a>
-    </div>`;
+  return `<nav class="site-quick" aria-label="Navigazione principale">${items.map(([href,label,key,ico,sub]) =>
+    `<a href="${href}"${p===key?' class="on"':''}><span class="site-nav-icon">${ico}</span><span class="site-nav-label">${label}</span><small>${sub}</small>${key==='o'?'<span class="site-order-count" data-order-count hidden>0</span>':''}</a>`
+  ).join('')}</nav>`;
 }
 let ordineListenerAttivo = false;
 function initChrome(){ aggiornaBadgeOrdini(); }
 function aggiornaBadgeOrdini(){
-  const alert = document.querySelector('.order-alert');
-  const badge = alert?.querySelector('.badge');
-  if (!alert || !badge || !db) return;
-  if (!ordineListenerAttivo) {
-    ordineListenerAttivo = true;
-    db.collection('Ordini').onSnapshot(s => {
-      const aperti = s.docs.map(d => d.data()).filter(r => (r.stato || 'Da fare') !== 'Consegnato').length;
-      badge.textContent = String(aperti);
-      badge.hidden = aperti <= 0;
-      alert.classList.toggle('has-orders', aperti > 0);
-      alert.style.display = aperti > 0 ? 'inline-flex' : 'none';
-    }, () => {});
-  }
+  if(ordineListenerAttivo || !db || !document.querySelector('[data-order-bell], [data-order-count]'))return;
+  ordineListenerAttivo=true;
+  db.collection('Ordini').onSnapshot(s => {
+    const aperti=s.docs.filter(d => {
+      const stato=String(d.data().stato || 'Da fare').trim();
+      return stato !== 'Consegnato';
+    }).length;
+    document.querySelectorAll('[data-order-count]').forEach(el=>{
+      el.textContent=aperti>99?'99+':String(aperti);
+      el.hidden=aperti===0;
+    });
+    document.querySelectorAll('[data-order-bell]').forEach(el=>{
+      el.hidden=aperti===0;
+      el.classList.toggle('has-orders',aperti>0);
+      el.setAttribute('aria-label',aperti+' ordini ancora da gestire. Apri la pagina ordini');
+      const badge=el.querySelector('[data-bell-count]');
+      if(badge)badge.textContent=aperti>99?'99+':String(aperti);
+    });
+  }, error => console.warn('Notifiche ordini non disponibili:', error.code || error.message));
 }

@@ -1,12 +1,29 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><title>Manzanita Post · Ordini fattura</title></head><body class="page-ordini">
-<header><h1>Manzanita Post</h1><div id="nav"></div></header>
-<main><p id="err"></p>
-<form class="box" id="form"><h2>Nuovo ordine con fattura</h2><div class="f">
-<label>Cliente<input id="cliente" required></label><label>Articolo<input id="articolo" required></label>
-<label>Quantità<input id="qty" type="number" min="1" value="1" required></label><label>Importo $<input id="importo" type="number" step="0.01" min="0"></label>
-<label>Note<input id="note"></label></div><p><button>Aggiungi ordine</button></p></form>
-<div class="box"><h2>Ordini</h2><label>Mostra<select id="filtro"><option value="">Tutti</option><option>Da fare</option><option>Preparato</option><option>Consegnato</option></select></label>
-<div class="tot" id="tot"></div><div id="lista"></div></div></main>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Merriweather:wght@400;700&family=Rye&display=swap" rel="stylesheet"><link rel="stylesheet" href="stile.css"><title>Manzanita Post · Ordini fattura</title></head>
+<body class="page-ordini"><div class="mp-page-shell">
+<header class="site-hero"><div class="site-hero-inner">
+  <div class="site-hero-copy"><div class="site-eyebrow">Registro commerciale · Manzanita Post</div>
+    <h1>Ordini & Fatture</h1><p class="site-hero-sub">Richieste dei clienti, preparazione delle forniture e consegne della loggia.</p></div>
+  <a class="site-bell" href="ordini.html" data-order-bell hidden aria-label="Ordini da gestire"><span class="bell-symbol">🔔</span><span class="bell-count" data-bell-count>0</span></a>
+  <a href="index.html" class="site-logo" aria-label="Manzanita Post · Registro"><img src="theme-assets/manzanita-logo.png" alt="Manzanita Post, grizzly della California"></a>
+</div></header><div id="nav"></div>
+<main class="orders-main">
+<div class="section-heading"><span class="section-kicker">Registro commerciale</span></div>
+<p class="page-lead">Registra un ordine sulla sinistra e segui le consegne sulla destra. Premi sullo stato per passare da <strong>Da fare</strong> a <strong>Preparato</strong> e infine a <strong>Consegnato</strong>.</p>
+<p id="err" role="alert"></p>
+<div class="orders-grid">
+<section class="box orders-form"><div class="box-head"><span class="head-emblem">✒</span><div><h2>Nuovo ordine</h2><p>Compila la richiesta per il cliente.</p></div></div>
+<form id="form"><div class="form-grid">
+<label class="full">Cliente<input id="cliente" required autocomplete="off"></label>
+<label class="full">Articolo<input id="articolo" required autocomplete="off"></label>
+<label>Quantità<input id="qty" type="number" min="1" value="1" required></label>
+<label>Importo $<input id="importo" type="number" step="0.01" min="0"></label>
+<label class="full">Note<input id="note" autocomplete="off"></label>
+</div><button type="submit">✒ Registra ordine</button></form></section>
+<section class="box orders-list"><div class="box-head"><span class="head-emblem">📜</span><div><h2>Ordini registrati</h2><p>Fatture, stato di lavorazione e consegne.</p></div></div>
+<div class="filter-row"><label>Mostra<select id="filtro"><option value="">Tutti gli ordini</option><option>Da fare</option><option>Preparato</option><option>Consegnato</option></select></label>
+<div class="tot" id="tot"></div></div><div id="lista" aria-live="polite"></div></section>
+</div></main></div>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script><script>
 $('#nav').innerHTML=nav('o');const STATI=['Da fare','Preparato','Consegnato'];let rows=[];

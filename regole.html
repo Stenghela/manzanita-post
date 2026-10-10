@@ -27,9 +27,17 @@ body.regole-modal-open{overflow:hidden}
 </style>
 </head>
 <body class="page-regole">
-<header><h1>Manzanita Post</h1><div id="nav"></div></header>
-<main>
-<div class="box">
+<div class="mp-page-shell"><header class="site-hero"><div class="site-hero-inner">
+  <div class="site-hero-copy"><div class="site-eyebrow">Regolamento ufficiale · Manzanita Post</div>
+    <h1>Regole del Manzanita</h1><p class="site-hero-sub">Norme della loggia, tutela della fauna selvatica e istruzioni del registro.</p></div>
+  <a class="site-bell" href="ordini.html" data-order-bell hidden aria-label="Ordini da gestire"><span class="bell-symbol">🔔</span><span class="bell-count" data-bell-count>0</span></a>
+  <a href="index.html" class="site-logo" aria-label="Manzanita Post · Registro"><img src="theme-assets/manzanita-logo.png" alt="Manzanita Post, grizzly della California"></a>
+</div></header><div id="nav"></div>
+<main class="rules-main">
+<div class="section-heading"><span class="section-kicker">Codice e disposizioni</span></div>
+<p class="page-lead">Le regole per commerciare, acquistare e accedere alla loggia. Il manifesto completo si può generare e scaricare in PNG.</p>
+<div class="rules-primary">
+<div class="box rules-regulation">
   <h2>Regolamento · Manzanita Post</h2>
   <ol id="regoleManzanita">
     <li>Chiunque si lamenta dei prezzi è bandito per <b class="pena">3 giorni</b>.</li>
@@ -42,13 +50,16 @@ body.regole-modal-open{overflow:hidden}
   <p id="noticeTwo">Chi non rispetta tali regole può vendere la propria roba al Macellaio.</p>
   <p id="noticeThree">Possono acquistare e vendere tutto ciò che serve anche all'Emporio.</p>
 </div>
-<div class="box">
+<div class="box rules-code">
   <h2>Codice penale Art. 2.2 — Bracconaggio</h2>
   <p id="poachIntro">Chiunque abusivamente caccia, macella, sottrae, detiene, importa, esporta, vende, acquista, baratta, commercia o permuta i seguenti animali:</p>
   <ol type="a" id="protectedSpecies"><li><b>AQUILA</b></li><li><b>ALCE MASCHIO</b></li><li><b>BISONTE</b></li></ol>
   <p id="poachClause">Incluse parte di essi, a scopo di lucro o tornaconto personale, è colpevole ai sensi di questa sezione di codice.</p>
   <p id="poachFine"><b class="pena">È punito con l'ammenda da $75, oltre al sequestro permanente della cacciagione di frodo.</b></p>
 </div>
+</div>
+<div class="section-heading"><span class="section-kicker">Guida al registro</span></div>
+<div class="rules-guide">
 <div class="box"><h2>Più casse dello stesso articolo</h2>
 <p>Ogni casella di un articolo è una cassa o uno stack. Premi <b>+</b> per aggiungerne un'altra: la colonna <b>Qtà</b> somma tutto da sola.</p>
 <p>Esempio: 18 + 23 + 11 danno Qtà 52.</p></div>
@@ -64,12 +75,13 @@ body.regole-modal-open{overflow:hidden}
 <li>Il pannello a lato mostra solo gli articoli con una quantità inserita.</li>
 <li><b>Svuota registro</b> cancella tutte le quantità: usalo quando inizi con un nuovo cliente.</li></ul></div>
 
+</div>
 <section class="regole-actions" aria-label="Generatore manifesto delle regole">
  <div class="description"><h2>Manifesto delle regole · Manzanita</h2><p>Genera il manifesto western 1900 con il regolamento e il divieto di bracconaggio. Usa le illustrazioni della cartella <code>listino-assets</code>.</p></div>
  <button class="regole-create" id="generaRegole" type="button">↓ Genera listino regole</button>
 </section>
 <p><a href="index.html">Torna al registro</a></p>
-</main>
+</main></div>
 
 <div class="regole-modal" id="regoleModal" role="dialog" aria-modal="true" aria-labelledby="regoleModalTitle" hidden>
  <div class="regole-dialog">
@@ -78,6 +90,8 @@ body.regole-modal-open{overflow:hidden}
   <div class="regole-modal-footer"><span class="status" id="regoleStatus" role="status">Pronto per generare.</span><button id="regoleCancel" type="button" class="regole-close" style="font-size:16px">Chiudi</button><button type="button" id="regoleDownload" class="regole-download" disabled>↓ Scarica PNG</button></div>
  </div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="app.js"></script>
 <script>if(typeof nav==='function') document.getElementById('nav').innerHTML=nav('r'); else document.getElementById('nav').innerHTML='<a href="index.html">Registro</a> · <strong>Regole</strong>';</script>
 <script src="listino-assets/offline-assets.js"></script>
