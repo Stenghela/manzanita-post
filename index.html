@@ -48,6 +48,39 @@
 @media(max-width:760px){.category.pesca-leggendaria{grid-column:auto}}
 
 .warning-guide{border-left-color:var(--rust);background:rgba(241,220,205,.86)}.warning-guide .guide-icon{color:var(--rust)}.warning-guide .guide-main strong{color:var(--rust)}
+
+/* Download listino */
+.footer-actions{display:flex;gap:9px;align-items:center}
+.poster-download{border:1px solid #6a532f;background:linear-gradient(130deg,#334a38,#1a2a20);color:#f7e7c6;padding:10px 19px;font:16px 'IM Fell English SC',Georgia,serif;letter-spacing:.5px;cursor:pointer;box-shadow:0 3px 10px rgba(33,27,18,.13)}
+.poster-download:hover{background:#44624a}
+.poster-download:focus-visible,.poster-modal button:focus-visible,.poster-modal select:focus-visible{outline:3px solid #ae8345;outline-offset:2px}
+.poster-modal-open{overflow:hidden}
+.poster-modal[hidden]{display:none!important}
+.poster-modal{position:fixed;inset:0;background:rgba(17,19,15,.74);z-index:100;display:flex;align-items:center;justify-content:center;padding:22px}
+.poster-dialog{width:min(900px,100%);max-height:min(94vh,1100px);background:#ebdaba;border:6px double #6e4828;box-shadow:0 20px 60px #090906aa;display:flex;flex-direction:column;overflow:hidden;color:#382619}
+.poster-modal-head{display:flex;justify-content:space-between;gap:12px;padding:18px 20px 10px}
+.poster-modal-head h2{font:27px 'Rye',Georgia,serif;margin:0}
+.poster-modal-head p{font-size:12px;margin:7px 0 0;color:#695135;line-height:1.5}
+.poster-x{align-self:start;border:1px solid #876b4b;background:transparent;color:#382619;font-size:23px;width:37px;height:37px;cursor:pointer}
+.poster-modal-settings{padding:10px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid #b49c72;font-size:14px;font-weight:700}
+.poster-modal-settings select{font:16px Georgia,serif;color:#35251a;min-width:200px;max-width:100%;padding:8px;border:1px solid #907049;background:#f8e9cb}
+.poster-preview{overflow-y:auto;background:#bda37b;min-height:160px;padding:15px;flex:1;text-align:center}
+.poster-preview canvas{display:block;width:min(100%,560px);height:auto;margin:0 auto;box-shadow:0 5px 18px #35251a66}
+.poster-modal-footer{padding:12px 18px 17px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.poster-status{font-size:12px;color:#6d5231;flex:1}
+.poster-modal-footer button{padding:10px 14px;border:1px solid #72522d;cursor:pointer;font:14px Georgia,serif}
+.poster-modal-footer button:disabled{opacity:.6;cursor:wait}
+.poster-cancel{background:transparent;color:#65482b}
+.poster-save{background:#314633;color:#f8e9c5}
+@media(max-width:760px){.footer-actions{width:100%;justify-content:space-between;order:2}.poster-download{flex:1;font-size:14px;padding:8px 10px}.reset-btn{flex:1}.poster-modal{padding:5px}.poster-dialog{max-height:96vh}.poster-modal-head h2{font-size:19px}.poster-modal-settings{gap:7px}}
+
+/* Due listini distinti, senza modifiche al registro */
+.poster-private-note{font-size:11px;font-weight:400;color:#7f553d}
+.footer-actions{flex-wrap:wrap}
+.footer-actions .poster-download{white-space:nowrap}
+@media(max-width:1050px){.footer-inner{align-items:stretch;flex-direction:column;gap:9px}.footer-actions{width:100%;justify-content:center}.totals{width:100%;justify-content:space-around}.footer-bar{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+@media(max-width:760px){body{padding-bottom:205px}.footer-actions{order:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.footer-actions .reset-btn{grid-column:1/-1;order:3}.footer-actions .poster-download{white-space:normal;font-size:13px;line-height:1.1;padding:9px 6px}.totals{order:0}.poster-private-note{line-height:1.5}}
+@media(max-width:430px){body{padding-bottom:216px}}
 </style>
 </head>
 <body>
@@ -57,7 +90,17 @@
 <div class="guide"><div class="guide-icon">📦</div><div class="guide-main"><strong>Più casse dello stesso articolo?</strong> Ogni casella rappresenta una cassa/stack. Premi <strong>+</strong> per aggiungerne un'altra: la colonna <strong>Qtà</strong> somma tutto automaticamente.</div><div class="guide-hint">Esempio: 18 + 23 + 11 → Qtà 52</div></div><div class="guide warning-guide"><div class="guide-icon">⚠️</div><div class="guide-main"><strong>Attenzione:</strong> il numero massimo vendibile al singolo cliente è di <strong>5 Trappole per Pesci</strong> e <strong>35 Esche Per Pesci Grandi</strong>.</div><div class="guide-hint">Limite per cliente</div></div>
 <div class="layout"><main class="sections" id="sections"></main><aside class="summary-panel"><div class="summary-head"><h2 class="summary-title">Registro corrente</h2><p class="summary-sub">Solo le voci con quantità inserita</p></div><div class="summary-list" id="summaryList"><p class="summary-empty">Nessun articolo inserito.</p></div><div class="summary-totals"><div class="summary-total give"><span>Da dare</span><strong id="summaryGive">$0.00</strong></div><div class="summary-total invoice"><span>Fattura</span><strong id="summaryInvoice">$0.00</strong></div></div></aside></div>
 </div>
-<div class="footer-bar"><div class="footer-inner"><button class="reset-btn" type="button" onclick="resetAll()">Svuota registro</button><div class="totals"><div class="grand-total give"><span class="label">Da pagare al cliente</span><span class="amount" id="totalGive">$0.00</span></div><div class="grand-total invoice"><span class="label">Fattura cliente</span><span class="amount" id="totalInvoice">$0.00</span></div></div></div></div>
+<div class="footer-bar"><div class="footer-inner"><div class="footer-actions"><button class="reset-btn" type="button" onclick="resetAll()">Svuota registro</button><button class="poster-download" id="posterCaccia" type="button">↓ Genera listino caccia</button><button class="poster-download" id="posterPesca" type="button">↓ Genera listino pesca</button></div><div class="totals"><div class="grand-total give"><span class="label">Da pagare al cliente</span><span class="amount" id="totalGive">$0.00</span></div><div class="grand-total invoice"><span class="label">Fattura cliente</span><span class="amount" id="totalInvoice">$0.00</span></div></div></div></div>
+
+<div id="posterModal" class="poster-modal" role="dialog" aria-modal="true" aria-labelledby="posterTitle" hidden>
+  <div class="poster-dialog">
+    <div class="poster-modal-head"><div><h2 id="posterTitle">Volantino del Manzanita</h2><p>Manifesto Western 1900, generato con gli articoli e i prezzi del registro.</p></div><button id="posterClose" class="poster-x" type="button" aria-label="Chiudi">×</button></div>
+    <div class="poster-modal-settings"><span id="posterModeLabel">Listino della caccia</span><span class="poster-private-note">La sezione riservata «Bracconaggio» non viene pubblicata.</span></div>
+    <div id="posterPreview" class="poster-preview" aria-label="Anteprima volantino">Il volantino verrà visualizzato qui.</div>
+    <div class="poster-modal-footer"><span class="poster-status" id="posterStatus">Seleziona un listino per creare l'immagine.</span><button id="posterCancel" class="poster-cancel" type="button">Chiudi</button><button id="posterSave" class="poster-save" type="button" disabled>↓ Scarica PNG</button></div>
+  </div>
+</div>
+<script src="listino-assets/offline-assets.js"></script>
 <script>
 const data=[
 {group:"raccolta",name:"Caccia",icon:"🏹",items:[{n:"Artiglio",p:.90},{n:"Bistecca",p:.80},{n:"Carne Bianca",p:.40},{n:"Carne Di Cervo",p:.60},{n:"Carne Rossa",p:.50},{n:"Corna",p:.75},{n:"Fegato Di Uccello",p:.60},{n:"Pelle",p:.60},{n:"Pelle Di Rettile",p:.85},{n:"Pelliccia",p:.85},{n:"Pezzi Leggendari",p:4.00,tierQty:50,tierPrice:4.50},{n:"Piume Di Uccello",p:.50},{n:"Veleno",p:.70}]},
@@ -85,6 +128,276 @@ function calculate(){let give=0,invoice=0;const active=[];data.forEach((cat,ci)=
 function renderSummary(active,give,invoice){const list=document.getElementById("summaryList");if(active.length===0){list.innerHTML=`<p class="summary-empty">Nessun articolo inserito.</p>`}else{list.innerHTML=active.map(a=>`<div class="summary-row"><div class="summary-row-main"><span class="summary-name">${a.name}</span><span class="summary-cat">${a.cat}${a.boxes>1?` · ${a.boxes} casse/stack`:""}</span></div><div class="summary-row-nums"><span class="summary-qty">×${a.qty}</span><span class="summary-val ${a.value<0?"neg":"pos"}">${a.value<0?"-":""}$${Math.abs(a.value).toFixed(2)}</span></div></div>`).join("")}document.getElementById("summaryGive").textContent=`$${give.toFixed(2)}`;document.getElementById("summaryInvoice").textContent=`$${invoice.toFixed(2)}`}
 function resetAll(){document.querySelectorAll(".qty-cubes").forEach(container=>{const cubes=container.querySelectorAll(".qty-cube");cubes.forEach((cube,idx)=>{if(idx===0)cube.value="";else cube.remove()});const first=container.querySelector(".qty-cube");if(first){const ci=Number(first.dataset.ci),ii=Number(first.dataset.ii);updateCubeLabels(ci,ii)}});calculate()}
 calculate();
+/* === Manzanita Post: manifesto dei listini (Canvas, senza librerie esterne) === */
+const POSTER_ART = {
+ paper: 'listino-assets/parchment_bg.png',
+ frame: 'listino-assets/ornate_border.png',
+ landscape: 'listino-assets/mountain_footer.png',
+ deer: 'listino-assets/deer_vignette.png',
+ eagle: 'listino-assets/eagle_vignette.png',
+ lodge: 'listino-assets/lodge_vignette.png'
+};
+const POSTER_INFO = {
+  Caccia: {title:'ACQUISTIAMO LA SELVAGGINA',type:'acquisto'},
+  Pesca: {title:'ACQUISTIAMO IL PESCATO',type:'acquisto'},
+  'Pesca Leggendaria': {title:'PESCA LEGGENDARIA',type:'acquisto'},
+  Attrezzi: {title:'ATTREZZATURA DA CACCIA',type:'vendita'},
+  Canne: {title:'CANNE E ATTREZZATURA',type:'vendita'},
+  'Esche Caccia': {title:'ESCHE DA CACCIA',type:'vendita'},
+  'Esche Pesca': {title:'ESCHE DA PESCA',type:'vendita'},
+  'Esche Trappole Caccia': {title:'ESCHE PER TRAPPOLE',type:'vendita'},
+  'Esche Trappole Pesca': {title:'ESCHE PER TRAPPOLE',type:'vendita'},
+  Trappole: {title:'TRAPPOLE',type:'vendita'},
+  'Vendite calmierate · Saloons': {title:'FORNITURE PER I SALOON',type:'vendita'}
+};
+let posterCanvas = null;
+let posterBusy = false;
+let posterMode = "caccia";
+const posterChoices = {
+  caccia: {caption:'LISTINO DELLA CACCIA',left:['Caccia'],right:['Attrezzi','Esche Caccia','Esche Trappole Caccia','Trappole:Caccia']},
+  pesca: {caption:'LISTINO DELLA PESCA',left:['Pesca','Pesca Leggendaria'],right:['Canne','Esche Pesca','Esche Trappole Pesca','Trappole:Pesca']}
+};
+function posterSections(keys) {
+  return keys.map(key => {
+    const [name, subtype] = key.split(':');
+    const cat = data.find(entry => entry.name === name);
+    if (!cat || cat.illegal) return null;
+    const items = subtype === 'Caccia' ? cat.items.filter(it => /Animali/i.test(it.n)) :
+      subtype === 'Pesca' ? cat.items.filter(it => /Pesci/i.test(it.n)) : cat.items;
+    if (!items.length) return null;
+    const rows = [];
+    for (const item of items) {
+      rows.push({name:item.n, price:item.p, maxQty:item.maxQty || null});
+      if (item.tierQty) rows.push({name:`${item.n} (da ${item.tierQty}+)`,price:item.tierPrice});
+    }
+    return {title:POSTER_INFO[name]?.title || name.toUpperCase(),type:POSTER_INFO[name]?.type || 'vendita',rows};
+  }).filter(Boolean);
+}
+function posterTextWidth(ctx,text,maxWidth,fontSize,fontFamily) {
+  let size=fontSize;
+  do {ctx.font=`${size}px ${fontFamily}`;if(ctx.measureText(text).width<=maxWidth)break;size-=1;} while(size>19);
+  return size;
+}
+function posterRowHeight(ctx,row,width) {
+  const labelLimit=width-165;
+  ctx.font='24px Georgia';
+  const wrapped=ctx.measureText(row.name).width>labelLimit;
+  return (wrapped ? 60 : 42) + (row.maxQty ? 19 : 0);
+}
+function posterCardHeight(ctx,cat,width) {return 94+cat.rows.reduce((sum,row)=>sum+posterRowHeight(ctx,row,width),0)+12;}
+function posterLine(ctx,x1,y1,x2,y2,width=2,color='#64462a') {ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();}
+function posterOval(ctx,x,y,w,h,color='#785234',lineWidth=1.5) {ctx.beginPath();ctx.ellipse(x,y,w,h,0,0,Math.PI*2);ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.stroke();}
+function posterFlourish(ctx,x,y,scale=1) {
+  ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);ctx.lineWidth=2.1;ctx.strokeStyle='#593719';
+  for (let s of [-1,1]) {ctx.save();ctx.scale(s,1);ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(30,-21,51,-21,73,0);ctx.bezierCurveTo(90,14,110,4,125,-6);ctx.stroke();ctx.beginPath();ctx.moveTo(39,-12);ctx.bezierCurveTo(50,-38,84,-26,68,-14);ctx.bezierCurveTo(61,-7,49,-10,58,-18);ctx.stroke();ctx.beginPath();ctx.moveTo(84,2);ctx.bezierCurveTo(94,30,120,18,112,10);ctx.stroke();ctx.restore();}
+  ctx.beginPath();ctx.moveTo(-10,0);ctx.quadraticCurveTo(0,-19,10,0);ctx.quadraticCurveTo(0,19,-10,0);ctx.fillStyle='#593719';ctx.fill();ctx.restore();
+}
+function posterPine(ctx,x,y,h,ink='#6a4b32',a=1) {
+  ctx.save();ctx.globalAlpha=a;ctx.strokeStyle=ink;ctx.fillStyle=ink;
+  ctx.lineWidth=Math.max(2,h/42);posterLine(ctx,x,y,x,y-h,Math.max(2,h/45),ink);
+  for(let k=0;k<7;k++) {const q=(k+.8)/8,wy=y-h+h*q,w=h*(.06+q*.20);ctx.beginPath();ctx.moveTo(x,wy-h*.12);ctx.lineTo(x-w,wy+h*.035);ctx.lineTo(x-w*.45,wy-h*.002);ctx.lineTo(x,wy+h*.038);ctx.lineTo(x+w*.45,wy-h*.002);ctx.lineTo(x+w,wy+h*.035);ctx.closePath();ctx.fill();}
+  ctx.restore();
+}
+function posterLandscape(ctx,width,height) {
+  const base=height-130;
+  ctx.save();ctx.strokeStyle='#97734c';ctx.lineWidth=2.3;ctx.globalAlpha=.66;
+  ctx.beginPath();ctx.moveTo(18,base+60);
+  for(let i=0;i<=width;i+=34) {const peak=Math.sin(i*.029)*28+Math.cos(i*.011)*40+Math.sin(i*.062)*13;ctx.lineTo(i,base-45-peak);}ctx.stroke();
+  ctx.globalAlpha=.48;
+  for(let i=24;i<width;i+=42)posterPine(ctx,i,height-45,36+(i*23%24),'#6a4b32',.56);
+  ctx.globalAlpha=.65;for(let j=0;j<6;j++){posterLine(ctx,85,height-64+j*5,width-85,height-66+j*4,.8,'#a28059');}
+  ctx.restore();
+}
+function posterFish(ctx,x,y,s=1) {
+  ctx.save();ctx.translate(x,y);ctx.scale(s,s);ctx.strokeStyle='#533318';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(-76,0);ctx.bezierCurveTo(-45,-37,32,-30,75,0);ctx.bezierCurveTo(29,34,-43,35,-76,0);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(-76,0);ctx.lineTo(-105,-26);ctx.lineTo(-105,26);ctx.closePath();ctx.stroke();
+  ctx.beginPath();ctx.moveTo(-4,-25);ctx.lineTo(6,-48);ctx.lineTo(26,-22);ctx.stroke();
+  ctx.beginPath();ctx.arc(55,-5,3,0,Math.PI*2);ctx.fillStyle='#533318';ctx.fill();
+  ctx.beginPath();ctx.arc(18,0,11,-Math.PI/2,Math.PI/2);ctx.stroke();
+  ctx.restore();
+}
+function posterAntlers(ctx,x,y,s=1){ctx.save();ctx.translate(x,y);ctx.scale(s,s);ctx.strokeStyle='#533318';ctx.lineWidth=5;ctx.lineCap='round';
+  for(const flip of [-1,1]){ctx.save();ctx.scale(flip,1);ctx.beginPath();ctx.moveTo(0,0);ctx.bezierCurveTo(26,-17,26,-78,78,-98);ctx.bezierCurveTo(114,-122,126,-134,126,-166);ctx.moveTo(62,-90);ctx.bezierCurveTo(36,-121,54,-157,48,-164);ctx.moveTo(80,-102);ctx.bezierCurveTo(102,-80,120,-84,137,-104);ctx.moveTo(104,-118);ctx.bezierCurveTo(91,-148,107,-173,107,-173);ctx.stroke();ctx.restore();}ctx.restore();}
+function posterPaper(ctx,w,h,assets){
+  ctx.fillStyle='#ead3a7';ctx.fillRect(0,0,w,h);
+  if(assets.paper){ctx.drawImage(assets.paper,0,0,w,h);}
+  else {
+    const grad=ctx.createRadialGradient(w*.48,h*.40,20,w*.5,h*.5,Math.max(w,h)*.70);
+    grad.addColorStop(0,'#f5d9aa');grad.addColorStop(1,'#b98a54');ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+  }
+  // Schiarire leggermente la carta sotto le scritte per assicurare leggibilità.
+  ctx.fillStyle='rgba(253,226,178,.16)';ctx.fillRect(67,470,w-134,h-650);
+}
+function posterDrawFrame(ctx,w,h,img){
+  if(!img){ctx.strokeStyle='#52351d';ctx.lineWidth=7;ctx.strokeRect(30,30,w-60,h-60);return;}
+  // Cornice a nove segmenti: non si stirano gli ornamenti degli angoli sui manifesti alti.
+  const sw=img.naturalWidth,sh=img.naturalHeight;
+  const a=210,b=260,dw=270,dh=300;
+  ctx.save();ctx.globalAlpha=.77;
+  const piece=(sx,sy,fw,fh,dx,dy,tw,th)=>ctx.drawImage(img,sx,sy,fw,fh,dx,dy,tw,th);
+  piece(0,0,a,b,0,0,dw,dh);piece(sw-a,0,a,b,w-dw,0,dw,dh);
+  piece(0,sh-b,a,b,0,h-dh,dw,dh);piece(sw-a,sh-b,a,b,w-dw,h-dh,dw,dh);
+  piece(a,0,sw-2*a,b,dw,0,w-2*dw,dh);
+  piece(a,sh-b,sw-2*a,b,dw,h-dh,w-2*dw,dh);
+  piece(0,b,a,sh-2*b,0,dh,dw,h-2*dh);
+  piece(sw-a,b,a,sh-2*b,w-dw,dh,dw,h-2*dh);
+  ctx.restore();
+}
+function posterDrawMountain(ctx,w,h,assets){
+  if(assets.landscape){
+    ctx.save();ctx.globalAlpha=.65;
+    const ih=190;
+    ctx.drawImage(assets.landscape,64,h-ih-69,w-128,ih);
+    ctx.restore();
+  }else posterLandscape(ctx,w,h);
+}
+
+function posterHeader(ctx,w,selection,assets){
+  // Grandi incisioni laterali: non interferiscono con il titolo centrale.
+  ctx.save();
+  if(assets.lodge){ctx.globalAlpha=.73;ctx.drawImage(assets.lodge,68,130,330,350);}
+  if(selection==='pesca'){
+    posterFish(ctx,1380,281,1.00);posterFish(ctx,1380,383,.53);
+  }else{
+    if(assets.deer){ctx.globalAlpha=.78;ctx.drawImage(assets.deer,1280,128,247,353);}
+    if(assets.eagle){ctx.globalAlpha=.39;ctx.drawImage(assets.eagle,1094,330,153,177);}
+  }
+  ctx.restore();
+  posterFlourish(ctx,w/2,94,1.24);
+  ctx.textAlign='center';ctx.fillStyle='#301c10';
+  const main=selection==='caccia'?'LOGGIA DI CACCIA':'LOGGIA DI PESCA';
+  let headingSize=76;
+  do {ctx.font=`${headingSize}px "Rye", Georgia, serif`;headingSize-=2;}while(ctx.measureText(main).width>w-570&&headingSize>42);
+  ctx.fillText(main,w/2,196);
+  ctx.font='64px "IM Fell English SC", Georgia, serif';ctx.fillText('MANZANITA POST',w/2,277);
+  posterLine(ctx,480,310,w-480,310,3,'#684225');posterFlourish(ctx,w/2,310,.66);
+  ctx.font='37px "IM Fell English SC", Georgia, serif';ctx.fillText(posterChoices[selection].caption,w/2,371);
+  ctx.font='23px Georgia, serif';ctx.fillText('Terre selvagge · Cacciatori e pescatori sempre benvenuti',w/2,419);
+  if(selection==='caccia')posterAntlers(ctx,220,451,.45);
+  posterLine(ctx,94,486,w-94,486,3,'#613b1f');posterFlourish(ctx,w/2,486,.95);
+}
+
+function posterDrawCard(ctx,section,x,y,width){
+  const height=posterCardHeight(ctx,section,width);
+  ctx.save();ctx.fillStyle='rgba(249,224,174,.33)';ctx.fillRect(x,y,width,height);
+  ctx.lineWidth=3;ctx.strokeStyle='#724b2c';ctx.strokeRect(x,y,width,height);
+  ctx.strokeStyle='#b08c55';ctx.lineWidth=1.5;ctx.strokeRect(x+9,y+9,width-18,height-18);
+  ctx.fillStyle='#54341c';ctx.fillRect(x+12,y+12,width-24,62);
+  ctx.fillStyle='#f4ddb1';ctx.textAlign='center';
+  posterTextWidth(ctx,section.title,width-45,32,'"IM Fell English SC", Georgia, serif');ctx.fillText(section.title,x+width/2,y+55);
+  ctx.font='italic 17px Georgia';ctx.fillStyle='#9a754f';ctx.fillText(section.type==='acquisto'?'PREZZI DI ACQUISTO':'PREZZI DI VENDITA',x+width/2,y+96);
+  let ry=y+127;
+  for(const row of section.rows){
+    const rh=posterRowHeight(ctx,row,width);ctx.fillStyle='#3c2a19';ctx.textAlign='left';
+    const amount=`$${row.price.toFixed(2)}`;
+    ctx.font='bold 26px "IM Fell English SC", Georgia, serif';const nameWidth=width-165;
+    const words=row.name.split(' ');let line='',parts=[];
+    for(const word of words){const test=line?line+' '+word:word;if(ctx.measureText(test).width>nameWidth&&line){parts.push(line);line=word;}else{line=test;}}
+    if(line)parts.push(line);
+    if(parts.length>2){parts=[parts[0],parts.slice(1).join(' ')];}
+    for(let j=0;j<parts.length;j++){ctx.fillText(parts[j],x+25,ry+j*29,width-158);}
+    ctx.textAlign='right';ctx.font='bold 25px Georgia';ctx.fillStyle='#492b17';ctx.fillText(amount,x+width-28,ry);
+    ctx.strokeStyle='rgba(90,58,32,.35)';ctx.lineWidth=1.5;ctx.setLineDash([3,5]);
+    const dotsY=ry+14+(parts.length-1)*29;posterLine(ctx,x+26,dotsY,x+width-26,dotsY,1,'rgba(90,58,32,.26)');ctx.setLineDash([]);
+    if(row.maxQty){ctx.textAlign='left';ctx.font='italic 18px Georgia';ctx.fillStyle='#873f30';ctx.fillText(`MAX ${row.maxQty} per cliente`,x+26,ry+(parts.length-1)*29+24);}
+    ry+=rh;
+  }
+  ctx.restore();return height;
+}
+async function posterLoadArt(){
+  const isLocal=location.protocol==='file:';
+  const entries=Object.entries(POSTER_ART);
+  const result=await Promise.all(entries.map(([key,path])=>new Promise(resolve=>{
+    // Chromium blocca l'esportazione Canvas con PNG locali (file://).
+    // In quel caso, immagini compatte incorporate in offline-assets.js.
+    const fallback=window.MANZANITA_OFFLINE_ASSETS?.[key];
+    const src=(isLocal && fallback)?fallback:path;
+    const img=new Image();
+    img.onload=()=>resolve([key,img]);
+    img.onerror=()=>{
+      if(fallback && src!==fallback){const backup=new Image();backup.onload=()=>resolve([key,backup]);backup.onerror=()=>resolve([key,null]);backup.src=fallback;}
+      else resolve([key,null]);
+    };
+    img.src=src;
+  })));
+  const art=Object.fromEntries(result);
+  if(!art.paper)throw new Error('Impossibile caricare listino-assets/parchment_bg.png. Non separare index.html dalla cartella listino-assets.');
+  return art;
+}
+
+async function posterCreate(mode){
+  if(!posterChoices[mode])throw new Error('Tipo di listino non valido');
+  if(document.fonts?.ready)await document.fonts.ready;
+  const w=1600,xLeft=91,xRight=813,columnWidth=696,gap=19;
+  // I dati sono presi in tempo reale dalla stessa costante `data` usata dal registro.
+  const cols=[posterSections(posterChoices[mode].left),posterSections(posterChoices[mode].right)];
+  const test=document.createElement('canvas').getContext('2d');
+  const lengths=cols.map(col=>col.reduce((h,cat)=>h+posterCardHeight(test,cat,columnWidth)+gap,0));
+  const startY=518;
+  const totalHeight=Math.max(1550,Math.ceil(startY+Math.max(...lengths)+340));
+  const canvas=document.createElement('canvas');canvas.width=w;canvas.height=totalHeight;
+  const ctx=canvas.getContext('2d',{alpha:false});if(!ctx)throw new Error('Il browser non supporta Canvas');
+  const assets=await posterLoadArt();
+  posterPaper(ctx,w,totalHeight,assets);
+  posterDrawFrame(ctx,w,totalHeight,assets.frame);
+  posterDrawMountain(ctx,w,totalHeight,assets);
+  posterHeader(ctx,w,mode,assets);
+  for(let k=0;k<2;k++) {let y=startY;for(const section of cols[k]){y+=posterDrawCard(ctx,section,k?xRight:xLeft,y,columnWidth)+gap;}}
+  const fy=totalHeight-276;
+  ctx.fillStyle='rgba(246,215,166,.76)';ctx.fillRect(275,fy+14,w-550,124);
+  posterLine(ctx,130,fy,w-130,fy,3,'#67472b');posterFlourish(ctx,w/2,fy,.85);
+  ctx.textAlign='center';ctx.fillStyle='#3d2719';ctx.font='bold 26px "IM Fell English SC", Georgia, serif';ctx.fillText('PRESSO IL MANZANITA POST · SELVAGGINA, PESCA E FORNITURE',w/2,fy+46);
+  ctx.font='italic 23px Georgia';ctx.fillText('Ogni cacciatore e pescatore trova qui ciò che cerca.',w/2,fy+80);
+  ctx.font='20px Georgia';ctx.fillText('I prezzi sono aggiornati secondo il registro corrente del Manzanita Post.',w/2,fy+111);
+  return canvas;
+}
+function posterOpen(mode){
+  if(!posterChoices[mode])return;
+  posterMode=mode;posterCanvas=null;
+  document.getElementById('posterTitle').textContent=mode==='caccia'?'Listino della caccia':'Listino della pesca';
+  document.getElementById('posterModeLabel').textContent=mode==='caccia'?'Volantino · Caccia':'Volantino · Pesca';
+  const modal=document.getElementById('posterModal');modal.hidden=false;
+  document.body.classList.add('poster-modal-open');
+  document.getElementById('posterClose').focus();
+  posterRefresh();
+}
+function posterClose(){document.getElementById('posterModal').hidden=true;document.body.classList.remove('poster-modal-open');}
+async function posterRefresh(){
+  if(posterBusy)return;
+  posterBusy=true;const button=document.getElementById('posterSave');const status=document.getElementById('posterStatus');
+  const preview=document.getElementById('posterPreview');
+  button.disabled=true;status.textContent='Preparazione del volantino in corso…';
+  try{
+    const mode=posterMode;
+    const canvas=await posterCreate(mode);posterCanvas=canvas;
+    preview.replaceChildren(canvas);
+    status.textContent=`Anteprima pronta · ${canvas.width} × ${canvas.height} px`;
+    button.disabled=false;
+  }catch(err){posterCanvas=null;preview.textContent='Impossibile creare il volantino.';status.textContent=err.message;}
+  finally{posterBusy=false;}
+}
+function posterSave(){
+  if(!posterCanvas)return;
+  const canvas=posterCanvas;const mode=posterMode;
+  const button=document.getElementById('posterSave');button.disabled=true;
+  canvas.toBlob(blob=>{
+    button.disabled=false;
+    if(!blob){document.getElementById('posterStatus').textContent='Salvataggio non riuscito. Riprova.';return;}
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;
+    a.download=`Manzanita_Listino_${mode}.png`;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),30000);
+    document.getElementById('posterStatus').textContent='Volantino PNG pronto per il download.';
+  },'image/png');
+}
+document.getElementById('posterCaccia').addEventListener('click',()=>posterOpen('caccia'));
+document.getElementById('posterPesca').addEventListener('click',()=>posterOpen('pesca'));
+document.getElementById('posterClose').addEventListener('click',posterClose);
+document.getElementById('posterCancel').addEventListener('click',posterClose);
+document.getElementById('posterSave').addEventListener('click',posterSave);
+document.getElementById('posterModal').addEventListener('click',event=>{if(event.target.id==='posterModal')posterClose();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!document.getElementById('posterModal').hidden)posterClose();});
+
 </script>
 </body>
 </html>
