@@ -27,19 +27,20 @@
 
 .fish-map-explorer{grid-column:1 / -1;min-width:0;margin-top:2px;background:linear-gradient(rgba(227,211,175,.96),rgba(227,211,175,.96)),repeating-linear-gradient(0deg,rgba(79,60,39,.025) 0 1px,transparent 1px 5px);border:1px solid rgba(65,49,32,.22);border-top:4px solid var(--brass);box-shadow:var(--shadow-soft);padding:16px}
 .fish-map-intro{margin:0 0 14px;font-size:13px;line-height:1.55;color:var(--ink)}
-.fish-map-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.fish-map-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(235px,280px);gap:16px;align-items:start;margin:0 0 16px}
+.fish-map-toolbar{display:flex;flex-wrap:wrap;align-content:start;gap:8px;margin:0;min-width:0}
 .fish-map-btn{appearance:none;border:1px solid rgba(57,40,23,.35);background:linear-gradient(180deg,#f1e4c8,#e0cb9d);color:var(--ink);padding:8px 12px;border-radius:999px;font:700 12px/1.2 'Merriweather',Georgia,serif;letter-spacing:.2px;cursor:pointer;box-shadow:var(--shadow-soft)}
 .fish-map-btn:hover{filter:brightness(1.03)}
 .fish-map-btn.active{background:linear-gradient(135deg,#355240,#203326);color:#f5e7cc;border-color:#294233}
-.fish-map-stage{display:grid;grid-template-columns:280px minmax(0,1fr);gap:16px;align-items:start}
-.fish-map-info{background:rgba(255,255,255,.22);border:1px solid rgba(65,49,32,.18);padding:14px}
+.fish-map-stage{display:block;width:100%;min-width:0}
+.fish-map-info{min-width:0;background:rgba(255,255,255,.22);border:1px solid rgba(65,49,32,.18);padding:14px}
 .fish-map-kicker{font:700 11px/1 'Merriweather',Georgia,serif;letter-spacing:1.2px;text-transform:uppercase;color:var(--forest-700);margin-bottom:6px}
 .fish-map-info h3{margin:0 0 8px;font-family:'IM Fell English SC',Georgia,serif;font-size:26px;color:var(--forest-800)}
 .fish-map-info p{margin:0 0 9px;font-size:13px;line-height:1.55}
 .fish-map-note{font-size:12px;color:var(--ink-soft)}
-.fish-map-frame{background:rgba(255,255,255,.18);border:1px solid rgba(65,49,32,.22);padding:10px}
-.fish-map-frame img{display:block;width:100%;height:auto;border:1px solid rgba(65,49,32,.15);box-shadow:var(--shadow-soft)}
-@media(max-width:900px){.fish-map-stage{grid-template-columns:1fr}.fish-map-info h3{font-size:24px}}
+.fish-map-frame{width:100%;min-width:0;overflow:visible;background:rgba(255,255,255,.18);border:1px solid rgba(65,49,32,.22);padding:10px}
+.fish-map-frame img{display:block;width:100%;max-width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;border:1px solid rgba(65,49,32,.15);box-shadow:var(--shadow-soft)}
+@media(max-width:740px){.fish-map-top{grid-template-columns:1fr}.fish-map-info h3{font-size:24px}}
 
 /* Richieste attive: notifica comune a tutto il sito */
 .wiki-hero-tools{display:flex;align-items:center;gap:20px}
@@ -90,7 +91,8 @@
 
 <div class="fish-map-explorer" id="fish-map-explorer">
   <p class="fish-map-intro"><strong>Mappe delle zone di pesca:</strong> seleziona una specie per visualizzare le aree consigliate. Le zone rosse indicano i punti migliori sulla mappa.</p>
-  <div class="fish-map-toolbar" id="fish-map-toolbar">
+  <div class="fish-map-top">
+  <div class="fish-map-toolbar" id="fish-map-toolbar" aria-label="Seleziona la specie di pesce">
     <button type="button" class="fish-map-btn active" data-fish-map-btn data-map="wiki-assets/fish-maps/persico_branchie_blu.png" data-title="Persico branchie blu" data-category="Pesce piccolo">Persico branchie blu</button>
     <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pickerel.png" data-title="Pickerel" data-category="Pesce piccolo/medio">Pickerel</button>
     <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/pickerel_rosso.png" data-title="Pickerel rosso" data-category="Pesce piccolo/medio">Pickerel rosso</button>
@@ -107,13 +109,14 @@
     <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/luccio_del_nord.png" data-title="Luccio del nord" data-category="Pesce grande">Luccio del nord</button>
     <button type="button" class="fish-map-btn" data-fish-map-btn data-map="wiki-assets/fish-maps/salmone_rosso.png" data-title="Salmone rosso" data-category="Pesce piccolo/medio">Salmone rosso</button>
   </div>
-  <div class="fish-map-stage">
     <div class="fish-map-info">
       <div class="fish-map-kicker">Zona di pesca</div>
       <h3 id="fish-map-title">Persico branchie blu</h3>
       <p id="fish-map-category"><strong>Categoria:</strong> Pesce piccolo</p>
       <p class="fish-map-note">Le aree rosse mostrano i punti consigliati per trovare la specie selezionata.</p>
     </div>
+  </div>
+  <div class="fish-map-stage">
     <div class="fish-map-frame">
       <img id="fish-map-image" src="wiki-assets/fish-maps/persico_branchie_blu.png" alt="Mappa zone di pesca: Persico branchie blu">
     </div>
